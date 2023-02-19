@@ -28,4 +28,16 @@ An E-Action will begin as an email that escalates up a **chain of command**. Any
 
 ### IRL-Actions
 
-An In-Real-Life Action becomes available once an e-action has been fully escalated. Members must vote to approve the irl-action. Once approved all members must act
+An In-Real-Life Action (walk-out, protest, strike) becomes available once an e-action has been fully escalated. Members must vote to approve the irl-action. Once approved all members act! IRLs can also be escalated by vote.
+
+## Technologies
+
+weUnion's design should be optimized for phone and allow for members to easily invite others to join.
+
+### The MERN Stack
+
+The app is built on a MongoDB database management system, an Express web application, the React library to build out UI and Node.js runtime environment.
+
+A key technology for the app's success will be the ability to send push notifications for invites and updates. APIs for this purpose include Amazon SNS and FCM.
+
+Additionally, map and calendar APIs will be necessary to keep actions organized. This is a bonus feature.
