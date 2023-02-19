@@ -10,7 +10,7 @@ const cors = require("cors");
 const { isProduction } = require("./config/keys");
 
 require("./models/User");
-require("./models/Grief");
+require("./models/Grief.js");
 require("./config/passport"); // <-- ADD THIS LINE
 const passport = require("passport"); // <-- ADD THIS LINE
 const usersRouter = require("./routes/api/users");
