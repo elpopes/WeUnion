@@ -16,7 +16,7 @@ weUnion is an application designed to make it easy for anybody to create a **uni
 
 ### Rights
 
-A right is determined by members. Any member can declare a right and all members can vote to establish that right. Once a right is established it becomes a part of the union's embedded constitution and can only be rescinded by vote.
+(This will be a bonus feature) A right is determined by members. Any member can declare a right and all members can vote to establish that right. Once a right is established it becomes a part of the union's embedded constitution and can only be rescinded by vote.
 
 ### Grievances
 
