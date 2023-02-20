@@ -1,10 +1,11 @@
+const validateUnionInput = require("../../validations/unions");
+
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const Union = mongoose.model("Union");
 const { requireUser } = require("../../config/passport");
-
 
 // View a specific Union
 
@@ -19,7 +20,7 @@ router.get("/union/:id", async (req, res) => {
 
 // Create a new Union
 
-router.post("/union", requireUser, async (req, res) => {
+router.post("/union", requireUser, validateUnionInput, async (req, res) => {
     try {
         const union = await Union.create(req.body);
         return res.json(union);
