@@ -2,10 +2,9 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
-const Grief = mongoose.model("Grief");
 const Union = mongoose.model("Union");
 const { requireUser } = require("../../config/passport");
-const validateGriefInput = require("../../validations/griefs");
+
 
 // View a specific Union
 
@@ -64,7 +63,3 @@ router.get("/unions", async (req, res) => {
 });
 
 module.exports = router;
-
-
-
-
