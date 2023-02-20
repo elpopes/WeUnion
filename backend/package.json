@@ -18,6 +18,7 @@
         "express-validator": "^6.15.0",
         "jsonwebtoken": "^9.0.0",
         "mongoose": "^6.9.2",
+        "mongoose-autopopulate": "^0.17.1",
         "morgan": "~1.9.1",
         "passport": "^0.6.0",
         "passport-jwt": "^4.0.1",
