@@ -16,6 +16,23 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.post("/", requireUser, validateUnionInput, async (req, res) => {
+    try {
+        // console.log(req.body)
+        // const union = await Union.create(req.body);
+        // return res.json(union);
+
+        const newUnion = new Union({
+            name: req.body.name,
+          });
+      
+        let union = await newUnion.save();
+        union = await union.populate("name");
+        return res.json(union);
+    } catch (e) {
+        return res.status(422).json(e);
+    }
+});
 router.get("/union/:id", async (req, res) => {
     try {
         const union = await Union.findById(req.params.id);
@@ -27,15 +44,6 @@ router.get("/union/:id", async (req, res) => {
 
 // Create a new Union
 
-router.post("/unions", requireUser, validateUnionInput, async (req, res) => {
-    try {
-        debugger
-        const union = await Union.create(req.body);
-        return res.json(union);
-    } catch (e) {
-        return res.status(422).json(e);
-    }
-});
 
 // Update a Union
 
