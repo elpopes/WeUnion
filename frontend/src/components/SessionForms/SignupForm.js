@@ -6,6 +6,7 @@ import { signup, clearSessionErrors } from "../../store/session";
 function SignupForm() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
+  const [unionName, setUnionName] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const errors = useSelector((state) => state.errors.session);
@@ -27,6 +28,9 @@ function SignupForm() {
       case "username":
         setState = setUsername;
         break;
+      case "unionName":
+        setState = setUnionName;
+        break;
       case "password":
         setState = setPassword;
         break;
@@ -45,6 +49,7 @@ function SignupForm() {
     const user = {
       email,
       username,
+      unionName,
       password,
     };
 
@@ -74,6 +79,17 @@ function SignupForm() {
           placeholder="Username"
         />
       </label>
+      <div className="errors">{errors?.union}</div>
+      <label>
+        <span>Union Name</span>
+        <input
+          type="text"
+          value={unionName}
+          onChange={update("unionName")}
+          placeholder="Union"
+        />
+      </label>
+
       <div className="errors">{errors?.password}</div>
       <label>
         <span>Password</span>
