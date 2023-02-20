@@ -15,6 +15,13 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    union: {
+      type: Schema.Types.ObjectId,
+      ref: "Union",
+      autopopulate: {
+        select: "name", // Specify the field(s) you want to populate
+      },
+    },
   },
   {
     timestamps: true,

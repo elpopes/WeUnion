@@ -4,22 +4,25 @@ const autopopulate = require("mongoose-autopopulate");
 
 const unionSchema = new Schema(
     {
-      author: {
-        type: Schema.Types.ObjectId,
-        ref: "Members",
-        autopopulate: {
-        select: "union_name", // Specify the field(s) you want to populate
-        },
-      },
-
-      actions: {
+    name: {
         type: String,
         required: true,
-      },
+    },
+    unionMember: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        autopopulate: {
+        select: "union", // Specify the field(s) you want to populate
+        },
+    },
+    actions: {
+        type: String,
+        required: true,
+            },
     },
     {
-      timestamps: true,
+    timestamps: true,
     }
-  );
-  
-  module.exports = mongoose.model("Union", unionSchema);
+);
+
+module.exports = mongoose.model("Union", unionSchema);
