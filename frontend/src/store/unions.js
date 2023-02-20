@@ -119,6 +119,7 @@ const unionsReducer = (state = {}, action) => {
     case RECEIVE_USER_UNIONS:
       return { ...state, user: action.unions };
     case RECEIVE_NEW_UNION:
+      debugger
       return { ...state, new: action.union };
     case DESTROY_UNION:
       return { ...state, new: undefined };

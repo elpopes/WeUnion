@@ -1,13 +1,20 @@
-const validateUnionInput = require("../../validations/unions");
-
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const Union = mongoose.model("Union");
 const { requireUser } = require("../../config/passport");
+const validateUnionInput = require("../../validations/unions");
 
 // View a specific Union
+router.get("/", async (req, res) => {
+    try {
+        const unions = await Union.find();
+        return res.json(unions);
+    } catch (e) {
+        return res.status(422).json(e);
+    }
+});
 
 router.get("/union/:id", async (req, res) => {
     try {
@@ -20,8 +27,9 @@ router.get("/union/:id", async (req, res) => {
 
 // Create a new Union
 
-router.post("/union", requireUser, validateUnionInput, async (req, res) => {
+router.post("/unions", requireUser, validateUnionInput, async (req, res) => {
     try {
+        debugger
         const union = await Union.create(req.body);
         return res.json(union);
     } catch (e) {
@@ -54,13 +62,5 @@ router.delete("/union/:id", requireUser, async (req, res) => {
 
 // View all Unions
 
-router.get("/unions", async (req, res) => {
-    try {
-        const unions = await Union.find();
-        return res.json(unions);
-    } catch (e) {
-        return res.status(422).json(e);
-    }
-});
 
 module.exports = router;

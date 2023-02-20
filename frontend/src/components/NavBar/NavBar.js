@@ -19,6 +19,7 @@ function NavBar() {
           <Link to={"/griefs"}>Grievances</Link>
           <Link to={"/profile"}>Profile</Link>
           <Link to={"/griefs/new"}>Lodge a Grievance</Link>
+          <Link to={"/unions/new"}>Create a Union</Link>
           <button onClick={logoutUser}>Logout</button>
         </div>
       );

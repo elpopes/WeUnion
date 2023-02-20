@@ -17,9 +17,9 @@ const validateRegisterInput = [
     .exists({ checkFalsy: true })
     .isLength({ min: 6, max: 30 })
     .withMessage("Password must be between 6 and 30 characters"),
-  check("union")
-    .exists({ checkFalsy: true })
-    .withMessage("A union must be selected"),
+  // check("union")
+  //   .exists({ checkFalsy: true })
+  //   .withMessage("A union must be selected"),
   handleValidationErrors,
 ];
 

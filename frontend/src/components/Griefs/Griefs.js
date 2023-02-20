@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearGriefErrors, fetchGriefs } from "../../store/griefs";
 import GriefBox from "./GriefBox";
+import UnionForm from "../Unions/UnionForm";
 
 function Griefs() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function Griefs() {
 
   return (
     <>
+      <UnionForm />
       <h2>All Grievances</h2>
       {griefs.map((grief) => (
         <GriefBox key={grief._id} grief={grief} />
