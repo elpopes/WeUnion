@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 import session from "./session";
 import errors from "./errors";
 import griefs from "./griefs";
+import unions from "./unions";
 
 const rootReducer = combineReducers({
   session,
   errors,
   griefs,
+  unions
 });
 
 let enhancer;
