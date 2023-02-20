@@ -13,13 +13,6 @@ const validateUnionInput = [
     // .exists({ checkFalsy: true })
     // .isLength({ min: 10, max: 500 })
     // .withMessage("Union actions must be between 10 and 500 characters"),
-  // check("unionMember")
-  //   .exists({ checkFalsy: true })
-  //   .withMessage("A union member is required"),
-  check("actions")
-    .exists({ checkFalsy: true })
-    .isLength({ min: 10, max: 500 })
-    .withMessage("Union actions must be between 10 and 500 characters"),
   handleValidationErrors,
 ];
 module.exports = validateUnionInput;
