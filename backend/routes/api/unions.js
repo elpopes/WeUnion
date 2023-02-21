@@ -16,24 +16,24 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Create a new Union
+
 router.post("/", requireUser, validateUnionInput, async (req, res) => {
   try {
-    // console.log(req.body)
-    // const union = await Union.create(req.body);
-    // return res.json(union);
-    debugger;
     const newUnion = new Union({
       name: req.body.name,
-      memberId: req.body.member._id,
+      members: [req.body.member._id], // use the correct field name and store the member ID as an array
+      createdBy: req.user._id, // add createdBy field with the current user's ID
     });
 
     let union = await newUnion.save();
-    union = await union.populate("name");
+    union = await union.populate("members"); // populate the members field
     return res.json(union);
   } catch (e) {
     return res.status(422).json(e);
   }
 });
+
 router.get("/:id", async (req, res) => {
   try {
     const union = await Union.findById(req.params.id);
@@ -43,7 +43,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Create a new Union
 
 // Update a Union
 
