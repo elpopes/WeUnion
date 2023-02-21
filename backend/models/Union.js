@@ -23,9 +23,6 @@ const unionSchema = new Schema({
 
 unionSchema.pre("save", async function (next) {
   try {
-    if (this.isNew) {
-      this.members.push(this.createdBy);
-    }
     next();
   } catch (err) {
     next(err);
