@@ -1,7 +1,5 @@
 import jwtFetch from "./jwt";
 
-
-
 const RECEIVE_UNIONS = "unions/RECEIVE_UNIONS";
 const RECEIVE_USER_UNIONS = "unions/RECEIVE_USER_UNIONS";
 const RECEIVE_NEW_UNION = "unions/RECEIVE_NEW_UNION";
@@ -11,34 +9,33 @@ const CLEAR_UNION_ERRORS = "errors/CLEAR_UNION_ERRORS";
 
 const receiveUnions = (unions) => ({
   type: RECEIVE_UNIONS,
-  unions
+  unions,
 });
 
 const receiveUserUnions = (unions) => ({
   type: RECEIVE_USER_UNIONS,
-  unions
+  unions,
 });
 
 const receiveNewUnion = (union) => ({
   type: RECEIVE_NEW_UNION,
-  union
+  union,
 });
 
 const destroyUnion = (union) => ({
   type: DESTROY_UNION,
-  union
+  union,
 });
 
 const receiveErrors = (errors) => ({
   type: RECEIVE_UNION_ERRORS,
-  errors
+  errors,
 });
 
 const clearErrors = (errors) => ({
   type: CLEAR_UNION_ERRORS,
-  errors
+  errors,
 });
-
 
 export const fetchUnions = () => async (dispatch) => {
   try {
@@ -51,7 +48,7 @@ export const fetchUnions = () => async (dispatch) => {
       dispatch(receiveErrors(resBody.errors));
     }
   }
-}
+};
 
 export const fetchUserUnions = (id) => async (dispatch) => {
   try {
@@ -64,15 +61,15 @@ export const fetchUserUnions = (id) => async (dispatch) => {
       return dispatch(receiveErrors(resBody.errors));
     }
   }
-}
+};
 
 export const createUnion = (data) => async (dispatch) => {
-  debugger
+  debugger;
   try {
     const res = await jwtFetch("/api/unions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
 
     const union = await res.json();
@@ -83,7 +80,7 @@ export const createUnion = (data) => async (dispatch) => {
       return dispatch(receiveErrors(resBody.errors));
     }
   }
-}
+};
 
 export const deleteUnion = (id) => async (dispatch) => {
   try {
@@ -98,7 +95,7 @@ export const deleteUnion = (id) => async (dispatch) => {
       return dispatch(receiveErrors(resBody.errors));
     }
   }
-}
+};
 
 const nullErrors = null;
 
@@ -112,7 +109,7 @@ export const unionErrorsReducer = (state = nullErrors, action) => {
     default:
       return state;
   }
-}
+};
 
 const unionsReducer = (state = {}, action) => {
   switch (action.type) {
@@ -121,13 +118,13 @@ const unionsReducer = (state = {}, action) => {
     case RECEIVE_USER_UNIONS:
       return { ...state, user: action.unions };
     case RECEIVE_NEW_UNION:
-      debugger
+      debugger;
       return { ...state, new: action.union };
     case DESTROY_UNION:
       return { ...state, new: undefined };
     default:
       return state;
   }
-}
+};
 
 export default unionsReducer;

@@ -11,10 +11,15 @@ const { loginUser, restoreUser } = require("../../config/passport");
 const { isProduction } = require("../../config/keys");
 
 /* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.json({
-    message: "GET api/users",
-  });
+router.get("/", async (req, res) => {
+  try {
+    const users = await User.find()
+      .populate("username", "union")
+      .sort({ createdAt: -1 });
+    return res.json(users);
+  } catch (err) {
+    return res.json([]);
+  }
 });
 
 router.get("/current", restoreUser, (req, res) => {
