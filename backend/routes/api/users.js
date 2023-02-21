@@ -57,7 +57,7 @@ router.post("/register", validateRegisterInput, async (req, res, next) => {
     err.errors = errors;
     return next(err);
   }
-  debugger;
+
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,
