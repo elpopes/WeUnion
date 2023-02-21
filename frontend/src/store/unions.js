@@ -1,6 +1,7 @@
 import jwtFetch from "./jwt";
 
 const RECEIVE_UNIONS = "unions/RECEIVE_UNIONS";
+const RECEIVE_UNION = "unions/RECEIVE_UNION";
 const RECEIVE_USER_UNIONS = "unions/RECEIVE_USER_UNIONS";
 const RECEIVE_NEW_UNION = "unions/RECEIVE_NEW_UNION";
 const DESTROY_UNION = "unions/DESTROY_UNION";
@@ -10,6 +11,11 @@ const CLEAR_UNION_ERRORS = "errors/CLEAR_UNION_ERRORS";
 const receiveUnions = (unions) => ({
   type: RECEIVE_UNIONS,
   unions,
+});
+
+const receiveUnion = (union) => ({
+  type: RECEIVE_UNION,
+  union,
 });
 
 const receiveUserUnions = (unions) => ({
@@ -42,6 +48,19 @@ export const fetchUnions = () => async (dispatch) => {
     const res = await jwtFetch("/api/unions");
     const unions = await res.json();
     dispatch(receiveUnions(unions));
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      dispatch(receiveErrors(resBody.errors));
+    }
+  }
+};
+
+export const fetchUnion = (id) => async (dispatch) => {
+  try {
+    const res = await jwtFetch(`/api/unions/${id}`);
+    const union = await res.json();
+    dispatch(receiveUnion(union));
   } catch (err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400) {
