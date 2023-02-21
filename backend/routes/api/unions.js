@@ -32,6 +32,38 @@ router.get('/:id', async (req, res) => {
 })
 
 
+// get specific union
+
+router.get('/:id', async (req, res) => {
+    try {
+        const union = await Union.findById(req.params.id)
+        if (!union) {
+            return res.status(404).json({ message: 'Union not found' })
+        }
+        return res.json(union)
+    } catch (err) {
+        console.error(err)
+        return res.status(500).json({ message: 'Server error' })
+    }
+})
+
+
+// get specific union
+
+router.get('/:id', async (req, res) => {
+    try {
+        const union = await Union.findById(req.params.id)
+        if (!union) {
+            return res.status(404).json({ message: 'Union not found' })
+        }
+        return res.json(union)
+    } catch (err) {
+        console.error(err)
+        return res.status(500).json({ message: 'Server error' })
+    }
+})
+
+
 router.post("/", requireUser, validateUnionInput, async (req, res) => {
     try {
     // console.log(req.body)
@@ -44,7 +76,7 @@ router.post("/", requireUser, validateUnionInput, async (req, res) => {
 // Create a new Union
 
 router.post("/", requireUser, validateUnionInput, async (req, res) => {
-  try {
+    try {
     // Check if a union with the same name already exists
     const existingUnion = await Union.findOne({ name: req.body.name });
     if (existingUnion) {
@@ -55,8 +87,8 @@ router.post("/", requireUser, validateUnionInput, async (req, res) => {
 
     // Create the new union with the current user and member
     const newUnion = new Union({
-      name: req.body.name,
-      members: [req.body.member._id],
+        name: req.body.name,
+        members: [req.body.member._id],
       createdBy: req.user._id,
     });
 
