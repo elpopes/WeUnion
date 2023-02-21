@@ -140,7 +140,7 @@ const unionsReducer = (state = {}, action) => {
     case RECEIVE_UNIONS:
       return { ...state, all: action.unions };
       case RECEIVE_UNION:
-        return { ...state, [action.union.id]: action.union };
+        return { ...state, [action.union._id]: action.union };
     case RECEIVE_USER_UNIONS:
       return { ...state, user: action.unions };
     case RECEIVE_NEW_UNION:

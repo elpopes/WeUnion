@@ -24,7 +24,7 @@ const UnionDetails = () => {
   return (
     <div>
       <h1>YOUR MAMA</h1>
-      {/* <h1>{union.name}</h1> */}
+      <h1>{union.name}</h1>
       {/* <Griefs />
       <GriefCompose />
       <GriefBox /> */}
