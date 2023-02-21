@@ -10,7 +10,7 @@ const validateGriefInput = require("../../validations/griefs");
 router.get("/", async (req, res) => {
   try {
     const griefs = await Grief.find()
-      .populate("author", "_id username")
+      .populate("author", "_id username profileImageUrl")
       .sort({ createdAt: -1 });
     return res.json(griefs);
   } catch (err) {
@@ -31,7 +31,7 @@ router.get("/user/:userId", async (req, res, next) => {
   try {
     const griefs = await Grief.find({ author: user._id })
       .sort({ createdAt: -1 })
-      .populate("author", "_id username");
+      .populate("author", "_id username profileImageUrl");
     return res.json(griefs);
   } catch (err) {
     return res.json([]);
@@ -42,7 +42,7 @@ router.get("/:id", async (req, res, next) => {
   try {
     const grief = await Grief.findById(req.params.id).populate(
       "author",
-      "_id username"
+      "_id username profileImageUrl"
     );
     return res.json(grief);
   } catch (err) {
@@ -61,7 +61,7 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
     });
 
     let grief = await newGrief.save();
-    grief = await grief.populate("author", "_id username");
+    grief = await grief.populate("author", "_id username profileImageUrl");
     return res.json(grief);
   } catch (err) {
     next(err);
