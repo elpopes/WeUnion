@@ -22,6 +22,11 @@ const userSchema = new Schema(
       autopopulate: {
         select: "name", // Specify the field(s) you want to populate
       },
+        // ADD profileImageUrl
+    profileImageUrl: {
+      type: String,
+      required: true
+      },
     },
   },
   {
