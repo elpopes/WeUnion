@@ -81,12 +81,12 @@ function SignupForm() {
       </label>
       <div className="errors">{errors?.union}</div>
       <label>
-        <span>Union Name</span>
+        <span>Union Number</span>
         <input
           type="text"
           value={unionName}
           onChange={update("unionName")}
-          placeholder="Union"
+          placeholder="Union ID"
         />
       </label>
 
