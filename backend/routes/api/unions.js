@@ -16,15 +16,31 @@ router.get("/", async (req, res) => {
   }
 });
 
+// get specific union
+
+router.get('/:id', async (req, res) => {
+    try {
+        const union = await Union.findById(req.params.id)
+        if (!union) {
+            return res.status(404).json({ message: 'Union not found' })
+        }
+        return res.json(union)
+    } catch (err) {
+        console.error(err)
+        return res.status(500).json({ message: 'Server error' })
+    }
+})
+
+
 router.post("/", requireUser, validateUnionInput, async (req, res) => {
-  try {
+    try {
     // console.log(req.body)
     // const union = await Union.create(req.body);
     // return res.json(union);
     debugger;
     const newUnion = new Union({
-      name: req.body.name,
-      memberId: req.body.member._id,
+        name: req.body.name,
+        memberId: req.body.member._id,
     });
 
     let union = await newUnion.save();

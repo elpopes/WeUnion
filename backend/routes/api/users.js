@@ -93,4 +93,57 @@ router.post("/login", validateLoginInput, async (req, res, next) => {
   })(req, res, next);
 });
 
+// Define a PATCH route to update a user
+
+router.patch('/:id', async (req, res) => {
+  const userId = req.params.id;
+  const update = req.body;
+  try {
+    const user = await User.findById(userId);
+    // if (!user) {
+    //   return res.status(404).json({ message: 'User not found' });
+    // }
+    Object.assign(user, update);
+    await user.save();
+    return res.status(200).json({ user });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// define a route to get one user
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    return res.json(user);
+  } catch (e) {
+    return res.status(422).json(e);
+  }
+});
+
+// get specific union
+
+router.get('/:id', async (req, res) => {
+  try {
+      const user = await User.findById(req.params.id)
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' })
+      }
+      return res.json(user)
+  } catch (err) {
+      console.error(err)
+      return res.status(500).json({ message: 'Server error' })
+  }
+})
+
+
+
+
+
+
+
+
+
 module.exports = router;
