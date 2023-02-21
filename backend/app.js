@@ -26,9 +26,9 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use("/main.*.hot-update.json", (req, res) => {
-  proxy.web(req, res);
-});
+// app.use("/main.*.hot-update.json", (req, res) => {
+//   proxy.web(req, res);
+// });
 
 // ADD THIS SECURITY MIDDLEWARE
 // Security Middleware

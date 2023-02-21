@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createUnion } from "../../store/unions";
 
 const UnionForm = () => {
   const dispatch = useDispatch();
+  const member = useSelector((state) => state.session.user);
   const [data, setData] = useState({
     name: "",
   });
@@ -18,9 +19,10 @@ const UnionForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createUnion(data));
-  }
 
+    data.member = member;
+    dispatch(createUnion(data));
+  };
 
   return (
     <form onSubmit={handleSubmit}>

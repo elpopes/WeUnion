@@ -64,7 +64,7 @@ export const fetchUserUnions = (id) => async (dispatch) => {
 };
 
 export const createUnion = (data) => async (dispatch) => {
-  debugger;
+  //   debugger;
   try {
     const res = await jwtFetch("/api/unions", {
       method: "POST",
@@ -118,7 +118,7 @@ const unionsReducer = (state = {}, action) => {
     case RECEIVE_USER_UNIONS:
       return { ...state, user: action.unions };
     case RECEIVE_NEW_UNION:
-      debugger;
+      //   debugger;
       return { ...state, new: action.union };
     case DESTROY_UNION:
       return { ...state, new: undefined };

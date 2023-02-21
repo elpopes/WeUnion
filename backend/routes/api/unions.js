@@ -21,9 +21,10 @@ router.post("/", requireUser, validateUnionInput, async (req, res) => {
     // console.log(req.body)
     // const union = await Union.create(req.body);
     // return res.json(union);
-
+    debugger;
     const newUnion = new Union({
       name: req.body.name,
+      memberId: req.body.member._id,
     });
 
     let union = await newUnion.save();
