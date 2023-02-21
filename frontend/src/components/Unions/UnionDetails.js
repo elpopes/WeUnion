@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUnion } from "../../store/unions";
-import Griefs from "../Griefs/Griefs";
-import GriefCompose from "../Griefs/GriefCompose";
-import GriefBox from "../Griefs/GriefBox";
-import NavBar from "../NavBar/NavBar";
+import { fetchUnion, getUnion } from "../../store/unions";
+// import Griefs from "../Griefs/Griefs";
+// import GriefCompose from "../Griefs/GriefCompose";
+// import GriefBox from "../Griefs/GriefBox";
 
 const UnionDetails = () => {
   const dispatch = useDispatch();
-  const { unionId } = useParams();
-  const union = useSelector((state) => state.union);
-  const [loaded, setLoaded] = useState(false);
+  const { id } = useParams(); // extract unionId parameter from URL
+  const union = useSelector(getUnion(id));
+
+  //   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchUnion(unionId)).then(() => setLoaded(true));
-  }, [dispatch, unionId]);
+    dispatch(fetchUnion(id));
+  }, [dispatch, id]);
 
-  if (!loaded) {
-    return null;
-  }
+  //   if (!loaded || !union) {
+  //     return null;
+  //   }
 
   return (
     <div>
-      <NavBar />
-      <h1>{union.name}</h1>
-      <Griefs />
+      <h1>YOUR MAMA</h1>
+      {/* <h1>{union.name}</h1> */}
+      {/* <Griefs />
       <GriefCompose />
-      <GriefBox />
+      <GriefBox /> */}
     </div>
   );
 };

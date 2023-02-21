@@ -43,6 +43,11 @@ const clearErrors = (errors) => ({
   errors,
 });
 
+export const getUnion = (id) => (state) => {
+    if (!state.unions) return null;
+    return state.unions[id];
+}
+
 export const fetchUnions = () => async (dispatch) => {
   try {
     const res = await jwtFetch("/api/unions");
@@ -134,10 +139,11 @@ const unionsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_UNIONS:
       return { ...state, all: action.unions };
+      case RECEIVE_UNION:
+        return { ...state, [action.union.id]: action.union };
     case RECEIVE_USER_UNIONS:
       return { ...state, user: action.unions };
     case RECEIVE_NEW_UNION:
-      //   debugger;
       return { ...state, new: action.union };
     case DESTROY_UNION:
       return { ...state, new: undefined };
