@@ -60,8 +60,15 @@ export const logout = () => (dispatch) => {
 };
 
 
-export const updateUserProfile = (user) => async (dispatch) => {
+export const updateUserProfile = (userInfo, route) => async (dispatch) => {
   try {
+    const { image, username, password, email } = userInfo;
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("password", password);
+    formData.append("email", email);
+  
+    if (image) formData.append("image", image);
     const res = await jwtFetch("/api/users/profile", {
       method: "PUT",
       body: JSON.stringify(user),

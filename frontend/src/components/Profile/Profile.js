@@ -48,6 +48,8 @@ import {
 } from "../../store/griefs";
 import GriefBox from "../Griefs/GriefBox";
 import { updateUserProfile } from "../../store/session";
+import "./Profile.css"
+
 
 function Profile() {
   const dispatch = useDispatch();
@@ -70,7 +72,7 @@ function Profile() {
     const user = {
       // email: currentUser.email,
       // username: currentUser.username,
-      image: image,
+      image: currentUser.profileImageUrl,
       // password: "",
     };
     dispatch(updateUserProfile(user));
@@ -81,7 +83,7 @@ function Profile() {
     setImage(e.target.files[0]);
   };
 
-  if (userGriefs.length === 0) {
+  if (userGriefs.length < 0) {
     return <div>{currentUser.username} has no Grievances</div>;
   } else {
     return (
@@ -114,7 +116,7 @@ function Profile() {
                 onChange={handleImageChange}
               />
             </label>
-            <button type="submit">Save</button>
+            {/* <button type="submit">Save</button> */}
           </form>
         </header>
         <h2>All of {currentUser.username}'s Grievances</h2>
