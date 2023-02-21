@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./SessionForm.css";
 
 import { login, clearSessionErrors } from "../../store/session";
+import VoteButton from "../Votes/VoteButton";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
