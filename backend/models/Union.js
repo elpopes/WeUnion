@@ -7,11 +7,14 @@ const unionSchema = new Schema({
   name: {
     type: String,
     required: true,
+    unique: true,
+    index: true
   },
   members: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",
+      // unique: true
     },
   ],
   createdBy: {

@@ -30,6 +30,10 @@ router.post("/", requireUser, validateUnionInput, async (req, res) => {
     union = await union.populate("members"); // populate the members field
     return res.json(union);
   } catch (e) {
+    if (e.code === 11000) {
+      // duplicate key error
+      return res.status(422).json({ message: "Union name already exists" });
+    }
     return res.status(422).json(e);
   }
 });
@@ -42,7 +46,6 @@ router.get("/:id", async (req, res) => {
     return res.status(422).json(e);
   }
 });
-
 
 // Update a Union
 
