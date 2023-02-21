@@ -3,6 +3,7 @@ import jwtFetch from "./jwt";
 const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
 const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";
 const CLEAR_SESSION_ERRORS = "session/CLEAR_SESSION_ERRORS";
+const UPDATE_USER_PROFILE = "session/UPDATE_USER_PROFILE";
 export const RECEIVE_USER_LOGOUT = "session/RECEIVE_USER_LOGOUT";
 
 // Dispatch receiveCurrentUser when a user logs in.
@@ -58,6 +59,23 @@ export const logout = () => (dispatch) => {
   dispatch(logoutUser());
 };
 
+
+export const updateUserProfile = (user) => async (dispatch) => {
+  try {
+    const res = await jwtFetch("/api/users/profile", {
+      method: "PUT",
+      body: JSON.stringify(user),
+    });
+    const updatedUser = await res.json();
+    return dispatch(receiveCurrentUser(updatedUser));
+  } catch (err) {
+    const res = await err.json();
+    if (res.statusCode === 400) {
+      return dispatch(receiveErrors(res.errors));
+    }
+  }
+};
+
 const initialState = {
   user: undefined,
 };
@@ -66,6 +84,8 @@ const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
       return { user: action.currentUser };
+    case UPDATE_USER_PROFILE:
+      return { user: action.updatedUser };
     case RECEIVE_USER_LOGOUT:
       return initialState;
     default:
