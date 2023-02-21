@@ -23,7 +23,12 @@ const userSchema = new Schema(
         select: "name", // Specify the field(s) you want to populate
       },
     },
-  },
+        // ADD profileImageUrl
+      profileImageUrl: {
+      type: String
+      // required: true
+      },
+    },
   {
     timestamps: true,
   }

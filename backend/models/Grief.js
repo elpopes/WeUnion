@@ -11,6 +11,11 @@ const griefSchema = new Schema(
       type: String,
       required: true,
     },
+    // ADD imageUrls along with a grief?
+    imageUrls: {
+      type: [String],
+      required: false
+    },
   },
   {
     timestamps: true,
