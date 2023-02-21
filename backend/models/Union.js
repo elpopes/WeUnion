@@ -6,5 +6,11 @@ const unionSchema = new Schema({
     type: String,
     required: true,
   },
+  members: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 module.exports = mongoose.model("Union", unionSchema);

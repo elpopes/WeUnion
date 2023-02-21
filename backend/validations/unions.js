@@ -6,9 +6,9 @@ const validateUnionInput = [
     .exists({ checkFalsy: true })
     .isLength({ min: 2, max: 50 })
     .withMessage("The union name must be between 2 and 50 characters"),
-  check("unionMember"),
-    // .exists({ checkFalsy: true })
-    // .withMessage("A union member is required"),
+  check("members")
+    .exists({ checkFalsy: true })
+    .withMessage("A union member is required"),
   check("actions"),
     // .exists({ checkFalsy: true })
     // .isLength({ min: 10, max: 500 })
