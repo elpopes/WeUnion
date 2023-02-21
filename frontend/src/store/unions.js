@@ -98,6 +98,8 @@ export const createUnion = (data) => async (dispatch) => {
 
     const union = await res.json();
     dispatch(receiveNewUnion(union));
+    return union;
+  
   } catch (err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400) {

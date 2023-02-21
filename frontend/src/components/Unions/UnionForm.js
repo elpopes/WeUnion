@@ -1,15 +1,26 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createUnion } from "../../store/unions";
-import { Route, Redirect } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 
-const UnionForm = ({ union }) => {
+const UnionForm = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const newUnion = useSelector((state) =>
+    state.unions ? Object.values(state.unions)[0] : null
+  );
   const member = useSelector((state) => state.session.user);
   const [data, setData] = useState({
     name: "",
+    member: member,
   });
+
+  useEffect(() => {
+    if (newUnion) {
+      history.push(`/unions/${newUnion._id}`);
+    }
+  }, [newUnion]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,7 +33,11 @@ const UnionForm = ({ union }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    data.member = member;
+    setData((prevState) => ({
+      ...prevState,
+      member: member,
+    }));
+
     dispatch(createUnion(data));
   };
 
@@ -35,7 +50,7 @@ const UnionForm = ({ union }) => {
         value={data.name}
         onChange={handleInputChange}
       />
-        <button type="submit">Create Union</button>
+      <button type="submit">Create Union</button>
     </form>
   );
 };
