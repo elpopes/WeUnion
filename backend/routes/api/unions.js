@@ -64,27 +64,42 @@ router.post("/", requireUser, validateUnionInput, async (req, res) => {
 //   }
 // });
 
+// router.get("/:id", async (req, res) => {
+//   try {
+//     const union = await Union.findById(req.params.id);
+//     return res.json(union);
+//   } catch (e) {
+//     return res.status(422).json(e);
+//   }
+// });
+
+///Manny's updated show union:
+
 router.get("/:id", async (req, res) => {
   try {
     const union = await Union.findById(req.params.id);
+    if (!union) {
+      return res.status(404).json({ message: "Union not found" });
+    }
     return res.json(union);
-  } catch (e) {
-    return res.status(422).json(e);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Server error" });
   }
 });
 
 // Update a Union
 
-router.put("/:id", requireUser, async (req, res) => {
-  try {
-    const union = await Union.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    return res.json(union);
-  } catch (e) {
-    return res.status(422).json(e);
-  }
-});
+// router.put("/:id", requireUser, async (req, res) => {
+//   try {
+//     const union = await Union.findByIdAndUpdate(req.params.id, req.body, {
+//       new: true,
+//     });
+//     return res.json(union);
+//   } catch (e) {
+//     return res.status(422).json(e);
+//   }
+// });
 
 // Delete a Union
 
