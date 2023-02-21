@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createUnion } from "../../store/unions";
+import { Route, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const UnionForm = () => {
+const UnionForm = ({ union }) => {
   const dispatch = useDispatch();
   const member = useSelector((state) => state.session.user);
   const [data, setData] = useState({
@@ -33,7 +35,7 @@ const UnionForm = () => {
         value={data.name}
         onChange={handleInputChange}
       />
-      <button type="submit">Create Union</button>
+        <button type="submit">Create Union</button>
     </form>
   );
 };
