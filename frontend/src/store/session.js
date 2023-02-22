@@ -60,7 +60,7 @@ export const logout = () => (dispatch) => {
 };
 
 
-export const updateUserProfile = (userInfo, route) => async (dispatch) => {
+export const updateUserProfile = (userInfo) => async (dispatch) => {
   try {
     const { image, username, password, email } = userInfo;
     const formData = new FormData();
@@ -71,17 +71,19 @@ export const updateUserProfile = (userInfo, route) => async (dispatch) => {
     if (image) formData.append("image", image);
     const res = await jwtFetch("/api/users/profile", {
       method: "PUT",
-      body: JSON.stringify(user),
+      body: formData,
     });
     const updatedUser = await res.json();
     return dispatch(receiveCurrentUser(updatedUser));
   } catch (err) {
     const res = await err.json();
+    debugger
     if (res.statusCode === 400) {
       return dispatch(receiveErrors(res.errors));
     }
   }
 };
+
 
 const initialState = {
   user: undefined,
