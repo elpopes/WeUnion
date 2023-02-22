@@ -4,6 +4,7 @@ const validateLoginInput = require("../../validations/login");
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
+const Grief =mongoose.model("Grief");
 const passport = require("passport");
 const express = require("express");
 const router = express.Router();
@@ -11,7 +12,8 @@ const { loginUser, restoreUser } = require("../../config/passport");
 const { isProduction } = require("../../config/keys");
 const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
 const DEFAULT_PROFILE_IMAGE_URL = 'https://we-union-id-photos.s3.amazonaws.com/public/blank-profile-picture-g1eb6c33f6_1280.png'; // <- Insert the S3 URL that you copied above here
-
+// const { User } = require("../models/user");
+// const { Grief } = require("../models/grief");
 
 
 /* GET users listing. */
@@ -150,5 +152,37 @@ router.get('/:id', async (req, res) => {
       return res.status(500).json({ message: 'Server error' })
   }
 })
+
+router.post("/vote", async (req, res) => {
+  try {
+    const userId = req.body.userId;
+    const griefId = req.body.griefId;
+    const optionIndex = req.body.optionIndex;
+
+    // Find the user and grief documents
+    const user = await User.findById(userId);
+    const grief = await Grief.findById(griefId);
+
+    // Check if the user has already voted for this poll
+    if (user.votedPolls.includes(griefId)) {
+      return res.status(400).json({ error: "You have already voted for this poll" });
+    }
+
+    // Increment the vote count for the selected poll option
+    grief.poll.options[optionIndex].votes++;
+
+    // Add the grief to the user's votedPolls array to prevent them from voting again
+    user.votedPolls.push(griefId);
+
+    // Save the changes to the database
+    await grief.save();
+    await user.save();
+
+    return res.json({ message: "Vote submitted successfully" });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Something went wrong" });
+  }
+});
 
 module.exports = router;

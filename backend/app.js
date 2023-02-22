@@ -60,6 +60,7 @@ app.use("/api/unions", unionsRouter);
 // Express custom middleware for catching all unmatched requests and formatting
 // a 404 error to be sent as the response.
 app.use((req, res, next) => {
+  debugger
   const err = new Error("Not Found");
   err.statusCode = 404;
   next(err);

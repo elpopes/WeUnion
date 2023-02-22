@@ -24,9 +24,14 @@ const userSchema = new Schema(
       },
     },
         // ADD profileImageUrl
-      profileImageUrl: {
+    profileImageUrl: {
       type: String
       // required: true
+    },
+    votedPolls: {
+        type: [Schema.Types.ObjectId],
+        ref: "Grief",
+        default: []
       },
     },
   {

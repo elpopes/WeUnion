@@ -68,4 +68,35 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
   }
 });
 
+router.post("/:id/vote", async (req, res) => {
+  try {
+    const { optionId } = req.body;
+    const { griefId } = req.params;
+    const grief = await Grief.findById(griefId);
+    if (!grief) {
+      return res.status(404).json({ error: "Grief not found" });
+    }
+    if (!grief.poll) {
+      return res.status(400).json({ error: "Grief does not have a poll" });
+    }
+    const option = grief.poll.options.find(o => o._id.equals(optionId));
+    if (!option) {
+      return res.status(400).json({ error: "Invalid poll option ID" });
+    }
+    const user = await User.findById(req.user.id);
+    if (user.votedPolls.includes(griefId)) {
+      return res.status(400).json({ error: "You have already voted on this poll" });
+    }
+    option.votes++;
+    await grief.save();
+    user.votedPolls.push(griefId);
+    await user.save();
+    return res.json(grief);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
 module.exports = router;
