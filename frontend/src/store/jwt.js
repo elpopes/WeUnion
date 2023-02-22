@@ -20,10 +20,9 @@ async function jwtFetch(url, options = {}) {
 
   // If the options.method is not 'GET', then set the "Content-Type" header to
   // "application/json".
-  if (options.method.toUpperCase() !== "GET") {
-    options.headers["Content-Type"] =
-      options.headers["Content-Type"] || "application/json";
+  if (!options.headers["Content-Type"] && !(options.body instanceof FormData)) {
     options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
+    options.headers["Content-Type"] = "application/json";
   }
 
   // Call fetch with the url and the updated options hash.
