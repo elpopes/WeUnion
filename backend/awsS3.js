@@ -47,10 +47,10 @@ const storage = multer.memoryStorage({
     },
 });
   
-const singleMulterUpload = (nameOfKey) =>
-    multer({ storage: storage }).single(nameOfKey);
-const multipleMulterUpload = (nameOfKey) =>
-    multer({ storage: storage }).array(nameOfKey);
+const singleMulterUpload = (image) =>
+    multer({ storage: storage }).single(image);
+const multipleMulterUpload = (image) =>
+    multer({ storage: storage }).array(image);
 
 module.exports = {
     s3,

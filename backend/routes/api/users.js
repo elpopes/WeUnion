@@ -105,7 +105,9 @@ router.post("/login", validateLoginInput, async (req, res, next) => {
 
 // Define a PATCH route to update a user
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', 
+singleMulterUpload("image"),
+async (req, res) => {
   const userId = req.params.id;
   const update = req.body;
   try {
