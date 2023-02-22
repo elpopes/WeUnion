@@ -20,7 +20,7 @@ const UnionForm = () => {
     if (newUnion) {
       history.push(`/unions/${newUnion._id}`);
     }
-  }, [newUnion]);
+  }, [newUnion, history]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +37,7 @@ const UnionForm = () => {
       ...prevState,
       member: member,
     }));
-
+    // debugger;
     dispatch(createUnion(data));
   };
 

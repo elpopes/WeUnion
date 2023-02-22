@@ -44,9 +44,9 @@ const clearErrors = (errors) => ({
 });
 
 export const getUnion = (id) => (state) => {
-    if (!state.unions) return null;
-    return state.unions[id];
-}
+  if (!state.unions) return null;
+  return state.unions[id];
+};
 
 export const fetchUnions = () => async (dispatch) => {
   try {
@@ -92,14 +92,14 @@ export const createUnion = (data) => async (dispatch) => {
   try {
     const res = await jwtFetch("/api/unions", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      //   Commented out this line to fix CSRF error:
+      //   headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
 
     const union = await res.json();
     dispatch(receiveNewUnion(union));
     return union;
-  
   } catch (err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400) {
@@ -141,8 +141,8 @@ const unionsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_UNIONS:
       return { ...state, all: action.unions };
-      case RECEIVE_UNION:
-        return { ...state, [action.union._id]: action.union };
+    case RECEIVE_UNION:
+      return { ...state, [action.union._id]: action.union };
     case RECEIVE_USER_UNIONS:
       return { ...state, user: action.unions };
     case RECEIVE_NEW_UNION:
