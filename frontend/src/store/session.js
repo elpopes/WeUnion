@@ -68,7 +68,7 @@ export const updateUserProfile = (userInfo) => async (dispatch) => {
     formData.append("email", email);
 
     if (image) formData.append("image", image);
-    const res = await jwtFetch("/api/users/profile", {
+    const res = await jwtFetch(`/api/users/${userInfo.id}`, {
       method: "PUT",
       body: formData,
     });
