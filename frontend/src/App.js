@@ -12,6 +12,7 @@ import GriefCompose from "./components/Griefs/GriefCompose";
 import UnionForm from "./components/Unions/UnionForm";
 import UnionDetails from "./components/Unions/UnionDetails";
 import { getCurrentUser } from "./store/session";
+import Poll from "./components/Polls/poll";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -33,6 +34,7 @@ function App() {
           <ProtectedRoute exact path="/griefs" component={Griefs} />
           <AuthRoute exact path="/" component={MainPage} />
           <ProtectedRoute exact path="/griefs/new" component={GriefCompose} />
+          {/* <ProtectedRoute exact path="/polls/:id" component={Poll} /> */}
         </Switch>
       </>
     )

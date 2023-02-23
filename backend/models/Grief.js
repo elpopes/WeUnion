@@ -2,16 +2,16 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const autopopulate = require("mongoose-autopopulate");
 
-const pollOptionSchema = new Schema({
-  option: {
-    type: String
-    // required: true
-  },
-  votes: {
-    type: Number,
-    default: 0
-  }
-});
+// const pollOptionSchema = new Schema({
+//   option: {
+//     type: String
+//     // required: true
+//   },
+//   votes: {
+//     type: Number,
+//     default: 0
+//   }
+// });
 
 const griefSchema = new Schema(
   {
@@ -27,26 +27,26 @@ const griefSchema = new Schema(
       type: [String],
       required: false
     },
-    poll: {
-      question: {
-        type: String
+    // poll: {
+    //   question: {
+    //     type: String
         // required: true
-      },
-      options: {
-        type: [pollOptionSchema],
-        required: true,
+      // },
+      // options: {
+      //   type: [pollOptionSchema],
+      //   required: true,
         // validate: {
         //   validator: function(v) {
         //     return v.length >= 2;
         //   },
         //   message: props => `${props.value} must have at least 2 options`
         // }
-      }
-    },
-    voters: [{
-      type: Schema.Types.ObjectId,
-      ref: "User"
-    }]
+      // }
+    // },
+    // voters: [{
+    //   type: Schema.Types.ObjectId,
+    //   ref: "User"
+    // }]
   },
   {
     timestamps: true,

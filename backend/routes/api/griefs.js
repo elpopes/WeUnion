@@ -72,8 +72,8 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
   try {
     const { text, imageUrls } = req.body;
   const author = req.user.id;
-  const question = "What is your favorite color?";
- const options = [
+  const question = "Vote on an action";
+  const options = [
   { option: "Collective Bargaining", votes: 0, selected: false },
   { option: "Strike", votes: 0, selected: false },
   { option: "Protest", votes: 0, selected: false },
@@ -95,4 +95,22 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
   }
 });
 
+// NEED TO TEST THIS *******************************
+
+// app.post('/votes', (req, res) => {
+//   const user = req.body.user;
+//   const choice = req.body.choice;
+
+//   const vote = new Vote({ user, choice });
+//   vote.save()
+//     .then(() => {
+//       res.json({ success: true });
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       res.status(500).json({ success: false, error: 'Error saving vote' });
+//     });
+// });
+
+// ***********************************************
 module.exports = router;

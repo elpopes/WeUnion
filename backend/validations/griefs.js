@@ -1,17 +1,17 @@
 const { check, body, validationResult } = require("express-validator");
 
 const validateGrief = [
-  body("text"),
-    // .exists()
-    // .withMessage("Grief text is required")
-    // .isLength({ min: 5, max: 140 })
-    // .withMessage("Grief must be between 5 and 140 characters"),
-  body("poll.question"),
+  body("text")
+    .exists()
+    .withMessage("Grief text is required")
+    .isLength({ min: 5, max: 140 })
+    .withMessage("Grief must be between 5 and 140 characters"),
+  // body("poll.question"),
     // .exists()
     // .withMessage("Poll question is required")
     // .isLength({ min: 5, max: 140 })
     // .withMessage("Poll question must be between 5 and 140 characters"),
-  body("poll.options"),
+  // body("poll.options"),
     // .exists()
     // .withMessage("Poll options are required")
     // .isArray()
@@ -22,7 +22,7 @@ const validateGrief = [
     //   }
     //   return true;
     // }),
-  body("poll.selectedOptions"),
+  // body("poll.selectedOptions"),
     // .isArray()
     // .withMessage("Selected options must be an array")
     // .custom((selectedOptions) => {
