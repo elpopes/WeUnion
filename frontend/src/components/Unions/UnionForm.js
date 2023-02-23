@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createUnion } from "../../store/unions";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
+import "./UnionForm.css";
 
 const UnionForm = () => {
   const dispatch = useDispatch();
@@ -42,16 +43,20 @@ const UnionForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Name:</label>
-      <input
-        type="text"
-        name="name"
-        value={data.name}
-        onChange={handleInputChange}
-      />
-      <button type="submit">Create Union</button>
-    </form>
+    <div className="union-form-container">
+      <form onSubmit={handleSubmit}>
+        <label className="union-label" >Name Your Revolution!</label>
+        <input
+          className="union-form-input"
+          type="text"
+          name="name"
+          value={data.name}
+          onChange={handleInputChange}
+          placeholder="Union Name"
+        />
+        <button className="union-form-button" type="submit">Create Union</button>
+      </form>
+    </div>
   );
 };
 
