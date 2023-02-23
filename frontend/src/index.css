@@ -12,6 +12,10 @@ body {
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid black;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
 }
 
 .nav-container img {
@@ -77,5 +81,4 @@ a {
 
 .links-nav button:hover {
   background-color: darkred;
-  transform: translateY(-2px);
 }
