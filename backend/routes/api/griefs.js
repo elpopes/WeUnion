@@ -53,12 +53,39 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+// router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
+//   try {
+//     const newGrief = new Grief({
+//       text: req.body.text,
+//       author: req.user._id,
+//     });
+
+//     let grief = await newGrief.save();
+//     grief = await grief.populate("author", "_id username profileImageUrl");
+//     return res.json(grief);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
 router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
   try {
-    const newGrief = new Grief({
-      text: req.body.text,
-      author: req.user._id,
-    });
+    const { text, imageUrls } = req.body;
+  const author = req.user.id;
+  const question = "What is your favorite color?";
+ const options = [
+  { option: "Collective Bargaining", votes: 0, selected: false },
+  { option: "Strike", votes: 0, selected: false },
+  { option: "Protest", votes: 0, selected: false },
+  { option: "Dismiss", votes: 0, selected: false },
+  { option: "Boycott", votes: 0, selected: false }
+];
+  const newGrief = new Grief({
+    author,
+    text,
+    imageUrls,
+    poll: { question, options }
+  });
 
     let grief = await newGrief.save();
     grief = await grief.populate("author", "_id username profileImageUrl");
