@@ -29,8 +29,8 @@ function App() {
           <AuthRoute exact path="/signup" component={SignupForm} />
           <ProtectedRoute exact path="/unions/new" component={UnionForm} />
           <ProtectedRoute exact path="/unions/:id" component={UnionDetails} />
-          <ProtectedRoute exact path="/profile" component={Profile} />
           <ProtectedRoute exact path="/griefs" component={Griefs} />
+          <ProtectedRoute exact path="/profile" component={Profile} />
           <AuthRoute exact path="/" component={MainPage} />
           <ProtectedRoute exact path="/griefs/new" component={GriefCompose} />
         </Switch>

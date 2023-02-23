@@ -4,13 +4,13 @@ const autopopulate = require("mongoose-autopopulate");
 
 const pollOptionSchema = new Schema({
   option: {
-    type: String
+    type: String,
     // required: true
   },
   votes: {
     type: Number,
-    default: 0
-  }
+    default: 0,
+  },
 });
 
 const griefSchema = new Schema(
@@ -25,11 +25,11 @@ const griefSchema = new Schema(
     },
     imageUrls: {
       type: [String],
-      required: false
+      required: false,
     },
     poll: {
       question: {
-        type: String
+        type: String,
         // required: true
       },
       options: {
@@ -41,12 +41,14 @@ const griefSchema = new Schema(
         //   },
         //   message: props => `${props.value} must have at least 2 options`
         // }
-      }
+      },
     },
-    voters: [{
-      type: Schema.Types.ObjectId,
-      ref: "User"
-    }]
+    voters: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   {
     timestamps: true,
@@ -54,12 +56,15 @@ const griefSchema = new Schema(
 );
 
 // Virtual field to calculate percentage of votes for each poll option
-griefSchema.virtual('poll.optionsWithPercentage').get(function() {
-  const totalVotes = this.poll.options.reduce((sum, option) => sum + option.votes, 0);
-  return this.poll.options.map(option => ({
+griefSchema.virtual("poll.optionsWithPercentage").get(function () {
+  const totalVotes = this.poll.options.reduce(
+    (sum, option) => sum + option.votes,
+    0
+  );
+  return this.poll.options.map((option) => ({
     option: option.option,
     votes: option.votes,
-    percentage: totalVotes === 0 ? 0 : (option.votes / totalVotes) * 100
+    percentage: totalVotes === 0 ? 0 : (option.votes / totalVotes) * 100,
   }));
 });
 

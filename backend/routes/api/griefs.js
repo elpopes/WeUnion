@@ -32,8 +32,12 @@ router.get("/user/:userId", async (req, res, next) => {
     const griefs = await Grief.find({ author: user._id })
       .sort({ createdAt: -1 })
       .populate("author", "_id username profileImageUrl");
+    console.log("the TRY >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    // console.log(res.json());
+    console.log(griefs);
     return res.json(griefs);
   } catch (err) {
+    console.log("the CATCH >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     return res.json([]);
   }
 });
@@ -71,21 +75,21 @@ router.get("/:id", async (req, res, next) => {
 router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
   try {
     const { text, imageUrls } = req.body;
-  const author = req.user.id;
-  const question = "What is your favorite color?";
- const options = [
-  { option: "Collective Bargaining", votes: 0, selected: false },
-  { option: "Strike", votes: 0, selected: false },
-  { option: "Protest", votes: 0, selected: false },
-  { option: "Dismiss", votes: 0, selected: false },
-  { option: "Boycott", votes: 0, selected: false }
-];
-  const newGrief = new Grief({
-    author,
-    text,
-    imageUrls,
-    poll: { question, options }
-  });
+    const author = req.user.id;
+    const question = "What is your favorite color?";
+    const options = [
+      { option: "Collective Bargaining", votes: 0, selected: false },
+      { option: "Strike", votes: 0, selected: false },
+      { option: "Protest", votes: 0, selected: false },
+      { option: "Dismiss", votes: 0, selected: false },
+      { option: "Boycott", votes: 0, selected: false },
+    ];
+    const newGrief = new Grief({
+      author,
+      text,
+      imageUrls,
+      poll: { question, options },
+    });
 
     let grief = await newGrief.save();
     grief = await grief.populate("author", "_id username profileImageUrl");

@@ -10,7 +10,7 @@ export const AuthRoute = ({ component: Component, path, exact }) => {
       path={path}
       exact={exact}
       render={(props) =>
-        !loggedIn ? <Component {...props} /> : <Redirect to="/griefs" />
+        !loggedIn ? <Component {...props} /> : <Redirect to="/profile" />
       }
     />
   );

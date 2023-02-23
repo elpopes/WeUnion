@@ -11,9 +11,9 @@ function LoginForm() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    return () => {
-      dispatch(clearSessionErrors());
-    };
+    setEmail("");
+    setPassword("");
+    dispatch(clearSessionErrors());
   }, [dispatch]);
 
   const update = (field) => {
@@ -24,6 +24,12 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email, password }));
+  };
+
+  const handleDemoUser = () => {
+    setEmail("demo-user@appacademy.io");
+    setPassword("starwars");
+    dispatch(login({ email: "demo-user@appacademy.io", password: "password" }));
   };
 
   return (
@@ -58,6 +64,13 @@ function LoginForm() {
               value="Log In"
               disabled={!email || !password}
             />
+            <button
+              type="button"
+              className="demo-button"
+              onClick={handleDemoUser}
+            >
+              Demo User
+            </button>
           </form>
         </div>
       </div>
