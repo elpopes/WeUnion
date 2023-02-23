@@ -67,14 +67,15 @@ export const logout = () => (dispatch) => {
 export const updateUserProfile = (userInfo) => async (dispatch) => {
   try {
     const { image, id } = userInfo;
-    // // const body = { image };
-    // const formData = new FormData();
-    // debugger;
-    // formData.append("image", image);
+    debugger;
+    // const body = { image };
+    const formData = new FormData();
+
+    formData.append("image", image);
 
     const res = await jwtFetch(`/api/users/${id}`, {
       method: "PATCH",
-      body: "Hi",
+      body: formData,
     });
     debugger;
     const updatedUser = await res.json();

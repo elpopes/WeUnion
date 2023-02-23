@@ -41,7 +41,7 @@ function ProfileImageController() {
   return (
     <form onSubmit={handleSubmit}>
       {previewImage ? (
-        <img className="preview-image" src={previewImage} alt="Preview" />
+        <img className="profile-image" src={previewImage} alt="Preview" />
       ) : (
         <img className="profile-image" src={profileImageUrl} alt="Profile" />
       )}

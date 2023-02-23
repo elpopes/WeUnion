@@ -131,15 +131,13 @@ router.post("/login", validateLoginInput, async (req, res, next) => {
 });
 
 router.patch("/:id", singleMulterUpload("image"), async (req, res) => {
-  //   const userId = req.params.id;
+  const userId = req.params.id;
   //   const body = req.body;
   //   const image = req.body.image; // change this to req.file
-  console.log(req);
-  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
   try {
     // upload the image
-    const path = await singleMulterUpload({ file: image });
+    const path = await singleFileUpload({ file: req.file, public: true });
 
     const user = await User.findById(userId);
     if (!user) {
@@ -147,8 +145,12 @@ router.patch("/:id", singleMulterUpload("image"), async (req, res) => {
     }
     // update the image property with the new path
     //   .image = path;
-
-    Object.assign(user, body);
+    let profileImageUrl = path;
+    // console.log(profileImageUrl);
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    // Object.assign(user, profileImageUrl);
+    user.profileImageUrl = profileImageUrl;
+    console.log(user);
     await user.save();
     return res.status(200).json({ user });
   } catch (error) {

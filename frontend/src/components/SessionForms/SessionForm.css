@@ -12,6 +12,7 @@
   position: absolute;
   top: 40px;
   display: flex;
+  border-radius: 20px;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -39,4 +40,32 @@
 .errors {
   color: red;
   font-size: x-small;
+}
+
+.session-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.session-form label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.session-form input {
+  flex: 1;
+}
+
+.demo-button {
+  background-color: rgba(0, 140, 200, 0.854);
+  color: white;
+  border-radius: 50px;
+  font-family: "Roboto", sans-serif;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
 }

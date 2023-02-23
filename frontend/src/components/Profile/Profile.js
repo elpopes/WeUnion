@@ -26,7 +26,7 @@ function Profile() {
   //   } else {
   return (
     <>
-      <div className="whole_page">
+      <div className="page-container">
         <header>
           Hello {currentUser.username}
           <ProfileImageController profileImageUrl={profileImageUrl} />
