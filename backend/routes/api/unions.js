@@ -112,6 +112,6 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// View all Unions
+// leave a union
 
 module.exports = router;

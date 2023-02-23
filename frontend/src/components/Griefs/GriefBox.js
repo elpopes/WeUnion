@@ -1,5 +1,6 @@
 import "./GriefBox.css";
 import { useState } from "react";
+import Poll from "../Polls/poll";
 
 function GriefBox({ grief: { text, author, poll } }) {
   const { username } = author;
@@ -37,6 +38,7 @@ function GriefBox({ grief: { text, author, poll } }) {
           {selectedOption && (
             <div>
               You selected: {poll.options.find((option) => option._id === selectedOption).option}
+              <Poll/>
             </div>
           )}
         </div>

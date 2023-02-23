@@ -3,6 +3,7 @@ const { mongoURI: db } = require("../config/keys.js");
 const User = require("../models/User");
 const Grief = require("../models/Grief");
 const Union = require("../models/Union")
+// const Poll = require("../models/Poll");
 const bcrypt = require("bcryptjs");
 const { faker } = require("@faker-js/faker");
 const NUM_SEED_USERS = 10;
@@ -37,6 +38,10 @@ for (let i = 0; i < NUM_SEED_GRIEFS; i++) {
     new Grief({
       text: faker.hacker.phrase(),
       author: users[Math.floor(Math.random() * NUM_SEED_USERS)]._id,
+      poll: {
+        yes: Math.floor(Math.random() * 100),
+        no: Math.floor(Math.random() * 100),
+      },
     })
   );
 }

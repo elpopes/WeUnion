@@ -3,13 +3,13 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const Grief = mongoose.model("Grief");
+const Poll = mongoose.model('Polls');
 const { requireUser } = require("../../config/passport");
 const validateGriefInput = require("../../validations/griefs");
-const model = require("../../models");
+// const model = require("../../models");
 // Backend code for handling poll requests
 // const express = require('express');
 // const router = express.Router();
-const Poll = require('../models/poll');
 
 // Create a new poll
 router.post('/', async (req, res) => {

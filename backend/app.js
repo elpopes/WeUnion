@@ -12,6 +12,7 @@ const { isProduction } = require("./config/keys");
 require("./models/User.js");
 require("./models/Grief.js");
 require("./models/Union.js");
+require("./models/Polls.js")
 require("./config/passport"); // <-- ADD THIS LINE
 
 const passport = require("passport"); // <-- ADD THIS LINE
@@ -19,7 +20,8 @@ const usersRouter = require("./routes/api/users");
 const griefsRouter = require("./routes/api/griefs");
 const csrfRouter = require("./routes/api/csrf");
 const unionsRouter = require("./routes/api/unions");
-
+const pollsRouter = require("./routes/api/polls");
+ 
 const app = express();
 
 app.use(logger("dev"));
@@ -56,6 +58,7 @@ app.use("/api/users", usersRouter);
 app.use("/api/griefs", griefsRouter);
 app.use("/api/csrf", csrfRouter);
 app.use("/api/unions", unionsRouter);
+app.use("/api/polls", pollsRouter);
 
 // Express custom middleware for catching all unmatched requests and formatting
 // a 404 error to be sent as the response.
