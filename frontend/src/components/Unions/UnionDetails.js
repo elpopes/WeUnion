@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUnion, getUnion } from "../../store/unions";
+import Griefs from "../Griefs/Griefs";
+
 
 const UnionDetails = () => {
   const dispatch = useDispatch();
@@ -36,9 +38,12 @@ const UnionDetails = () => {
   }
 
   return (
-    <div>
-      <h1>{union.name}</h1>
-    </div>
+    <>
+      <div>
+        <h1>{union.name}</h1>
+      </div>
+      <Griefs unionId={id} />
+    </>
   );
 };
 
