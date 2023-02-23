@@ -8,7 +8,7 @@ import ProfileImageController from "./UpdateProfileImage";
 function Profile() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
-  debugger;
+  //   debugger;
   const userGriefs = useSelector((state) => Object.values(state.griefs.user));
   const profileImageUrl = useSelector((state) => {
     // debugger;
@@ -17,7 +17,7 @@ function Profile() {
 
   useEffect(() => {
     dispatch(fetchUserGriefs(currentUser._id));
-    debugger;
+    // debugger;
     return () => dispatch(clearGriefErrors());
   }, [currentUser, dispatch]);
 

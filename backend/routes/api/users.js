@@ -4,6 +4,7 @@ const validateLoginInput = require("../../validations/login");
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
+const Union = mongoose.model("Union");
 const passport = require("passport");
 const express = require("express");
 const router = express.Router();
@@ -39,6 +40,7 @@ router.get("/current", restoreUser, (req, res) => {
     username: req.user.username,
     profileImageUrl: req.user.profileImageUrl, // <- ADD THIS LINE
     email: req.user.email,
+    union: req.user.union,
   });
 });
 
@@ -50,7 +52,7 @@ router.post(
     const user = await User.findOne({
       $or: [{ email: req.body.email }, { username: req.body.username }],
     });
-
+    // console.log(req);
     if (user) {
       // Throw a 400 error if the email address or username already exists
       const err = new Error("Validation Error");
@@ -76,6 +78,27 @@ router.post(
       email: req.body.email,
       union: req.body.unionName,
     });
+
+    //code for adding new user to union.
+    //refactor later
+    const unionId = req.body.unionName;
+    const userId = newUser._id;
+
+    Union.findOneAndUpdate(
+      { _id: unionId },
+      { $push: { members: userId } },
+      { new: true }
+    )
+      .then((updatedUnion) => {
+        if (!updatedUnion) {
+          console.log("NOT FOUND");
+        } else {
+          console.log(`Added user ${userId} to union ${updatedUnion.name}`);
+        }
+      })
+      .catch((error) => {
+        // handle the error
+      });
 
     bcrypt.genSalt(10, (err, salt) => {
       if (err) throw err;
