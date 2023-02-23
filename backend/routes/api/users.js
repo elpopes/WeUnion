@@ -130,24 +130,59 @@ router.post("/login", validateLoginInput, async (req, res, next) => {
   })(req, res, next);
 });
 
-// Define a PATCH route to update a user
-
 router.patch("/:id", singleMulterUpload("image"), async (req, res) => {
-  const userId = req.params.id;
-  const update = req.body;
+  //   const userId = req.params.id;
+  //   const body = req.body;
+  //   const image = req.body.image; // change this to req.file
+  console.log(req);
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
   try {
+    // upload the image
+    const path = await singleMulterUpload({ file: image });
+
     const user = await User.findById(userId);
-    // if (!user) {
-    //   return res.status(404).json({ message: 'User not found' });
-    // }
-    Object.assign(user, update);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    // update the image property with the new path
+    //   .image = path;
+
+    Object.assign(user, body);
     await user.save();
     return res.status(200).json({ user });
   } catch (error) {
-    console.error(error);
+    console.log(error);
     return res.status(500).json({ message: "Server error" });
   }
 });
+
+// Define a PATCH route to update a user
+
+// router.patch("/:id", singleMulterUpload("image"), async (req, res) => {
+//     const userId = req.params.id;
+//     const update = req.body;
+//     const image = req.body.image;
+//     console.log(`userId: ${userId}`);
+//     console.log(`update: ${update}`);
+//     console.log(`userId: ${image}`);
+//     //should be async?
+//     const newUrl = singleMulterUpload(image);
+//     console.log(`newUrl: ${newUrl}`);
+//     try {
+//       const user = await User.findById(userId);
+//       if (!user) {
+//         return res.status(404).json({ message: "User not found" });
+//       }
+//       Object.assign(user, update);
+//       await user.save();
+//       return res.status(200).json({ user });
+//     } catch (error) {
+//       console.error(error);
+//       return res.status(500).json({ message: "Server error" });
+//     }
+//   }
+// );
 
 // deletes a user
 

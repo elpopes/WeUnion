@@ -20,16 +20,16 @@ async function jwtFetch(url, options = {}) {
   if (jwtToken) options.headers["Authorization"] = "Bearer " + jwtToken;
 
   ///reverting for testing
-  //   if (options.method.toUpperCase() !== "GET") {
-  //     options.headers["Content-Type"] =
-  //       options.headers["Content-Type"] || "application/json";
-  //     options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
-  //   }
+  if (options.method.toUpperCase() !== "GET") {
+    options.headers["Content-Type"] =
+      options.headers["Content-Type"] || "application/json";
+    options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
+  }
 
   // If the options.method is not 'GET', then set the "Content-Type" header to
   // "application/json".
   if (!options.headers["Content-Type"] && !(options.body instanceof FormData)) {
-    options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
+    // options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
     options.headers["Content-Type"] = "application/json";
   }
 
