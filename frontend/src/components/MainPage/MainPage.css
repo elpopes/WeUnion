@@ -1,0 +1,35 @@
+.main-page {
+  margin: 0;
+  padding: 0;
+}
+
+.main-page img {
+  width: 50%;
+  height: auto;
+  padding-left: 40px;
+  position: absolute;
+  top: 75%;
+  transform: translateY(-50%);
+}
+
+.hero {
+  height: 400px;
+  width: 100%;
+  background-color: rgb(221, 246, 255);
+  position: relative;
+  border-bottom: 1px solid black;
+}
+
+.footer-container {
+  background-color: rgb(236, 4, 4);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px; /* Set the desired height of the footer */
+}
+
+footer {
+  padding-top: 20px;
+  position: relative;
+}
