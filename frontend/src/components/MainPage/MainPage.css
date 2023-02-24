@@ -7,7 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 400px;
+  height: 600px;
   width: 100%;
   background-color: rgb(221, 246, 255);
   position: relative;
@@ -66,6 +66,24 @@
   background-color: rgb(144, 172, 177);
 }
 
+.feature-3 {
+  display: flex;
+  box-sizing: border-box;
+  margin-left: -15px;
+  margin-right: -15px;
+  border-bottom: 1px solid black;
+  background-color: rgb(194, 245, 242);
+}
+
+.feature-4 {
+  display: flex;
+  box-sizing: border-box;
+  margin-left: -15px;
+  margin-right: -15px;
+  border-bottom: 1px solid black;
+  background-color: rgb(140, 238, 255);
+}
+
 .feature-1-left {
   box-sizing: border-box;
   display: block;
@@ -116,6 +134,56 @@
   margin-top: 50px;
 }
 
+.feature-3-left {
+  box-sizing: border-box;
+  display: block;
+  flex-basis: 50%;
+  max-width: 50%;
+  padding: 54px;
+  position: relative;
+  width: 480px;
+  text-align: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.feature-3-right {
+  box-sizing: border-box;
+  display: block;
+  flex-basis: 50%;
+  max-width: 50%;
+  padding: 54px;
+  position: relative;
+  width: 480px;
+  text-align: center;
+  font-style: italic;
+}
+
+.feature-4-left {
+  box-sizing: border-box;
+  display: block;
+  flex-basis: 50%;
+  max-width: 50%;
+  padding: 54px;
+  position: relative;
+  width: 480px;
+  text-align: center;
+  font-style: italic;
+}
+
+.feature-4-right {
+  box-sizing: border-box;
+  display: block;
+  flex-basis: 50%;
+  max-width: 50%;
+  padding: 54px;
+  position: relative;
+  width: 480px;
+  text-align: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
 .feature-title {
   font-family: Proxima Nova, sans-serif;
   font-size: 72px;
@@ -151,4 +219,18 @@ li {
 .feature-description {
   font-size: 20px;
   font-weight: 400;
+}
+
+.in-conclusion {
+  font-family: Proxima Nova, sans-serif;
+  padding: 50px;
+  text-align: center;
+  line-height: 1.5;
+  display: flex;
+  box-sizing: border-box;
+  font-size: 44px;
+  margin-left: -15px;
+  margin-right: -15px;
+  border-bottom: 1px solid black;
+  background-color: rgb(140, 238, 255);
 }
