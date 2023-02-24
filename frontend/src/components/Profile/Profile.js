@@ -4,6 +4,7 @@ import { fetchUserGriefs, clearGriefErrors } from "../../store/griefs";
 import GriefBox from "../Griefs/GriefBox";
 import "./Profile.css";
 import ProfileImageController from "./UpdateProfileImage";
+import MyUnion from "../Unions/MyUnion";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -26,17 +27,21 @@ function Profile() {
     return (
       <div>
         <div className="page-container">
-          <div className="greetings"></div>
-          <div className="profile-box">
-            <header>
-              Hello {currentUser.username}
-              <ProfileImageController profileImageUrl={profileImageUrl} />
-            </header>
+          <div className="profile-page-left-side">
+            <h1>All of {currentUser.username}'s Grievances</h1>
+            {userGriefs.map((grief) => (
+              <GriefBox key={grief._id} grief={grief} />
+            ))}
           </div>
-          <h2>All of {currentUser.username}'s Grievances</h2>
-          {userGriefs.map((grief) => (
-            <GriefBox key={grief._id} grief={grief} />
-          ))}
+          <div className="profile-page-right-side">
+            <div className="member-title">
+              {currentUser.username}'s Member Card
+            </div>
+            <div className="profile-box">
+              <ProfileImageController profileImageUrl={profileImageUrl} />
+              <MyUnion />
+            </div>
+          </div>
         </div>
       </div>
     );

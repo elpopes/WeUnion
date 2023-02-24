@@ -39,7 +39,7 @@ function NavBar() {
   return (
     <div className="nav-container">
       <a href="/">
-        <img src={"weUnionArmy.png"} alt="logo" />
+        <img src={"/weUnionArmy.png"} alt="logo" />
       </a>
       {getLinks()}
     </div>

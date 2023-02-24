@@ -76,7 +76,7 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
   try {
     const { text, imageUrls } = req.body;
     const author = req.user.id;
-    const question = "What is your favorite color?";
+    const question = "Select an Action!";
     const options = [
       { option: "Collective Bargaining", votes: 0, selected: false },
       { option: "Strike", votes: 0, selected: false },

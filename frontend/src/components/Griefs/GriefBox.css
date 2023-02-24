@@ -1,11 +1,28 @@
-p,
+p {
+  font-size: medium;
+  padding: 5px 20px 30px 20px;
+}
 h3 {
   margin-left: 5px;
+  font-size: smaller;
+  padding: 10px;
+}
+
+.grief-image {
+  height: 0px;
+}
+
+.grief-image img {
+  height: 50px;
+  border-radius: 50%;
 }
 
 .grief {
-  border: 2px solid rgb(241, 0, 0);
+  border: 1px solid rgb(59, 0, 0);
   border-radius: 10px;
   margin-bottom: 5px;
   min-height: 57px;
+  width: 500px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
