@@ -72,16 +72,5 @@
   line-height: 1.8;
 }
 
-.footer-container {
-  background-color: rgb(236, 4, 4);
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50px;
-}
 
-footer {
-  padding-top: 20px;
-  position: relative;
-}
+
