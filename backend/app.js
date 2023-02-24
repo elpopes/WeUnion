@@ -9,13 +9,16 @@ const csurf = require("csurf");
 const cors = require("cors");
 const { isProduction } = require("./config/keys");
 
-require("./models/User");
+require("./models/User.js");
 require("./models/Grief.js");
+require("./models/Union.js");
 require("./config/passport"); // <-- ADD THIS LINE
+
 const passport = require("passport"); // <-- ADD THIS LINE
 const usersRouter = require("./routes/api/users");
 const griefsRouter = require("./routes/api/griefs");
 const csrfRouter = require("./routes/api/csrf");
+const unionsRouter = require("./routes/api/unions");
 
 const app = express();
 
@@ -23,9 +26,9 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use("/main.*.hot-update.json", (req, res) => {
-  proxy.web(req, res);
-});
+// app.use("/main.*.hot-update.json", (req, res) => {
+//   proxy.web(req, res);
+// });
 
 // ADD THIS SECURITY MIDDLEWARE
 // Security Middleware
@@ -52,6 +55,7 @@ app.use(
 app.use("/api/users", usersRouter);
 app.use("/api/griefs", griefsRouter);
 app.use("/api/csrf", csrfRouter);
+app.use("/api/unions", unionsRouter);
 
 /// Added for Render Deploy:
 if (isProduction) {

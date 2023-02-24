@@ -6,6 +6,7 @@ import { signup, clearSessionErrors } from "../../store/session";
 function SignupForm() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
+  const [unionName, setUnionName] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const errors = useSelector((state) => state.errors.session);
@@ -27,6 +28,9 @@ function SignupForm() {
       case "username":
         setState = setUsername;
         break;
+      case "unionName":
+        setState = setUnionName;
+        break;
       case "password":
         setState = setPassword;
         break;
@@ -45,6 +49,7 @@ function SignupForm() {
     const user = {
       email,
       username,
+      unionName,
       password,
     };
 
@@ -52,56 +57,73 @@ function SignupForm() {
   };
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Sign Up Form</h2>
-      <div className="errors">{errors?.email}</div>
-      <label>
-        <span>Email</span>
-        <input
-          type="text"
-          value={email}
-          onChange={update("email")}
-          placeholder="Email"
-        />
-      </label>
-      <div className="errors">{errors?.username}</div>
-      <label>
-        <span>Username</span>
-        <input
-          type="text"
-          value={username}
-          onChange={update("username")}
-          placeholder="Username"
-        />
-      </label>
-      <div className="errors">{errors?.password}</div>
-      <label>
-        <span>Password</span>
-        <input
-          type="password"
-          value={password}
-          onChange={update("password")}
-          placeholder="Password"
-        />
-      </label>
-      <div className="errors">
-        {password !== password2 && "Confirm Password field must match"}
+    <div className="container">
+      <div className="blueBackground">
+        <form className="session-form" onSubmit={handleSubmit}>
+          <h2>Sign Up Form</h2>
+          <div className="errors">{errors?.email}</div>
+          <label>
+            <span>Email</span>
+            <input
+              type="text"
+              value={email}
+              onChange={update("email")}
+              placeholder="Email"
+            />
+          </label>
+          <div className="errors">{errors?.username}</div>
+          <label>
+            <span>Username</span>
+            <input
+              type="text"
+              value={username}
+              onChange={update("username")}
+              placeholder="Username"
+            />
+          </label>
+          <div className="errors">{errors?.union}</div>
+          <label>
+            <span>Union Number</span>
+            <input
+              type="text"
+              value={unionName}
+              onChange={update("unionName")}
+              placeholder="Union ID"
+            />
+          </label>
+
+          <div className="errors">{errors?.password}</div>
+          <label>
+            <span>Password</span>
+            <input
+              type="password"
+              value={password}
+              onChange={update("password")}
+              placeholder="Password"
+            />
+          </label>
+          <div className="errors">
+            {password !== password2 && "Confirm Password field must match"}
+          </div>
+          <label>
+            <span>Confirm Password</span>
+            <input
+              type="password"
+              value={password2}
+              onChange={update("password2")}
+              placeholder="Confirm Password"
+            />
+          </label>
+          <input
+            type="submit"
+            value="Sign Up"
+            disabled={
+              !email || !username || !password || password !== password2
+            }
+          />
+        </form>
       </div>
-      <label>
-        <span>Confirm Password</span>
-        <input
-          type="password"
-          value={password2}
-          onChange={update("password2")}
-          placeholder="Confirm Password"
-        />
-      </label>
-      <input
-        type="submit"
-        value="Sign Up"
-        disabled={!email || !username || !password || password !== password2}
-      />
-    </form>
+    </div>
   );
 }
 

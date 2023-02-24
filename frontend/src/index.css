@@ -1,1 +1,84 @@
-/* TODO Add site wide styles */
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: skyblue;
+  transition: 0.5s;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid black;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+}
+
+.nav-container img {
+  width: 10%;
+  padding-left: 20px;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.links-auth {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  padding-right: 60px;
+}
+
+a {
+  color: black;
+  /* background-color: blue; */
+  text-decoration: none;
+}
+
+.links-auth a {
+  display: inline-block;
+  padding: 5px 12px;
+  background-color: red;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 20px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.links-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 800px;
+  padding-right: 60px;
+}
+
+.links-nav a {
+  display: inline-block;
+  padding: 5px 12px;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 20px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.links-nav button {
+  background-color: red;
+  border-radius: 20%;
+  padding: 5px 12px;
+  color: white;
+  cursor: pointer;
+}
+
+.links-nav button:hover {
+  background-color: darkred;
+}

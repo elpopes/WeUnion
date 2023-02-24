@@ -1,0 +1,57 @@
+.union-form-container {
+  display: flex;
+  position: absolute;
+  top: 25%;
+  left: 30%;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 500px;
+  background-color: #ff0000;
+  border-radius: 20px;
+  box-shadow: 0 5px 45px rgba(0, 0, 0, 15);
+  padding: 20px;
+}
+
+.union-label {
+  font-size: 20px;
+  font-weight: 700;
+  color: black;
+  margin-left: 29%;
+  text-align: center;
+}
+
+.union-form-input {
+  background: #fff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #2d333f;
+  font-size: 16px;
+  line-height: 24px;
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 40px;
+  width: 60%;
+  margin-top: 12px;
+  margin-left: 20%;
+  font-weight: 400;
+}
+
+.union-form-button {
+  background-color: black;
+  color: #fff;
+  height: 45px;
+  width: 60%;
+  margin-left: 20%;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  margin-top: 35px;
+}
+
+.union-form-button:hover {
+  background-color: #312e2e;
+  color: #fff;
+  cursor: pointer;
+}

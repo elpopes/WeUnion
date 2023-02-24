@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import "./NavBar.css";
 import { logout } from "../../store/session";
 
 function NavBar() {
@@ -15,28 +14,35 @@ function NavBar() {
   const getLinks = () => {
     if (loggedIn) {
       return (
-        <div className="links-nav">
-          <Link to={"/griefs"}>Grievances</Link>
-          <Link to={"/profile"}>Profile</Link>
-          <Link to={"/griefs/new"}>Lodge a Grievance</Link>
-          <button onClick={logoutUser}>Logout</button>
+        <div className="nav-bar">
+          <div className="links-nav">
+            <Link to={"/griefs"}>Grievances</Link>
+            <Link to={"/profile"}>Profile</Link>
+            <Link to={"/griefs/new"}>Lodge a Grievance</Link>
+            <Link to={"/unions/new"}>Create a New Union</Link>
+            <button onClick={logoutUser}>Logout</button>
+          </div>
         </div>
       );
     } else {
       return (
-        <div className="links-auth">
-          <Link to={"/signup"}>Signup</Link>
-          <Link to={"/login"}>Login</Link>
+        <div className="nav-bar">
+          <div className="links-auth">
+            <Link to={"/signup"}>Signup</Link>
+            <Link to={"/login"}>Login</Link>
+          </div>
         </div>
       );
     }
   };
 
   return (
-    <>
-      <h1>weUnion</h1>
+    <div className="nav-container">
+      <a href="/">
+        <img src={"weUnionArmy.png"} alt="logo" />
+      </a>
       {getLinks()}
-    </>
+    </div>
   );
 }
 

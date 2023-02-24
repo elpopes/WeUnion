@@ -1,25 +1,71 @@
-.session-form > label {
+.container {
+  position: relative;
+  width: 800px;
+  height: 500px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blueBackground {
+  position: absolute;
+  top: 40px;
+  display: flex;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  padding: 4px 0;
-  text-align: right;
+  height: 420px;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 45px rgba(0, 0, 0, 0.15);
+  font: 20px "Roboto", sans-serif;
 }
 
-.session-form > label > span {
-  display: inline-block;
-  padding: 0 10px;
+.blueBackground .box {
+  position: relative;
+  width: 50%;
+  height: 420px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.session-form > input {
-  width: 200px;
+.session-form h2 {
+  font-size: larger;
+  padding-bottom: 40px;
 }
 
-.session-form > input[type="submit"] {
-  width: 100%;
+.errors {
+  color: red;
+  font-size: x-small;
 }
 
 .session-form {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+}
+
+.session-form label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  width: fit-content;
+  gap: 10px;
+}
+
+.session-form input {
+  flex: 1;
+}
+
+.demo-button {
+  background-color: rgba(0, 140, 200, 0.854);
+  color: white;
+  border-radius: 50px;
+  font-family: "Roboto", sans-serif;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
 }

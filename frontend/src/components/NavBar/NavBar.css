@@ -1,21 +1,26 @@
-.NavBar {
+/* not sure why but these don't do anything. All nav styling is in the src/index.css file */
+
+/* .nav-bar {
   display: flex;
-  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+  color: aquamarine;
+  border-bottom: 1px solid black;
+  padding: 10px;
 }
 
-.NavBar button {
-  height: 20px;
+.nav-bar img {
+  width: 10%;
 }
 
 .links-nav {
-  width: 400px;
+  width: 70%;
   display: flex;
   justify-content: space-between;
 }
 
 .links-auth {
-  width: 100px;
+  width: 20%;
   display: flex;
   justify-content: space-between;
-}
+} */
