@@ -16,11 +16,11 @@ function ProfileImageController() {
   }, [dispatch]);
 
   const userId = useSelector((state) => state.session.user._id);
-  //   debugger;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const user = { id: userId, image };
-    // debugger;
+
     dispatch(updateUserProfile(user));
   };
 

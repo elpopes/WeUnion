@@ -38,14 +38,14 @@ const UnionForm = () => {
       ...prevState,
       member: member,
     }));
-    // debugger;
+
     dispatch(createUnion(data));
   };
 
   return (
     <div className="union-form-container">
       <form onSubmit={handleSubmit}>
-        <label className="union-label" >Name Your Revolution!</label>
+        <label className="union-label">Name Your Revolution!</label>
         <input
           className="union-form-input"
           type="text"
@@ -54,7 +54,9 @@ const UnionForm = () => {
           onChange={handleInputChange}
           placeholder="Union Name"
         />
-        <button className="union-form-button" type="submit">Create Union</button>
+        <button className="union-form-button" type="submit">
+          Create Union
+        </button>
       </form>
     </div>
   );

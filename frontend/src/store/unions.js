@@ -88,7 +88,6 @@ export const fetchUserUnions = (id) => async (dispatch) => {
 };
 
 export const createUnion = (data) => async (dispatch) => {
-  //   debugger;
   try {
     const res = await jwtFetch("/api/unions", {
       method: "POST",

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 export const AuthRoute = ({ component: Component, path, exact }) => {
   const loggedIn = useSelector((state) => !!state.session.user);
   //   const user = useSelector(getCurrentUser());
-  //   debugger;
+
   return (
     <Route
       path={path}
@@ -47,7 +47,7 @@ export const AuthRoute = ({ component: Component, path, exact }) => {
 /// this works to send to grief
 export const ProtectedRoute = ({ component: Component, ...rest }) => {
   const loggedIn = useSelector((state) => !!state.session.user);
-  //   debugger;
+
   return (
     <Route
       {...rest}

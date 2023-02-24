@@ -67,7 +67,7 @@ export const logout = () => (dispatch) => {
 export const updateUserProfile = (userInfo) => async (dispatch) => {
   try {
     const { image, id } = userInfo;
-    debugger;
+
     // const body = { image };
     const formData = new FormData();
 
@@ -77,9 +77,9 @@ export const updateUserProfile = (userInfo) => async (dispatch) => {
       method: "PATCH",
       body: formData,
     });
-    debugger;
+
     const updatedUser = await res.json();
-    debugger;
+
     return dispatch(receiveCurrentUser(updatedUser));
   } catch (err) {
     const res = await err.json();
@@ -94,14 +94,13 @@ export const updateUserProfile = (userInfo) => async (dispatch) => {
 //   try {
 //     const { image, id } = userInfo;
 //     const formData = new FormData();
-//     debugger;
 
 //     // formData.append("username", username);
 //     // formData.append("password", password);
 //     // formData.append("email", email);
 
 //     formData.append("image", image);
-//     debugger;
+
 //     const res = await jwtFetch(`/api/users/${id}`, {
 //       method: "PATCH",
 //       body: formData,
@@ -109,9 +108,9 @@ export const updateUserProfile = (userInfo) => async (dispatch) => {
 //     const updatedUser = await res.json();
 //     return dispatch(receiveCurrentUser(updatedUser));
 //   } catch (err) {
-//     debugger;
+
 //     const res = await err.json();
-//     debugger;
+
 //     if (res.statusCode === 400) {
 //       return dispatch(receiveErrors(res.errors));
 //     }

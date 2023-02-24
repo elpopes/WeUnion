@@ -36,7 +36,11 @@ function GriefBox({ grief: { text, author, poll } }) {
           ))}
           {selectedOption && (
             <div>
-              You selected: {poll.options.find((option) => option._id === selectedOption).option}
+              You selected:{" "}
+              {
+                poll.options.find((option) => option._id === selectedOption)
+                  .option
+              }
             </div>
           )}
         </div>
@@ -45,6 +49,4 @@ function GriefBox({ grief: { text, author, poll } }) {
   );
 }
 
-
 export default GriefBox;
-
