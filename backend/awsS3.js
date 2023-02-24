@@ -4,7 +4,6 @@ const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 const NAME_OF_BUCKET = "we-union-id-photos"; // <-- Use your bucket name here
 
 const singleFileUpload = async ({ file, public = false }) => {
-  console.log("INSIDE SINGLE FILE UPLOAD");
   const { originalname, buffer } = file;
   const path = require("path");
 

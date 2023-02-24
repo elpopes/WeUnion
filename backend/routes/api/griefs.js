@@ -32,12 +32,9 @@ router.get("/user/:userId", async (req, res, next) => {
     const griefs = await Grief.find({ author: user._id })
       .sort({ createdAt: -1 })
       .populate("author", "_id username profileImageUrl");
-    console.log("the TRY >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-    // console.log(res.json());
-    console.log(griefs);
+
     return res.json(griefs);
   } catch (err) {
-    console.log("the CATCH >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     return res.json([]);
   }
 });
@@ -76,7 +73,7 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
   try {
     const { text, imageUrls } = req.body;
     const author = req.user.id;
-    const question = "What is your favorite color?";
+    const question = "Choose an action!";
     const options = [
       { option: "Collective Bargaining", votes: 0, selected: false },
       { option: "Strike", votes: 0, selected: false },
