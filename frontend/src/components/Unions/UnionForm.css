@@ -1,3 +1,8 @@
+.union-name-container h1 {
+  padding: 30px;
+  font-size: 50px;
+}
+
 .union-form-container {
   display: flex;
   position: absolute;
@@ -54,4 +59,32 @@
   background-color: #312e2e;
   color: #fff;
   cursor: pointer;
+}
+
+.invite-container {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  display: flex;
+  background-color: rgb(218, 253, 241);
+  flex-direction: column;
+  justify-content: left;
+  width: 300px;
+  margin-left: 150px;
+  align-items: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.invite-button {
+  padding: 10px 20px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.invite-button:hover {
+  background-color: #333333;
 }
