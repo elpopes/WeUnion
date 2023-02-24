@@ -2,7 +2,8 @@ import "./GriefBox.css";
 import { useState } from "react";
 
 function GriefBox({ grief: { text, author, poll } }) {
-  const { username } = author;
+  const { username, profileImageUrl } = author;
+
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -20,6 +21,9 @@ function GriefBox({ grief: { text, author, poll } }) {
 
   return (
     <div className="grief">
+      <div className="grief-image">
+        <img src={profileImageUrl} alt="Profile" />
+      </div>
       <h3>{username}</h3>
       <p>{text}</p>
       {poll && (

@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchUnion, getUnion } from "../../store/unions";
 import Griefs from "../Griefs/Griefs";
 
-
 const UnionDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -38,12 +37,12 @@ const UnionDetails = () => {
   }
 
   return (
-    <>
-      <div>
+    <div className="union-page">
+      <div className="union-name-container">
         <h1>{union.name}</h1>
       </div>
       <Griefs unionId={id} />
-    </>
+    </div>
   );
 };
 
