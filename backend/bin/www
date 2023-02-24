@@ -29,7 +29,7 @@ var server = http.createServer(app);
 /**
  * Connect to Mongo database, then allow the server to listen for requests
  */
-mongoose.set("strictQuery", false);
+// mongoose.set("strictQuery", false);
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => {
