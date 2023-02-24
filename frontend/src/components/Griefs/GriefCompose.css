@@ -1,9 +1,62 @@
-input[type="textarea"] {
-  min-height: 30px;
-  min-width: 393px;
-  margin-top: 5px;
+.compose-grief {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto 0;
+  width: 50%;
 }
 
-.grief-preview {
-  min-height: 150px;
+.compose-grief input[type="textarea"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.compose-grief input[type="submit"] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.compose-grief input[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+.errors {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.grief-preview,
+.previous-grief {
+  margin-top: 20px;
+  margin-left: 450px;
+  margin-bottom: 20px;
+}
+
+.gp {
+  font-size: 28px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
+.pg {
+  font-size: 28px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
 }

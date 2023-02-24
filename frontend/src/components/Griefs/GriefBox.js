@@ -24,31 +24,37 @@ function GriefBox({ grief: { text, author, poll } }) {
       <div className="grief-image">
         <img src={profileImageUrl} alt="Profile" />
       </div>
-      <h3>{username}</h3>
-      <p>{text}</p>
-      {poll && (
-        <div>
-          <h4>{poll.question}</h4>
-          {poll.options.map((option) => (
-            <button
-              key={option._id}
-              onClick={() => handleOptionClick(option._id)}
-              className={selectedOptions.includes(option._id) ? "selected" : ""}
-            >
-              {option.option}
-            </button>
-          ))}
-          {selectedOption && (
-            <div>
-              You selected:{" "}
-              {
-                poll.options.find((option) => option._id === selectedOption)
-                  .option
-              }
+      <div className="grief-text">
+        <h3>{username}</h3>
+        <p>{text}</p>
+        {poll && (
+          <div>
+            <h4>{poll.question}</h4>
+            <div className="poll-options">
+              {poll.options.map((option) => (
+                <button
+                  key={option._id}
+                  onClick={() => handleOptionClick(option._id)}
+                  className={
+                    selectedOptions.includes(option._id) ? "selected" : ""
+                  }
+                >
+                  {option.option}
+                </button>
+              ))}
             </div>
-          )}
-        </div>
-      )}
+            {selectedOption && (
+              <div>
+                You selected:{" "}
+                {
+                  poll.options.find((option) => option._id === selectedOption)
+                    .option
+                }
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

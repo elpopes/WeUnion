@@ -36,12 +36,12 @@ function GriefCompose() {
         <div className="errors">{errors?.text}</div>
         <input type="submit" value="Submit" />
       </form>
+        <h3 className="gp">Grievance Preview</h3>
       <div className="grief-preview">
-        <h3>Grievance Preview</h3>
         {text ? <GriefBox grief={{ text, author }} /> : undefined}
       </div>
+        <h3 className="pg">Previous Grievance</h3>
       <div className="previous-grief">
-        <h3>Previous Grievance</h3>
         {newGrief ? <GriefBox grief={newGrief} /> : undefined}
       </div>
     </>
