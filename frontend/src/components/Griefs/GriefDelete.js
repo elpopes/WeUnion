@@ -11,7 +11,9 @@ const DeleteGriefButton = ({ griefId }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <button type="submit">Delete</button>
+      <button className="grief-delete-button" type="submit">
+        Delete
+      </button>
     </form>
   );
 };

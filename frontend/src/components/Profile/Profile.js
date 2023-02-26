@@ -32,8 +32,8 @@ function Profile() {
               <h1>All of {currentUser.username}'s Grievances</h1>
               {userGriefs.map((grief) => (
                 <div key={grief._id}>
-                  <GriefBox grief={grief} />
                   <DeleteGriefButton griefId={grief._id} />
+                  <GriefBox grief={grief} />
                 </div>
               ))}
             </>
