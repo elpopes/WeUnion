@@ -22,7 +22,7 @@ function Griefs() {
 
   return (
     <>
-      <h2 className="all-grievances-show">All Grievances</h2>
+      <h2 className="all-grievances-show">All Union Grievances</h2>
       <div className="all-grievances-container">
         {griefs.map((grief) => (
           <GriefBox key={grief._id} grief={grief} />

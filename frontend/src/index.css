@@ -73,7 +73,7 @@ a {
 
 .links-nav button {
   background-color: red;
-  border-radius: 20%;
+  border-radius: 20px;
   padding: 5px 12px;
   color: white;
   cursor: pointer;

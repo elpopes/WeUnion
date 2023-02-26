@@ -7,10 +7,15 @@ const RECEIVE_NEW_UNION = "unions/RECEIVE_NEW_UNION";
 const DESTROY_UNION = "unions/DESTROY_UNION";
 const RECEIVE_UNION_ERRORS = "errors/RECEIVE_UNION_ERRORS";
 const CLEAR_UNION_ERRORS = "errors/CLEAR_UNION_ERRORS";
+const RECEIVE_UNION_MEMBERS = "unions/RECEIVE_UNION_MEMBERS";
 
 const receiveUnions = (unions) => ({
   type: RECEIVE_UNIONS,
   unions,
+});
+
+const receiveUnionMembers = (unionId) => ({
+  type: RECEIVE_UNION_MEMBERS,
 });
 
 const receiveUnion = (union) => ({
@@ -144,6 +149,9 @@ const unionsReducer = (state = {}, action) => {
       return { ...state, [action.union._id]: action.union };
     case RECEIVE_USER_UNIONS:
       return { ...state, user: action.unions };
+    case RECEIVE_UNION_MEMBERS:
+      //this is untested!!
+      return { ...state, union: action.members, new: undefined };
     case RECEIVE_NEW_UNION:
       return { ...state, new: action.union };
     case DESTROY_UNION:
