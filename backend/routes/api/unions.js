@@ -7,6 +7,7 @@ const { requireUser } = require("../../config/passport");
 const validateUnionInput = require("../../validations/unions");
 
 // View a specific Union
+// This looks more like a union index?
 router.get("/", async (req, res) => {
   try {
     const unions = await Union.find();
@@ -73,8 +74,20 @@ router.post("/", requireUser, validateUnionInput, async (req, res) => {
 //   }
 // });
 
-///Manny's updated show union:
+router.get("/:id/members", async (req, res) => {
+  try {
+    const union = await Union.findById(req.params.id);
+    if (!union) {
+      return res.status(404).json({ message: "Union not found" });
+    }
+    return res.json(union.members);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Server error" });
+  }
+});
 
+///Manny's updated show union:
 router.get("/:id", async (req, res) => {
   try {
     const union = await Union.findById(req.params.id);

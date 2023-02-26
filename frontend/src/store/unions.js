@@ -66,6 +66,19 @@ export const fetchUnions = () => async (dispatch) => {
   }
 };
 
+export const fetchUnionMembers = (unionId) => async (dispatch) => {
+  try {
+    const res = await jwtFetch(`/api/unions/${unionId}/members`);
+    const union = await res.json();
+    dispatch(receiveUnionMembers(union._id));
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      dispatch(receiveErrors(resBody.errors));
+    }
+  }
+};
+
 export const fetchUnion = (id) => async (dispatch) => {
   try {
     const res = await jwtFetch(`/api/unions/${id}`);
@@ -149,9 +162,6 @@ const unionsReducer = (state = {}, action) => {
       return { ...state, [action.union._id]: action.union };
     case RECEIVE_USER_UNIONS:
       return { ...state, user: action.unions };
-    case RECEIVE_UNION_MEMBERS:
-      //this is untested!!
-      return { ...state, union: action.members, new: undefined };
     case RECEIVE_NEW_UNION:
       return { ...state, new: action.union };
     case DESTROY_UNION:
