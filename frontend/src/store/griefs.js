@@ -5,12 +5,24 @@ const RECEIVE_GRIEFS = "griefs/RECEIVE_GRIEFS";
 const RECEIVE_USER_GRIEFS = "griefs/RECEIVE_USER_GRIEFS";
 const RECEIVE_NEW_GRIEF = "griefs/RECEIVE_NEW_GRIEF";
 const RECEIVE_GRIEF_ERRORS = "griefs/RECEIVE_GRIEF_ERRORS";
+const REMOVE_GRIEF = "griefs/REMOVE_POST";
 const CLEAR_GRIEF_ERRORS = "griefs/CLEAR_GRIEF_ERRORS";
 
-const receiveGriefs = (griefs) => ({
+export const receiveGriefs = (griefs) => ({
   type: RECEIVE_GRIEFS,
   griefs,
 });
+
+export const removeGrief = (griefId) => ({
+  type: REMOVE_GRIEF,
+  griefId,
+});
+
+export const deleteGrief = (griefId) => (dispatch) => {
+  return jwtFetch(`/api/griefs/${griefId}`, {
+    method: "DELETE",
+  }).then(() => dispatch(removeGrief(griefId)));
+};
 
 const receiveUserGriefs = (griefs) => ({
   type: RECEIVE_USER_GRIEFS,
@@ -99,6 +111,10 @@ const griefsReducer = (
       return { ...state, user: action.griefs, new: undefined };
     case RECEIVE_NEW_GRIEF:
       return { ...state, new: action.grief };
+    case REMOVE_GRIEF:
+      const newState = { ...state };
+      delete newState[action.griefId];
+      return newState;
     case RECEIVE_USER_LOGOUT:
       return { ...state, user: {}, new: undefined };
     default:

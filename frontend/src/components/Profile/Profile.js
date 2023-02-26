@@ -5,6 +5,7 @@ import GriefBox from "../Griefs/GriefBox";
 import "./Profile.css";
 import ProfileImageController from "./UpdateProfileImage";
 import MyUnion from "../Unions/MyUnion";
+import DeleteGriefButton from "../Griefs/GriefDelete";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -30,7 +31,10 @@ function Profile() {
             <>
               <h1>All of {currentUser.username}'s Grievances</h1>
               {userGriefs.map((grief) => (
-                <GriefBox key={grief._id} grief={grief} />
+                <div key={grief._id}>
+                  <GriefBox grief={grief} />
+                  <DeleteGriefButton griefId={grief._id} />
+                </div>
               ))}
             </>
           )}

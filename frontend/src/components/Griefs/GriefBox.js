@@ -2,7 +2,6 @@ import "./GriefBox.css";
 import { useState } from "react";
 
 function GriefBox({ grief: { text, author, poll } }) {
-  debugger;
   const { username, profileImageUrl } = author;
 
   const [selectedOptions, setSelectedOptions] = useState([]);
