@@ -33,45 +33,47 @@ function LoginForm() {
   };
 
   return (
-    <div className="container">
-      <div className="blueBackground">
-        <div className="signInBox">
-          <h1>Already Have an Account?</h1>
-          <form className="session-form" onSubmit={handleSubmit}>
-            <h2>Log In Form</h2>
-            <div className="errors">{errors?.email}</div>
-            <label>
-              <span>Email</span>
+    <div className="login-background">
+      <div className="container">
+        <div className="blueBackground">
+          <div className="signInBox">
+            {/* <h1>Already Have an Account?</h1> */}
+            <form className="session-form" onSubmit={handleSubmit}>
+              {/* <h2>Log In Form</h2> */}
+              <div className="errors">{errors?.email}</div>
+              <label>
+                <span>Email</span>
+                <input
+                  type="text"
+                  value={email}
+                  onChange={update("email")}
+                  placeholder="Email"
+                />
+              </label>
+              <div className="errors">{errors?.password}</div>
+              <label>
+                <span>Password</span>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={update("password")}
+                  placeholder="Password"
+                />
+              </label>
               <input
-                type="text"
-                value={email}
-                onChange={update("email")}
-                placeholder="Email"
+                type="submit"
+                value="Log In"
+                disabled={!email || !password}
               />
-            </label>
-            <div className="errors">{errors?.password}</div>
-            <label>
-              <span>Password</span>
-              <input
-                type="password"
-                value={password}
-                onChange={update("password")}
-                placeholder="Password"
-              />
-            </label>
-            <input
-              type="submit"
-              value="Log In"
-              disabled={!email || !password}
-            />
-            <button
-              type="button"
-              className="demo-button"
-              onClick={handleDemoUser}
-            >
-              Demo User
-            </button>
-          </form>
+              <button
+                type="button"
+                className="demo-button"
+                onClick={handleDemoUser}
+              >
+                Demo User
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

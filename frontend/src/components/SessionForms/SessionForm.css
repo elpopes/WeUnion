@@ -8,9 +8,30 @@
   align-items: center;
 }
 
-.blueBackground {
+.login-background {
+  background-image: url(https://we-union-id-photos.s3.amazonaws.com/public/backgrounds/pexels-andrea-piacquadio-3865557.jpg);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
   position: absolute;
-  top: 40px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.signup-background {
+  background-image: url(https://we-union-id-photos.s3.amazonaws.com/public/backgrounds/pexels-sora-shimazaki-5668838.jpg);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.blueBackground {
+  margin-top: 400px;
   display: flex;
   border-radius: 20px;
   justify-content: center;
@@ -23,7 +44,6 @@
 }
 
 .blueBackground .box {
-  position: relative;
   width: 50%;
   height: 420px;
   display: flex;
@@ -45,7 +65,7 @@
 .session-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 3px;
 }
 
 .session-form label {
@@ -53,7 +73,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .session-form input {
