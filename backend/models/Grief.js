@@ -27,6 +27,13 @@ const griefSchema = new Schema(
       type: [String],
       required: false,
     },
+    union: {
+      type: Schema.Types.ObjectId,
+      ref: "Union",
+      autopopulate: {
+        select: "name", // Specify the field(s) you want to populate
+      },
+    },
     poll: {
       question: {
         type: String,
