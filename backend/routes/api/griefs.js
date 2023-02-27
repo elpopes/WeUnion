@@ -96,4 +96,13 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  try {
+    const grief = await Grief.findByIdAndDelete(req.params.id);
+    res.json({ message: `${grief} deleted successfully` });
+  } catch (e) {
+    res.status(422).json(e);
+  }
+});
+
 module.exports = router;

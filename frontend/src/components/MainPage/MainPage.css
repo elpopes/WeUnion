@@ -9,7 +9,8 @@
   align-items: center;
   height: 600px;
   width: 100%;
-  background-color: rgb(221, 246, 255);
+  background-image: url("https://we-union-id-photos.s3.amazonaws.com/public/backgrounds/pexels-life-matters-4613877.jpg");
+  background-size: 110% auto;
   position: relative;
   border-bottom: 1px solid black;
 }

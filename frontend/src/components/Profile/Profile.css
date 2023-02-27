@@ -72,3 +72,10 @@
   font-size: 30px;
   font-family: sans-serif;
 }
+
+.grief-delete-button {
+  border-radius: 10px;
+  background-color: #f32121;
+  margin-left: 250px;
+  transform: translateY(200%);
+}

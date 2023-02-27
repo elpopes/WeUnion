@@ -43,21 +43,23 @@ const UnionForm = () => {
   };
 
   return (
-    <div className="union-form-container">
-      <form onSubmit={handleSubmit}>
-        <label className="union-label">Name Your Revolution!</label>
-        <input
-          className="union-form-input"
-          type="text"
-          name="name"
-          value={data.name}
-          onChange={handleInputChange}
-          placeholder="Union Name"
-        />
-        <button className="union-form-button" type="submit">
-          Create Union
-        </button>
-      </form>
+    <div className="create-union-background">
+      <div className="union-form-container">
+        <form onSubmit={handleSubmit}>
+          <label className="union-label">Name Your Revolution!</label>
+          <input
+            className="union-form-input"
+            type="text"
+            name="name"
+            value={data.name}
+            onChange={handleInputChange}
+            placeholder="Union Name"
+          />
+          <button className="union-form-button" type="submit">
+            Create Union
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

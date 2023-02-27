@@ -24,27 +24,39 @@ function GriefCompose() {
   const update = (e) => setText(e.currentTarget.value);
 
   return (
-    <>
-      <form className="compose-grief" onSubmit={handleSubmit}>
-        <input
-          type="textarea"
-          value={text}
-          onChange={update}
-          placeholder="Air your grievance..."
-          required
-        />
-        <div className="errors">{errors?.text}</div>
-        <input type="submit" value="Submit" />
-      </form>
-        <h3 className="gp">Grievance Preview</h3>
-      <div className="grief-preview">
-        {text ? <GriefBox grief={{ text, author }} /> : undefined}
+    <div className="compose-grief-background">
+      <div className="compose-grief-container">
+        <form className="compose-grief" onSubmit={handleSubmit}>
+          <input
+            type="textarea"
+            value={text}
+            onChange={update}
+            placeholder="Air your grievance..."
+            required
+          />
+          <div className="errors">{errors?.text}</div>
+          <input type="submit" value="Submit" />
+        </form>
+        <div className="pp-grief-container">
+          {text && (
+            <div className="grief-preview-container">
+              <h3 className="gp">Grievance Preview</h3>
+              <div className="grief-preview">
+                <GriefBox grief={{ text, author }} />
+              </div>
+            </div>
+          )}
+          {newGrief && (
+            <div className="previous-grief-container">
+              <h3 className="pg">Previous Grievance</h3>
+              <div className="previous-grief">
+                <GriefBox grief={newGrief} />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-        <h3 className="pg">Previous Grievance</h3>
-      <div className="previous-grief">
-        {newGrief ? <GriefBox grief={newGrief} /> : undefined}
-      </div>
-    </>
+    </div>
   );
 }
 
