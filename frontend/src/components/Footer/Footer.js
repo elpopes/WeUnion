@@ -45,7 +45,7 @@ const Footer = () => {
           <a href="https://github.com/CornellB02" target="_blank">
             <i className="fa-brands fa-github"></i>
           </a>
-          |
+          | 
         </p>
         <p>
           Yosyp Dobosh
