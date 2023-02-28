@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearGriefErrors, fetchGriefs } from "../../store/griefs";
+import DeleteGriefButton from "../Griefs/GriefDelete";
 import GriefBox from "./GriefBox";
 import "./Griefs.css";
 
@@ -25,7 +26,10 @@ function Griefs() {
       <h2 className="all-grievances-show">All Union Grievances</h2>
       <div className="all-grievances-container">
         {griefs.map((grief) => (
-          <GriefBox key={grief._id} grief={grief} />
+          <>
+            <DeleteGriefButton griefId={grief._id} />
+            <GriefBox key={grief._id} grief={grief} />
+          </>
         ))}
       </div>
     </>

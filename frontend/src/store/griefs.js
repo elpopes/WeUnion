@@ -3,6 +3,7 @@ import { RECEIVE_USER_LOGOUT } from "./session";
 
 const RECEIVE_GRIEFS = "griefs/RECEIVE_GRIEFS";
 const RECEIVE_USER_GRIEFS = "griefs/RECEIVE_USER_GRIEFS";
+const RECEIVE_UNION_GRIEFS = "griefs/ RECEIVE_UNION_GRIEFS";
 const RECEIVE_NEW_GRIEF = "griefs/RECEIVE_NEW_GRIEF";
 const RECEIVE_GRIEF_ERRORS = "griefs/RECEIVE_GRIEF_ERRORS";
 const REMOVE_GRIEF = "griefs/REMOVE_POST";
@@ -26,6 +27,11 @@ export const deleteGrief = (griefId) => (dispatch) => {
 
 const receiveUserGriefs = (griefs) => ({
   type: RECEIVE_USER_GRIEFS,
+  griefs,
+});
+
+const receiveUnionGriefs = (griefs) => ({
+  type: RECEIVE_UNION_GRIEFS,
   griefs,
 });
 
@@ -63,6 +69,22 @@ export const fetchUserGriefs = (id) => async (dispatch) => {
     const griefs = await res.json();
     dispatch(receiveUserGriefs(griefs));
   } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      return dispatch(receiveErrors(resBody.errors));
+    }
+  }
+};
+
+export const fetchUnionGriefs = (unionId) => async (dispatch) => {
+  try {
+    // debugger;
+    const res = await jwtFetch(`/api/griefs/union/${unionId}`);
+    const griefs = await res.json();
+    // debugger;
+    dispatch(receiveUnionGriefs(griefs));
+  } catch (err) {
+    // debugger;
     const resBody = await err.json();
     if (resBody.statusCode === 400) {
       return dispatch(receiveErrors(resBody.errors));
@@ -109,6 +131,8 @@ const griefsReducer = (
       return { ...state, all: action.griefs, new: undefined };
     case RECEIVE_USER_GRIEFS:
       return { ...state, user: action.griefs, new: undefined };
+    case RECEIVE_UNION_GRIEFS:
+      return { ...action.griefs };
     case RECEIVE_NEW_GRIEF:
       return { ...state, new: action.grief };
     case REMOVE_GRIEF:

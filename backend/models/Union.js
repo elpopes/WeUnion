@@ -14,7 +14,7 @@ const unionSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "User",
-      // unique: true
+      unique: true
     },
   ],
   createdBy: {

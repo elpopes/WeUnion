@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUnion, getUnion } from "../../store/unions";
-import Griefs from "../Griefs/Griefs";
+import UnionGriefs from "./UnionGriefs";
+// import Griefs from "../Griefs/Griefs";
 import InviteButton from "./Invite";
 
 const UnionDetails = () => {
@@ -47,7 +48,7 @@ const UnionDetails = () => {
           <InviteButton className="invite-button" />
         </div>
       </div>
-      <Griefs unionId={id} />
+      <UnionGriefs unionId={id} />
     </div>
   );
 };
