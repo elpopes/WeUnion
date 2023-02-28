@@ -14,6 +14,7 @@ require("./models/Grief.js");
 require("./models/Union.js");
 require("./config/passport"); // <-- ADD THIS LINE
 
+
 const passport = require("passport"); // <-- ADD THIS LINE
 const usersRouter = require("./routes/api/users");
 const griefsRouter = require("./routes/api/griefs");
