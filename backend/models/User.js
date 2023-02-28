@@ -16,13 +16,16 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    union: {
+    unions: [
+      {
       type: Schema.Types.ObjectId,
       ref: "Union",
-      autopopulate: {
-        select: "name", // Specify the field(s) you want to populate
-      },
+      unique: true
+      // autopopulate: {
+        // select: "name", // Specify the field(s) you want to populate
+      // },
     },
+  ],
         // ADD profileImageUrl
       profileImageUrl: {
       type: String
