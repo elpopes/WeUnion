@@ -95,9 +95,9 @@ router.post(
     )
       .then((updatedUnion) => {
         if (!updatedUnion) {
-          console.log("NOT FOUND");
+          //// console.log("NOT FOUND");
         } else {
-          console.log(`Added user ${userId} to union ${updatedUnion.name}`);
+          //// console.log(`Added user ${userId} to union ${updatedUnion.name}`);
         }
       })
       .catch((error) => {
@@ -152,11 +152,11 @@ router.patch("/:id", singleMulterUpload("image"), async (req, res) => {
     let profileImageUrl = path;
     // Object.assign(user, profileImageUrl);
     user.profileImageUrl = profileImageUrl;
-    console.log(user);
+    // console.log(user);
     await user.save();
     return res.status(200).json({ user });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.status(500).json({ message: "Server error" });
   }
 });
