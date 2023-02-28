@@ -6,18 +6,26 @@ import GriefBox from "../Griefs/GriefBox";
 
 function UnionGriefs({ unionId }) {
   const dispatch = useDispatch();
+  //   debugger;
 
   const unionGriefs = useSelector((state) => {
-    debugger;
-    const unionGriefs = Object.values(state.griefs.union);
-    return unionGriefs;
+    return Object.values(state.griefs);
+    // .filter((grief) => {
+    //   debugger;
+    //   return grief.union === unionId;
+    // });
   });
+
+  //   debugger;
 
   useEffect(() => {
     dispatch(fetchUnionGriefs(unionId));
-
     return () => dispatch(clearGriefErrors());
   }, [unionId, dispatch]);
+
+  //   if (!unionGriefs) {
+  //     return <div></div>;
+  //   }
 
   return (
     <div className="union-griefs-container">
