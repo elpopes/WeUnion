@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
+const Union = mongoose.model("Union");
 const Grief = mongoose.model("Grief");
 const { requireUser } = require("../../config/passport");
 const validateGriefInput = require("../../validations/griefs");
@@ -30,6 +31,28 @@ router.get("/user/:userId", async (req, res, next) => {
   }
   try {
     const griefs = await Grief.find({ author: user._id })
+      .sort({ createdAt: -1 })
+      .populate("author", "_id username profileImageUrl");
+
+    return res.json(griefs);
+  } catch (err) {
+    return res.json([]);
+  }
+});
+
+//new route to get the union's grievances
+router.get("/union/:unionId", async (req, res, next) => {
+  let union;
+  try {
+    union = await Union.findById(req.params.unionId);
+  } catch (err) {
+    const error = new Error("Union not found");
+    error.statusCode = 404;
+    error.errors = { message: "No union found with that id" };
+    return next(error);
+  }
+  try {
+    const griefs = await Grief.find({ union: union })
       .sort({ createdAt: -1 })
       .populate("author", "_id username profileImageUrl");
 
@@ -73,6 +96,7 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
   try {
     const { text, imageUrls } = req.body;
     const author = req.user.id;
+    const union = req.user.union;
     const question = "Choose an action!";
     const options = [
       { option: "Collective Bargaining", votes: 0, selected: false },
@@ -83,6 +107,7 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
     ];
     const newGrief = new Grief({
       author,
+      union,
       text,
       imageUrls,
       poll: { question, options },
