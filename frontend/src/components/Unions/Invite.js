@@ -6,7 +6,7 @@ const InviteButton = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`Invited phone number: ${phoneNumber}`);
+    // console.log(`Invited phone number: ${phoneNumber}`);
     setIsInvited(true);
     setPhoneNumber("");
   };
