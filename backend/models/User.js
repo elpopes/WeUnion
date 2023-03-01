@@ -18,23 +18,22 @@ const userSchema = new Schema(
     },
     unions: [
       {
-      type: Schema.Types.ObjectId,
-      ref: "Union",
-      unique: true
-      // autopopulate: {
+        type: Schema.Types.ObjectId,
+        ref: "Union",
+        //   unique: true
+        // autopopulate: {
         // select: "name", // Specify the field(s) you want to populate
-      // },
-    },
-  ],
-        // ADD profileImageUrl
-      profileImageUrl: {
-      type: String
-      // required: true
+        // },
       },
+    ],
+    // ADD profileImageUrl
+    profileImageUrl: {
+      type: String,
+      // required: true
     },
+  },
   {
     timestamps: true,
   }
 );
 module.exports = mongoose.model("User", userSchema);
-

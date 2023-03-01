@@ -72,12 +72,16 @@ router.post(
       ? await singleFileUpload({ file: req.file, public: true })
       : DEFAULT_PROFILE_IMAGE_URL;
 
+    console.log(req.body);
+
     const newUser = new User({
       username: req.body.username,
       profileImageUrl,
       email: req.body.email,
-      union: req.body.unionName,
+      unions: [req.body.unionName],
     });
+
+    console.log(newUser);
 
     //code for adding new user to union.
     //refactor later
@@ -104,9 +108,17 @@ router.post(
       if (err) throw err;
       bcrypt.hash(req.body.password, salt, async (err, hashedPassword) => {
         if (err) throw err;
+        console.log(
+          ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        );
         try {
           newUser.hashedPassword = hashedPassword;
+          console.log("this is line 116>>>>>>>>>>>>>>>>>>>");
+          console.log(newUser);
           const user = await newUser.save();
+          console.log("BUT WE NOT HITTING THIS LINE");
+          console.log("this is user");
+          console.log(user);
           // return res.json({ user });
           return res.json(await loginUser(user)); // <-- THIS IS THE CHANGED LINE
         } catch (err) {
