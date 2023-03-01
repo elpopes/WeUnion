@@ -26,15 +26,15 @@ function UnionGriefs({ unionId }) {
   //   if (!unionGriefs) {
   //     return <div></div>;
   //   }
-
+  debugger;
   return (
     <div className="union-griefs-container">
-      {unionGriefs.length === 0 ? (
+      {unionGriefs[1].length === 0 ? (
         <h1>No grievances for this union</h1>
       ) : (
         <>
           <h1>All grievances for this union</h1>
-          {unionGriefs.map((grief) => (
+          {unionGriefs[1].map((grief) => (
             <div key={grief._id}>
               <GriefBox grief={grief} />
             </div>

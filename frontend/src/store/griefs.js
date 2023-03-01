@@ -132,6 +132,7 @@ const griefsReducer = (
     case RECEIVE_USER_GRIEFS:
       return { ...state, user: action.griefs, new: undefined };
     case RECEIVE_UNION_GRIEFS:
+      debugger;
       return { ...action.griefs };
     case RECEIVE_NEW_GRIEF:
       return { ...state, new: action.grief };
