@@ -40,7 +40,7 @@ router.get("/current", restoreUser, (req, res) => {
     username: req.user.username,
     profileImageUrl: req.user.profileImageUrl, // <- ADD THIS LINE
     email: req.user.email,
-    union: req.user.union,
+    unions: req.user.unions,
   });
 });
 
