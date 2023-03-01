@@ -10,14 +10,15 @@ const MyUnion = () => {
   const user = useSelector((state) => state.session.user);
 
   useEffect(() => {
-    if (user && user.unionId) {
-      dispatch(fetchUnion(user.union));
+    if (user && user.unions) {
+      dispatch(fetchUnion(user.unions[0]));
     }
   }, [dispatch, user]);
 
   const handleClick = () => {
-    if (user.union) {
-      history.push(`/unions/${user.union}`);
+    if (user.unions[0]) {
+      debugger;
+      history.push(`/unions/${user.unions[0]}`);
     } else {
       history.push("/unions/new");
     }
@@ -26,7 +27,7 @@ const MyUnion = () => {
   return (
     <div>
       <button className="union-card-button" onClick={handleClick}>
-        {user.union ? "Your Union" : "Create Your Union!"}
+        {user.unions ? "Your Default Union" : "Create Your Union!"}
       </button>
     </div>
   );

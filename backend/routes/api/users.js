@@ -40,7 +40,7 @@ router.get("/current", restoreUser, (req, res) => {
     username: req.user.username,
     profileImageUrl: req.user.profileImageUrl, // <- ADD THIS LINE
     email: req.user.email,
-    union: req.user.union,
+    unions: req.user.unions,
   });
 });
 
@@ -72,12 +72,16 @@ router.post(
       ? await singleFileUpload({ file: req.file, public: true })
       : DEFAULT_PROFILE_IMAGE_URL;
 
+    console.log(req.body);
+
     const newUser = new User({
       username: req.body.username,
       profileImageUrl,
       email: req.body.email,
-      union: req.body.unionName,
+      unions: [req.body.unionName],
     });
+
+    console.log(newUser);
 
     //code for adding new user to union.
     //refactor later
@@ -106,9 +110,9 @@ router.post(
         if (err) throw err;
         try {
           newUser.hashedPassword = hashedPassword;
+          console.log(newUser);
           const user = await newUser.save();
-          // return res.json({ user });
-          return res.json(await loginUser(user)); // <-- THIS IS THE CHANGED LINE
+          return res.json(await loginUser(user));
         } catch (err) {
           next(err);
         }

@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const { mongoURI: db } = require("../config/keys.js");
 const User = require("../models/User");
 const Grief = require("../models/Grief");
-const Union = require("../models/Union")
+const Union = require("../models/Union");
 const bcrypt = require("bcryptjs");
 const { faker } = require("@faker-js/faker");
-const NUM_SEED_USERS = 10;
-const NUM_SEED_GRIEFS = 30;
-const NUM_SEED_UNIONS = 5;
+const NUM_SEED_USERS = 0;
+const NUM_SEED_GRIEFS = 0;
+const NUM_SEED_UNIONS = 1;
 // Create users
 const users = [];
 users.push(
@@ -45,7 +45,7 @@ const unions = [];
 for (let i = 0; i < NUM_SEED_UNIONS; i++) {
   unions.push(
     new Union({
-      name: faker.company.companyName(),
+      name: "World Union",
       unionMember: users[Math.floor(Math.random() * NUM_SEED_USERS)]._id,
       actions: faker.lorem.sentence(),
     })

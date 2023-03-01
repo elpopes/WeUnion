@@ -30,10 +30,13 @@ const receiveUserGriefs = (griefs) => ({
   griefs,
 });
 
-const receiveUnionGriefs = (griefs) => ({
-  type: RECEIVE_UNION_GRIEFS,
-  griefs,
-});
+const receiveUnionGriefs = (griefs) => {
+  debugger;
+  return {
+    type: RECEIVE_UNION_GRIEFS,
+    griefs,
+  };
+};
 
 const receiveNewGrief = (grief) => ({
   type: RECEIVE_NEW_GRIEF,
@@ -78,10 +81,10 @@ export const fetchUserGriefs = (id) => async (dispatch) => {
 
 export const fetchUnionGriefs = (unionId) => async (dispatch) => {
   try {
-    // debugger;
+    debugger;
     const res = await jwtFetch(`/api/griefs/union/${unionId}`);
     const griefs = await res.json();
-    // debugger;
+    debugger;
     dispatch(receiveUnionGriefs(griefs));
   } catch (err) {
     // debugger;
@@ -123,7 +126,7 @@ export const griefErrorsReducer = (state = nullErrors, action) => {
 };
 
 const griefsReducer = (
-  state = { all: {}, user: {}, new: undefined },
+  state = { all: {}, user: {}, union: {}, new: undefined },
   action
 ) => {
   switch (action.type) {
@@ -132,7 +135,8 @@ const griefsReducer = (
     case RECEIVE_USER_GRIEFS:
       return { ...state, user: action.griefs, new: undefined };
     case RECEIVE_UNION_GRIEFS:
-      return { ...action.griefs };
+      debugger;
+      return { ...state, union: action.griefs, new: undefined };
     case RECEIVE_NEW_GRIEF:
       return { ...state, new: action.grief };
     case REMOVE_GRIEF:

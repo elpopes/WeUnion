@@ -96,7 +96,7 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
   try {
     const { text, imageUrls } = req.body;
     const author = req.user.id;
-    const union = req.user.union;
+    const union = req.user.unions[0];
     const question = "Choose an action!";
     const options = [
       { option: "Collective Bargaining", votes: 0, selected: false },

@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUnionGriefs, clearGriefErrors } from "../../store/griefs";
+import { useParams } from "react-router-dom";
 import GriefBox from "../Griefs/GriefBox";
 // import "./UnionProfile.css";
 
 function UnionGriefs({ unionId }) {
   const dispatch = useDispatch();
   //   debugger;
+
+  const { id } = useParams();
 
   const unionGriefs = useSelector((state) => {
     return Object.values(state.griefs);
@@ -19,22 +22,23 @@ function UnionGriefs({ unionId }) {
   //   debugger;
 
   useEffect(() => {
-    dispatch(fetchUnionGriefs(unionId));
+    debugger;
+    dispatch(fetchUnionGriefs(id));
     return () => dispatch(clearGriefErrors());
-  }, [unionId, dispatch]);
+  }, [id, dispatch]);
 
-  //   if (!unionGriefs) {
-  //     return <div></div>;
-  //   }
-
+  if (Object.values(unionGriefs[2]).length === 0) {
+    return <div>Loading...</div>;
+  }
+  debugger;
   return (
     <div className="union-griefs-container">
-      {unionGriefs.length === 0 ? (
+      {unionGriefs[2].length === 0 ? (
         <h1>No grievances for this union</h1>
       ) : (
         <>
           <h1>All grievances for this union</h1>
-          {unionGriefs.map((grief) => (
+          {unionGriefs[2].map((grief) => (
             <div key={grief._id}>
               <GriefBox grief={grief} />
             </div>

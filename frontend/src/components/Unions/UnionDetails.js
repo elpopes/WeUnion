@@ -26,7 +26,6 @@ const UnionDetails = () => {
     if (!union && id) {
       fetchUnionData();
     } else if (union) {
-      //   debugger;
       setLoaded(true);
     }
   }, [dispatch, id, union]);
