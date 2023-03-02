@@ -6,7 +6,7 @@ import "./SessionForm.css";
 function SignupForm() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [unionName, setUnionName] = useState("");
+  const [unionName, setUnionName] = useState("World Union by Default");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const errors = useSelector((state) => state.errors.session);
@@ -46,10 +46,15 @@ function SignupForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const finalUnion =
+      unionName === "World Union by Default"
+        ? "64010ecca80a143dd225dbdc"
+        : unionName;
     const user = {
       email,
       username,
-      unionName,
+      unionName: finalUnion,
       password,
     };
 
@@ -87,7 +92,7 @@ function SignupForm() {
               type="text"
               value={unionName}
               onChange={update("unionName")}
-              placeholder="Union ID"
+              placeholder="World Union by Default"
             />
 
             <div className="errors">{errors?.password}</div>
@@ -118,7 +123,7 @@ function SignupForm() {
                 !email || !username || !password || password !== password2
               }
             >
-            Sign Up 
+              Sign Up
             </button>
           </form>
         </div>

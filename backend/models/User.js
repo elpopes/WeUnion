@@ -20,10 +20,6 @@ const userSchema = new Schema(
       {
         type: Schema.Types.ObjectId,
         ref: "Union",
-        //   unique: true
-        // autopopulate: {
-        // select: "name", // Specify the field(s) you want to populate
-        // },
       },
     ],
     // ADD profileImageUrl

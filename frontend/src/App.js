@@ -13,7 +13,6 @@ import UnionForm from "./components/Unions/UnionForm";
 import UnionDetails from "./components/Unions/UnionDetails";
 import { getCurrentUser } from "./store/session";
 
-
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();

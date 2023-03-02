@@ -2,8 +2,8 @@ import React from "react";
 
 function DemoUser({ onCredentialChange, onPasswordChange }) {
   const handleDemoUser = () => {
-    onCredentialChange("demo-user@appacademy.io");
-    onPasswordChange("starwars");
+    onCredentialChange("demo_user@email.com");
+    onPasswordChange("password");
   };
 
   return (

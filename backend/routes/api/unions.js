@@ -20,6 +20,8 @@ router.get("/", async (req, res) => {
 // Create a new Union
 
 router.post("/", requireUser, validateUnionInput, async (req, res) => {
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+  console.log(req.body);
   try {
     // Check if a union with the same name already exists
     const existingUnion = await Union.findOne({ name: req.body.name });
@@ -36,10 +38,17 @@ router.post("/", requireUser, validateUnionInput, async (req, res) => {
       createdBy: req.user._id,
     });
 
-    // Save the new union and return the response
-    let union = await newUnion.save();
-    union = await union.populate("members");
-    return res.json(union);
+    // Save the new union and update the user's union array
+    const union = await newUnion.save();
+    await User.findByIdAndUpdate(
+      req.body.member._id,
+      { $push: { unions: { $each: [union._id], $position: 0 } } },
+      { new: true }
+    );
+
+    // Return the response
+    const populatedUnion = await union.populate("members");
+    return res.json(populatedUnion);
   } catch (e) {
     return res.status(422).json(e);
   }

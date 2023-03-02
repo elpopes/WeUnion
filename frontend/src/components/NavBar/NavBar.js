@@ -16,7 +16,7 @@ function NavBar() {
       return (
         <div className="nav-bar">
           <div className="links-nav">
-            <Link to={"/griefs"}>Grievances</Link>
+            {/* <Link to={"/griefs"}>Grievances</Link> */}
             <Link to={"/profile"}>Profile</Link>
             <Link to={"/griefs/new"}>Lodge a Grievance</Link>
             <Link to={"/unions/new"}>Create a New Union</Link>
