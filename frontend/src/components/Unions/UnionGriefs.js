@@ -24,7 +24,7 @@ function UnionGriefs({ unionId }) {
   }, [id, dispatch]);
 
   if (Object.values(unionGriefs[2]).length === 0) {
-    return <div>Loading...</div>;
+    return <div>No grievances currently available...</div>;
   }
   return (
     <div className="union-griefs-container">

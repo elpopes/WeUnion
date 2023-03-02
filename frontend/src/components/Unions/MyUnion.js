@@ -11,7 +11,6 @@ const MyUnion = () => {
 
   useEffect(() => {
     if (user && user.unions) {
-      debugger;
       dispatch(fetchUnion(user.unions[0]));
     }
   }, [dispatch, user]);
