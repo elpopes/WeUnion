@@ -72,16 +72,12 @@ router.post(
       ? await singleFileUpload({ file: req.file, public: true })
       : DEFAULT_PROFILE_IMAGE_URL;
 
-    console.log(req.body);
-
     const newUser = new User({
       username: req.body.username,
       profileImageUrl,
       email: req.body.email,
       unions: req.body.unionName,
     });
-
-    console.log(newUser);
 
     //code for adding new user to union.
     //refactor later
@@ -111,7 +107,6 @@ router.post(
         try {
           newUser.hashedPassword = hashedPassword;
           const user = await newUser.save();
-          console.log("here's the error");
           return res.json(await loginUser(user));
         } catch (err) {
           next(err);
@@ -152,11 +147,9 @@ router.patch("/:id", singleMulterUpload("image"), async (req, res) => {
     let profileImageUrl = path;
     // Object.assign(user, profileImageUrl);
     user.profileImageUrl = profileImageUrl;
-    console.log(user);
     await user.save();
     return res.status(200).json({ user });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ message: "Server error" });
   }
 });
