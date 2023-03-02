@@ -26,7 +26,7 @@ const MyUnion = () => {
   return (
     <div>
       <button className="union-card-button" onClick={handleClick}>
-        {user.unions ? "Your Default Union" : "Create Your Union!"}
+        {user.unions ? "Your Default Union" : "Refresh the Page"}
       </button>
     </div>
   );
