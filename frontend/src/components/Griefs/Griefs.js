@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearGriefErrors, fetchGriefs } from "../../store/griefs";
-import DeleteGriefButton from "../Griefs/GriefDelete";
+// import DeleteGriefButton from "../Griefs/GriefDelete";
 import GriefBox from "./GriefBox";
 import "./Griefs.css";
 
@@ -11,8 +11,6 @@ function Griefs() {
   const state = useSelector((state) => state);
 
   const griefs = Object.values(state.griefs.all);
-
-  //   const griefs = useSelector((state) => Object.values(state.griefs.all));
 
   useEffect(() => {
     dispatch(fetchGriefs());
@@ -27,7 +25,7 @@ function Griefs() {
       <div className="all-grievances-container">
         {griefs.map((grief) => (
           <>
-            <DeleteGriefButton griefId={grief._id} />
+            {/* <DeleteGriefButton griefId={grief._id} /> */}
             <GriefBox key={grief._id} grief={grief} />
           </>
         ))}
