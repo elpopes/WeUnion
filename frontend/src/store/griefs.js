@@ -31,7 +31,6 @@ const receiveUserGriefs = (griefs) => ({
 });
 
 const receiveUnionGriefs = (griefs) => {
-  debugger;
   return {
     type: RECEIVE_UNION_GRIEFS,
     griefs,
@@ -81,13 +80,11 @@ export const fetchUserGriefs = (id) => async (dispatch) => {
 
 export const fetchUnionGriefs = (unionId) => async (dispatch) => {
   try {
-    debugger;
     const res = await jwtFetch(`/api/griefs/union/${unionId}`);
     const griefs = await res.json();
-    debugger;
+
     dispatch(receiveUnionGriefs(griefs));
   } catch (err) {
-    // debugger;
     const resBody = await err.json();
     if (resBody.statusCode === 400) {
       return dispatch(receiveErrors(resBody.errors));
@@ -135,7 +132,6 @@ const griefsReducer = (
     case RECEIVE_USER_GRIEFS:
       return { ...state, user: action.griefs, new: undefined };
     case RECEIVE_UNION_GRIEFS:
-      debugger;
       return { ...state, union: action.griefs, new: undefined };
     case RECEIVE_NEW_GRIEF:
       return { ...state, new: action.grief };

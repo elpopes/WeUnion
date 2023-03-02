@@ -11,13 +11,13 @@ const MyUnion = () => {
 
   useEffect(() => {
     if (user && user.unions) {
+      debugger;
       dispatch(fetchUnion(user.unions[0]));
     }
   }, [dispatch, user]);
 
   const handleClick = () => {
     if (user.unions[0]) {
-      debugger;
       history.push(`/unions/${user.unions[0]}`);
     } else {
       history.push("/unions/new");
