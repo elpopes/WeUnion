@@ -27,9 +27,9 @@ function LoginForm() {
   };
 
   const handleDemoUser = () => {
-    setEmail("demo-user@appacademy.io");
+    setEmail("demo-user@gmail.com");
     setPassword("starwars");
-    dispatch(login({ email: "demo-user@appacademy.io", password: "password" }));
+    dispatch(login({ email: "demo-user@gmail.com", password: "starwars" }));
   };
 
   return (
