@@ -20,8 +20,6 @@ router.get("/", async (req, res) => {
 // Create a new Union
 
 router.post("/", requireUser, validateUnionInput, async (req, res) => {
-  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-  console.log(req.body);
   try {
     // Check if a union with the same name already exists
     const existingUnion = await Union.findOne({ name: req.body.name });

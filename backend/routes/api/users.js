@@ -110,14 +110,10 @@ router.post(
         if (err) throw err;
         try {
           newUser.hashedPassword = hashedPassword;
-          console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-          console.log(newUser);
           const user = await newUser.save();
           console.log("here's the error");
           return res.json(await loginUser(user));
         } catch (err) {
-          console.log("ERRROROROROROROOOROROOROROROR");
-          console.log(err);
           next(err);
         }
       });
