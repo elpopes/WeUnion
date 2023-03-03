@@ -9,45 +9,45 @@
 // const NUM_SEED_GRIEFS = 0;
 // const NUM_SEED_UNIONS = 1;
 // // Create users
-// const users = [];
-// users.push(
-//   new User({
-//     username: "demo-user",
-//     email: "demo-user@appacademy.io",
-//     hashedPassword: bcrypt.hashSync("starwars", 10),
-//     // union: 1, // Add a reference to the union created in your seed file
-//   })
-// );
-// for (let i = 1; i < NUM_SEED_USERS; i++) {
-//   const firstName = faker.name.firstName();
-//   const lastName = faker.name.lastName();
-//   users.push(
-//     new User({
-//       username: faker.internet.userName(firstName, lastName),
-//       email: faker.internet.email(firstName, lastName),
-//       hashedPassword: bcrypt.hashSync(faker.internet.password(), 10),
-//       // union: 1, // Add a reference to the union created in your seed file
-//     })
-//   );
-// }
+// // const users = [];
+// // users.push(
+// //   new User({
+// //     username: "demo-user",
+// //     email: "demo-user@appacademy.io",
+// //     hashedPassword: bcrypt.hashSync("starwars", 10),
+// //     // union: 1, // Add a reference to the union created in your seed file
+// //   })
+// // );
+// // for (let i = 1; i < NUM_SEED_USERS; i++) {
+// //   const firstName = faker.name.firstName();
+// //   const lastName = faker.name.lastName();
+// //   users.push(
+// //     new User({
+// //       username: faker.internet.userName(firstName, lastName),
+// //       email: faker.internet.email(firstName, lastName),
+// //       hashedPassword: bcrypt.hashSync(faker.internet.password(), 10),
+// //       // union: 1, // Add a reference to the union created in your seed file
+// //     })
+// //   );
+// // }
 // // Create griefs
-// const griefs = [];
-// for (let i = 0; i < NUM_SEED_GRIEFS; i++) {
-//   griefs.push(
-//     new Grief({
-//       text: faker.hacker.phrase(),
-//       author: users[Math.floor(Math.random() * NUM_SEED_USERS)]._id,
-//     })
-//   );
-// }
+// // const griefs = [];
+// // for (let i = 0; i < NUM_SEED_GRIEFS; i++) {
+// //   griefs.push(
+// //     new Grief({
+// //       text: faker.hacker.phrase(),
+// //       author: users[Math.floor(Math.random() * NUM_SEED_USERS)]._id,
+// //     })
+// //   );
+// // }
 // //Create unions
 // const unions = [];
 // for (let i = 0; i < NUM_SEED_UNIONS; i++) {
 //   unions.push(
 //     new Union({
 //       name: "World Union",
-//       unionMember: users[Math.floor(Math.random() * NUM_SEED_USERS)]._id,
-//       actions: faker.lorem.sentence(),
+//       //   unionMember: users[Math.floor(Math.random() * NUM_SEED_USERS)]._id,
+//       members: [],
 //     })
 //   );
 // }
@@ -69,8 +69,9 @@
 //     .drop()
 //     .then(() => Grief.collection.drop())
 //     .then(() => Union.collection.drop())
-//     .then(() => User.insertMany(users))
-//     .then(() => Grief.insertMany(griefs))
+//     .then(() => User.collection.drop())
+//     /* .then(() => User.insertMany(users))
+//     .then(() => Grief.insertMany(griefs)) */
 //     .then(() => Union.insertMany(unions))
 //     .then(() => {
 //       console.log("Done!");
