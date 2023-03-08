@@ -4,11 +4,11 @@ import { deleteGrief } from "../../store/griefs";
 const DeleteGriefButton = ({ griefId }) => {
   const dispatch = useDispatch();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    await dispatch(deleteGrief(griefId));
+    dispatch(deleteGrief(griefId));
+    window.location.reload()
   };
-  
 
   return (
     <form onSubmit={handleSubmit}>
