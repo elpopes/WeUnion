@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserGriefs, clearGriefErrors } from "../../store/griefs";
 import GriefBox from "../Griefs/GriefBox";
@@ -11,16 +11,28 @@ import DeleteUserButton from "./DeleteUser";
 function Profile() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
-  const userGriefs = useSelector((state) => Object.values(state.griefs.user));
+  const [userGriefs, setUserGriefs] = useState([]);
+  // const userGriefs = useSelector((state) => Object.values(state.griefs.user));
   const profileImageUrl = useSelector((state) => {
     return state.session.user.profileImageUrl;
   });
 
   useEffect(() => {
     dispatch(fetchUserGriefs(currentUser._id));
-
-    return () => dispatch(clearGriefErrors());
   }, [currentUser, dispatch]);
+
+  const onDeleteGrief = (griefId) => {
+    // Update userGriefs state after deleting a grief
+    setUserGriefs(userGriefs.filter((grief) => grief._id !== griefId));
+  };
+
+  const griefs = useSelector((state) => state.griefs.user);
+
+  useEffect(() => {
+    setUserGriefs(Object.values(griefs));
+  }, [griefs]);
+  //   return () => dispatch(clearGriefErrors());
+  // }, [currentUser, dispatch]);
   return (
     <div>
       <div className="page-container">
@@ -32,7 +44,7 @@ function Profile() {
               <h1>All of {currentUser.username}'s Grievances</h1>
               {userGriefs.map((grief) => (
                 <div key={grief._id}>
-                  <DeleteGriefButton griefId={grief._id} />
+                   <DeleteGriefButton griefId={grief._id} onDelete={onDeleteGrief} />
                   <GriefBox grief={grief} />
                 </div>
               ))}
