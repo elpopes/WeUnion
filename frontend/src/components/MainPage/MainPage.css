@@ -1,26 +1,19 @@
-.main-page {
+/* .main-page {
   margin: 0;
   padding: 0;
-}
+} */
 
 .hero {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 600px;
-  width: 100%;
+  height: 88vh;
+  width: 110%;
   background-image: url("https://we-union-id-photos.s3.amazonaws.com/public/backgrounds/pexels-life-matters-4613877.jpg");
-  background-size: 110% auto;
+  background-size: cover;
+  background-position: center center;
   position: relative;
   border-bottom: 1px solid black;
-}
-
-.hero-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 0 40px;
 }
 
 .quote {
@@ -30,10 +23,7 @@
 }
 
 .words {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: 24px;
-  line-height: 1.5;
-  text-align: left;
 }
 
 .attribute {
@@ -43,10 +33,12 @@
 }
 
 .main-page img {
-  width: 50%;
-  transform: translateY(25%);
-  height: auto;
-  padding-left: 40px;
+  width: 30%;
+  position: absolute;
+  padding-top: 40px;
+  padding-right: 30px;
+  top: 0;
+  right: 0;
 }
 
 .feature-1 {
@@ -54,35 +46,6 @@
   box-sizing: border-box;
   margin-left: -15px;
   margin-right: -15px;
-  border-bottom: 1px solid black;
-  background-color: rgb(45, 149, 235);
-}
-
-.feature-2 {
-  display: flex;
-  box-sizing: border-box;
-  margin-left: -15px;
-  margin-right: -15px;
-  border-bottom: 1px solid black;
-  background-color: rgb(144, 172, 177);
-}
-
-.feature-3 {
-  display: flex;
-  box-sizing: border-box;
-  margin-left: -15px;
-  margin-right: -15px;
-  border-bottom: 1px solid black;
-  background-color: rgb(194, 245, 242);
-}
-
-.feature-4 {
-  display: flex;
-  box-sizing: border-box;
-  margin-left: -15px;
-  margin-right: -15px;
-  border-bottom: 1px solid black;
-  background-color: rgb(140, 238, 255);
 }
 
 .feature-1-left {
@@ -110,81 +73,6 @@
   font-style: italic;
 }
 
-.feature-2-left {
-  box-sizing: border-box;
-  display: block;
-  flex-basis: 50%;
-  max-width: 50%;
-  padding: 54px;
-  position: relative;
-  width: 480px;
-  text-align: center;
-  font-style: italic;
-}
-
-.feature-2-right {
-  box-sizing: border-box;
-  display: block;
-  flex-basis: 50%;
-  max-width: 50%;
-  padding: 54px;
-  position: relative;
-  width: 480px;
-  text-align: center;
-  align-items: center;
-  margin-top: 50px;
-}
-
-.feature-3-left {
-  box-sizing: border-box;
-  display: block;
-  flex-basis: 50%;
-  max-width: 50%;
-  padding: 54px;
-  position: relative;
-  width: 480px;
-  text-align: center;
-  align-items: center;
-  margin-top: 100px;
-}
-
-.feature-3-right {
-  box-sizing: border-box;
-  display: block;
-  flex-basis: 50%;
-  max-width: 50%;
-  padding: 54px;
-  position: relative;
-  width: 480px;
-  text-align: center;
-  font-style: italic;
-}
-
-.feature-4-left {
-  box-sizing: border-box;
-  display: block;
-  flex-basis: 50%;
-  max-width: 50%;
-  padding: 54px;
-  position: relative;
-  width: 480px;
-  text-align: center;
-  font-style: italic;
-}
-
-.feature-4-right {
-  box-sizing: border-box;
-  display: block;
-  flex-basis: 50%;
-  max-width: 50%;
-  padding: 54px;
-  position: relative;
-  width: 480px;
-  text-align: center;
-  align-items: center;
-  margin-top: 50px;
-}
-
 .feature-title {
   font-family: Proxima Nova, sans-serif;
   font-size: 72px;
@@ -201,9 +89,6 @@ li {
   line-height: 30px;
   margin-left: 100px;
 }
-
-/* .features-list > li {
-} */
 
 .main-feature {
   font-family: Impact, sans-serif;
@@ -222,16 +107,7 @@ li {
   font-weight: 400;
 }
 
-.in-conclusion {
-  font-family: Proxima Nova, sans-serif;
-  padding: 50px;
-  text-align: center;
-  line-height: 1.5;
-  display: flex;
-  box-sizing: border-box;
-  font-size: 44px;
-  margin-left: -15px;
-  margin-right: -15px;
-  border-bottom: 1px solid black;
-  background-color: rgb(140, 238, 255);
+.footer {
+  position: sticky;
+  bottom: 0;
 }
