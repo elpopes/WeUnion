@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUnions } from "../../store/unions";
 import UnionBox from "./UnionBox";
+import "./UnionsIndex.css";
 
 const UnionsIndex = () => {
   const dispatch = useDispatch();

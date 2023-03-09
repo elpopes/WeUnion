@@ -2,11 +2,13 @@ import "./GriefBox.css";
 import { useState } from "react";
 
 function GriefBox({ grief: { text, author, poll } }) {
-  const { username, profileImageUrl } = author;
+  const username = author ? author.username : "Author Unknown";
+  const profileImageUrl = author
+    ? author.profileImageUrl
+    : "https://we-union-id-photos.s3.amazonaws.com/public/blank-profile-picture-g1eb6c33f6_1280.png";
 
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
-
   const handleOptionClick = (optionId) => {
     if (selectedOptions.includes(optionId)) {
       // If the option is already selected, remove it from the array
