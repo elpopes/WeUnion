@@ -15,6 +15,10 @@ const DeleteUserButton = ({ userId }) => {
     }
   };
 
+  if (userId === "6409f00915accf294f76e355") {
+    return null;
+  }
+
   return <button onClick={handleDeleteUser}>Delete weUnion</button>;
 };
 
