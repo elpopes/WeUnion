@@ -11,6 +11,7 @@ import Profile from "./components/Profile/Profile";
 import GriefCompose from "./components/Griefs/GriefCompose";
 import UnionForm from "./components/Unions/UnionForm";
 import UnionDetails from "./components/Unions/UnionDetails";
+import UnionsIndex from "./components/Unions/UnionsIndex";
 import { getCurrentUser } from "./store/session";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />
           <ProtectedRoute exact path="/unions/new" component={UnionForm} />
+          <ProtectedRoute exact path="/unions/" component={UnionsIndex} />
           <ProtectedRoute exact path="/unions/:id" component={UnionDetails} />
           <ProtectedRoute exact path="/griefs" component={Griefs} />
           <ProtectedRoute exact path="/profile" component={Profile} />
