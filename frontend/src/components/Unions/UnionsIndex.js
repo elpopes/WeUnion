@@ -6,8 +6,7 @@ import UnionBox from "./UnionBox";
 const UnionsIndex = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-
-  const unions = Object.values(state.unions.all);
+  const unions = Object.values(state.unions.all || {});
 
   useEffect(() => {
     dispatch(fetchUnions());
