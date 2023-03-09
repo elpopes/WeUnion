@@ -1,0 +1,22 @@
+.union-name-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.union-griefs-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.union-griefs-container h2 {
+  margin-bottom: 5px;
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 550;
+}

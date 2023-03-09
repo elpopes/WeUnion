@@ -32,7 +32,7 @@ function UnionGriefs({ unionId }) {
         <h1>No grievances for this union</h1>
       ) : (
         <>
-          <h1>All grievances for this union</h1>
+          <h2>All grievances for this union</h2>
           {unionGriefs[2].map((grief) => (
             <div key={grief._id}>
               <GriefBox grief={grief} />

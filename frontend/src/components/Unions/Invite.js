@@ -16,16 +16,15 @@ const InviteButton = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Phone number:
-        <input
-          type="tel"
-          value={phoneNumber}
-          onChange={handlePhoneNumberChange}
-        />
-      </label>
-      <button type="submit">Invite</button>
+    <form className="invite-form" onSubmit={handleSubmit}>
+      <label>Phone number:</label>
+      <input
+        type="tel"
+        value={phoneNumber}
+        onChange={handlePhoneNumberChange}
+        className="invite-input"
+      />
+      <button className="invite-button" type="submit">Invite</button>
       {isInvited && <p>Invited</p>}
     </form>
   );

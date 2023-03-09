@@ -11,4 +11,4 @@ client.messages
     from: "+18555091435",
     body: "Daniel, I would like for you to join my Union! Use this union code to join: 63f8c86a62da30275bc1e96f",
   })
-  .then((message) => console.log(message.sid));
+  .then((message) => // console.log(message.sid));
