@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./UnionBox.css";
 
 function UnionBox({ union: { name, _id } }) {
   const unionId = _id;
@@ -8,7 +9,6 @@ function UnionBox({ union: { name, _id } }) {
         <h3>
           <Link to={`/unions/${unionId}`}>{name}</Link>
         </h3>
-        <Link to={`/unions/${unionId}`}>Visit Union</Link>
       </div>
     </div>
   );
