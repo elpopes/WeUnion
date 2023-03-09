@@ -20,42 +20,63 @@
 // };
 
 // export default DeleteGriefButton;
-
-
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteGrief } from "../../store/griefs";
-import { CSSTransition } from "react-transition-group";
+import Modal from "react-modal";
+
+const customStyles = {
+  content: {
+    backgroundColor: "skyblue",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    border: "none",
+    borderRadius: "10px",
+    outline: "none",
+    width: "15%",
+    height: "10%",
+    top: "25%",
+    left: "40%"
+  },
+};
+
 
 const DeleteGriefButton = ({ griefId }) => {
   const dispatch = useDispatch();
   const [isDeleting, setIsDeleting] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsDeleting(true);
+    setShowModal(true);
     await dispatch(deleteGrief(griefId));
-    document.body.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-    document.body.innerHTML = "Deleting Grievance";
     // Wait a short amount of time before reloading the page to allow the deletion message to display
     setTimeout(() => {
       window.location.reload();
-    }, 500);
+    }, 400);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <CSSTransition
-        in={!isDeleting}
-        classNames="delete-button-animation"
-        timeout={100}
-        unmountOnExit
-      >
+    <>
+      <form onSubmit={handleSubmit}>
         <button className="grief-delete-button" type="submit">
           Delete
         </button>
-      </CSSTransition>
-    </form>
+      </form>
+      <Modal
+        isOpen={showModal}
+        onRequestClose={() => setShowModal(false)}
+        style={customStyles}
+        ariaHideApp={false}
+      >
+        <p style={{ fontSize: "13px", fontFamily: "" }}>
+          Deleting Grievance...
+        </p>
+      </Modal>
+    </>
   );
 };
 
