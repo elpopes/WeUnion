@@ -6,8 +6,7 @@ const Union = mongoose.model("Union");
 const { requireUser } = require("../../config/passport");
 const validateUnionInput = require("../../validations/unions");
 
-// View a specific Union
-// This looks more like a union index?
+// Union Index
 router.get("/", async (req, res) => {
   try {
     const unions = await Union.find();
