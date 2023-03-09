@@ -38,6 +38,11 @@ router.post("/", requireUser, validateUnionInput, async (req, res) => {
 
     // Save the new union and update the user's union array
     const union = await newUnion.save();
+    if (!union) {
+      return res.status(500).json({
+        message: "Failed to create union. Please try again later.",
+      });
+    }
     await User.findByIdAndUpdate(
       req.body.member._id,
       { $push: { unions: { $each: [union._id], $position: 0 } } },
@@ -46,9 +51,13 @@ router.post("/", requireUser, validateUnionInput, async (req, res) => {
 
     // Return the response
     const populatedUnion = await union.populate("members");
+    console.log(populatedUnion);
     return res.json(populatedUnion);
-  } catch (e) {
-    return res.status(422).json(e);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      message: "Failed to create union. Please try again later.",
+    });
   }
 });
 
