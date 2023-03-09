@@ -92,6 +92,35 @@ router.get("/:id", async (req, res, next) => {
 //   }
 // });
 
+// router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
+//   try {
+//     const { text, imageUrls } = req.body;
+//     const author = req.user.id;
+//     const union = req.user.union;
+//     const question = "Choose an action!";
+//     const options = [
+//       { option: "Collective Bargaining", votes: 0, selected: false },
+//       { option: "Strike", votes: 0, selected: false },
+//       { option: "Protest", votes: 0, selected: false },
+//       { option: "Dismiss", votes: 0, selected: false },
+//       { option: "Boycott", votes: 0, selected: false },
+//     ];
+//     const newGrief = new Grief({
+//       author,
+//       union,
+//       text,
+//       imageUrls,
+//       poll: { question, options },
+//     });
+
+//     let grief = await newGrief.save();
+//     grief = await grief.populate("author", "_id username profileImageUrl");
+//     return res.json(grief);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
 router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
   try {
     const { text, imageUrls } = req.body;
@@ -99,12 +128,13 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
     const union = req.user.union;
     const question = "Choose an action!";
     const options = [
-      { option: "Collective Bargaining", votes: 0, selected: false },
-      { option: "Strike", votes: 0, selected: false },
-      { option: "Protest", votes: 0, selected: false },
-      { option: "Dismiss", votes: 0, selected: false },
-      { option: "Boycott", votes: 0, selected: false },
+      { option: "Collective Bargaining", votes: 0, selected: false, voters: [] },
+      { option: "Strike", votes: 0, selected: false, voters: [] },
+      { option: "Protest", votes: 0, selected: false, voters: [] },
+      { option: "Dismiss", votes: 0, selected: false, voters: [] },
+      { option: "Boycott", votes: 0, selected: false, voters: [] },
     ];
+    
     const newGrief = new Grief({
       author,
       union,
@@ -115,6 +145,33 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
 
     let grief = await newGrief.save();
     grief = await grief.populate("author", "_id username profileImageUrl");
+    return res.json(grief);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/:id/vote", requireUser, async (req, res, next) => {
+  try {
+    const grief = await Grief.findById(req.params.id);
+    if (!grief) {
+      return res.status(404).json({ message: "Grief not found" });
+    }
+
+    const { optionIndex } = req.body;
+    if (optionIndex < 0 || optionIndex >= grief.poll.options.length) {
+      return res.status(400).json({ message: "Invalid option index" });
+    }
+
+    const option = grief.poll.options[optionIndex];
+    if (option.voters.includes(req.user.id)) {
+      return res.status(400).json({ message: "You have already voted for this option" });
+    }
+
+    option.votes += 1;
+    option.voters.push(req.user.id);
+
+    await grief.save();
     return res.json(grief);
   } catch (err) {
     next(err);
