@@ -33,7 +33,6 @@ router.get("/user/:userId", async (req, res, next) => {
     const griefs = await Grief.find({ author: user._id })
       .sort({ createdAt: -1 })
       .populate("author", "_id username profileImageUrl");
-
     return res.json(griefs);
   } catch (err) {
     return res.json([]);
@@ -129,7 +128,5 @@ router.delete("/:id", async (req, res) => {
     res.status(422).json(e);
   }
 });
-
-
 
 module.exports = router;
