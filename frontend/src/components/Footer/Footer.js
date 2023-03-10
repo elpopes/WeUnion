@@ -19,44 +19,72 @@ const Footer = () => {
           <a
             href="https://www.linkedin.com/in/lorenzo-tijerina-a144bb6/"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <i className="fa-brands fa-linkedin"></i>
           </a>
-          <a href="https://github.com/elpopes" target="_blank">
+          <a
+            href="https://github.com/elpopes"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <i className="fa-brands fa-github"></i>
           </a>
           |
         </p>
         <p>
           Emmanuel Little
-          <a href="" target="_blank">
+          <a
+            href="https://www.linkedin.com/in/manny-little-460224243/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <i className="fa-brands fa-linkedin"></i>
           </a>
-          <a href="https://github.com/MannyLittle133s" target="_blank">
+          <a
+            href="https://github.com/MannyLittle133s"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <i className="fa-brands fa-github"></i>
           </a>
           |
         </p>
         <p>
           Cornell Bethea
-          <a href="https://www.linkedin.com/in/cornell-bethea-a5349a97/" target="_blank">
+          <a
+            href="https://www.linkedin.com/in/cornell-bethea-a5349a97/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <i className="fa-brands fa-linkedin"></i>
           </a>
-          <a href="https://github.com/CornellB02" target="_blank">
+          <a
+            href="https://github.com/CornellB02"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <i className="fa-brands fa-github"></i>
           </a>
-          | 
+          |
         </p>
         <p>
           Yosyp Dobosh
-          <a href="https://www.linkedin.com/in/yosypdobosh/" target="_blank">
+          <a
+            href="https://www.linkedin.com/in/yosypdobosh/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <i className="fa-brands fa-linkedin"></i>
           </a>
-          <a href="https://github.com/dobosh28" target="_blank">
+          <a
+            href="https://github.com/dobosh28"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <i className="fa-brands fa-github"></i>
           </a>
         </p>
-        
       </div>
     </div>
   );

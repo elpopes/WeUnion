@@ -44,8 +44,8 @@ const UnionDetails = () => {
       <div className="union-name-container">
         <h1>{union.name}</h1>
         <div className="invite-container">
-          <h2>Send an invite by text</h2>
-          <InviteButton className="invite-button" />
+          <h2>Send an invite by email</h2>
+          <InviteButton union={union} className="invite-button" />
         </div>
       </div>
       <UnionGriefs unionId={id} />
