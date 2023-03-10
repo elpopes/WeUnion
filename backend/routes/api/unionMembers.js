@@ -86,4 +86,13 @@ router.post("/union/:id/kick", requireUser, async (req, res) => {
   }
 });
 
+router.post("/union/:id/member", requireUser, async (req, res) => {
+  try {
+    const member = await User.findById(req.params.userId);
+    return res.json(member);
+  } catch (e) {
+    return res.status(422).json(e);
+  }
+});
+
 module.exports = router;
