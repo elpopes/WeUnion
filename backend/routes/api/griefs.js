@@ -7,6 +7,20 @@ const Grief = mongoose.model("Grief");
 const { requireUser } = require("../../config/passport");
 const validateGriefInput = require("../../validations/griefs");
 
+// update a grief with a poll selection
+
+router.patch("/polls/:griefId", async (req, res) => {
+  try {
+    const grief = await Grief.findById(req.params.griefId);
+    grief.polls.voters.push(req.body.voterId);
+    grief.polls.votes += 1;
+    grief.save();
+    return res.json(grief);
+  } catch (err) {
+    return res.json([]);
+  }
+});
+
 /* GET griefs listing. */
 router.get("/", async (req, res) => {
   try {

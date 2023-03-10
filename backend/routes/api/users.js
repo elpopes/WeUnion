@@ -14,13 +14,27 @@ const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
 const DEFAULT_PROFILE_IMAGE_URL =
   "https://we-union-id-photos.s3.amazonaws.com/public/blank-profile-picture-g1eb6c33f6_1280.png"; // <- Insert the S3 URL that you copied above here
 
-/* GET users listing. */
+  /* GET users listing. */
 router.get("/", async (req, res) => {
   try {
     const users = await User.find()
       .populate("username", "union")
       .sort({ createdAt: -1 });
     return res.json(users);
+  } catch (err) {
+    return res.json([]);
+  }
+});
+
+// allows a user to vote on a poll and adds the user to the voters array in the poll model  
+
+router.patch("/polls/:userId", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    user.polls.voters.push(req.body.voterId);
+    user.polls.votes += 1;
+    user.save();
+    return res.json(user);
   } catch (err) {
     return res.json([]);
   }
