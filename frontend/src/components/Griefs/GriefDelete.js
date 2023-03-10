@@ -38,19 +38,18 @@ const customStyles = {
     width: "15%",
     height: "10%",
     top: "25%",
-    left: "40%"
+    left: "40%",
   },
 };
 
-
 const DeleteGriefButton = ({ griefId }) => {
   const dispatch = useDispatch();
-  const [isDeleting, setIsDeleting] = useState(false);
+  //   const [isDeleting, setIsDeleting] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsDeleting(true);
+    // setIsDeleting(true);
     setShowModal(true);
     await dispatch(deleteGrief(griefId));
     // Wait a short amount of time before reloading the page to allow the deletion message to display
