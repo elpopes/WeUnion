@@ -32,9 +32,12 @@ function ProfileImageController() {
     const reader = new FileReader();
     reader.onloadend = () => {
       setPreviewImage(reader.result);
+      // window.location.reload();
     };
     if (imageFile) {
       reader.readAsDataURL(imageFile);
+      // window.location.reload();
+
     } else {
       setPreviewImage(null);
     }
