@@ -1,48 +1,48 @@
 //used this to ONLY reseed the union and drop everything else.
 
-// const mongoose = require("mongoose");
-// const { mongoURI: db } = require("../config/keys.js");
-// const User = require("../models/User");
-// const Grief = require("../models/Grief");
-// const Union = require("../models/Union");
+const mongoose = require("mongoose");
+const { mongoURI: db } = require("../config/keys.js");
+const User = require("../models/User");
+const Grief = require("../models/Grief");
+const Union = require("../models/Union");
 
-// const NUM_SEED_UNIONS = 1;
+const NUM_SEED_UNIONS = 1;
 
-// // Create an instance of the Union model
-// const union = new Union({
-//   name: "World Union",
-//   members: [],
-// });
+// Create an instance of the Union model
+const union = new Union({
+  name: "World Union",
+  members: [],
+});
 
 // // Connect to database
-// mongoose
-//   .connect(db, { useNewUrlParser: true })
-//   .then(() => {
-//     console.log("Connected to MongoDB successfully");
-//     insertSeeds();
-//   })
-//   .catch((err) => {
-//     console.error(err.stack);
-//     process.exit(1);
-//   });
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => {
+    console.log("Connected to MongoDB successfully");
+    insertSeeds();
+  })
+  .catch((err) => {
+    console.error(err.stack);
+    process.exit(1);
+  });
 
-// // Reset and seed db
-// const insertSeeds = () => {
-//   console.log("Resetting db and seeding unions...");
-//   Union.collection
-//     .drop()
-//     .then(() => Grief.collection.drop())
-//     .then(() => User.collection.drop())
-//     .then(() => Union.insertMany([union]))
-//     .then(() => {
-//       console.log("Done!");
-//       mongoose.disconnect();
-//     })
-//     .catch((err) => {
-//       console.error(err.stack);
-//       process.exit(1);
-//     });
-// };
+// Reset and seed db
+const insertSeeds = () => {
+  console.log("Resetting db and seeding unions...");
+  Union.collection
+    .drop()
+    .then(() => Grief.collection.drop())
+    .then(() => User.collection.drop())
+    .then(() => Union.insertMany([union]))
+    .then(() => {
+      console.log("Done!");
+      mongoose.disconnect();
+    })
+    .catch((err) => {
+      console.error(err.stack);
+      process.exit(1);
+    });
+};
 
 // const mongoose = require("mongoose");
 // const { mongoURI: db } = require("../config/keys.js");
