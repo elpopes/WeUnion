@@ -1,22 +1,22 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser } from "../../store/users";
-import { fetchUnionMembers } from "../../store/unions";
+import { fetchUnionMembers } from "../../store/users";
 // import MemberBox from "./MemberBox";
 // import "./Members.css";
 
 function Members({ unionId }) {
+
   const dispatch = useDispatch();
   // debugger
   const state = useSelector((state) => state);
-  //   debugger;
+    // debugger;
   const members = Object.values(state.members || {});
 
   useEffect(() => {
-    // debugger;
     dispatch(fetchUnionMembers(unionId));
   }, [dispatch]);
-
+  // debugger;
+  
   return (
     <>
       <h2 className="all-members-show">All Union Members</h2>

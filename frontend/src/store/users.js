@@ -1,17 +1,40 @@
-export const RECEIVE_USERS = "Users/RECEIVE_USERS";
-export const receiveUsers = (users) => ({
+import jwtFetch from "./jwt";
+
+const RECEIVE_UNION_MEMBERS = "unions/RECEIVE_UNION_MEMBERS";
+
+const receiveUnionMembers = (users) => ({
+  type: RECEIVE_UNION_MEMBERS,
+  users,
+});
+
+export const fetchUnionMembers = (unionId) => async (dispatch) => {
+  try {
+    const res = await jwtFetch(`/api/unions/${unionId}/members`);
+    const users = await res.json();
+    dispatch(receiveUnionMembers(users));
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      console.log("ERRORS")
+    }
+  }
+};
+
+const RECEIVE_USERS = "Users/RECEIVE_USERS";
+
+const receiveUsers = (users) => ({
   type: RECEIVE_USERS,
   users,
 });
 
-export const RECEIVE_USER = "users/RECEIVE_USER";
-export const receiveUser = (User) => ({
+const RECEIVE_USER = "users/RECEIVE_USER";
+const receiveUser = (User) => ({
   type: RECEIVE_USER,
   User,
 });
 
-export const REMOVE_USER = "users/REMOVE_USER";
-export const removeUser = (userId) => ({
+const REMOVE_USER = "users/REMOVE_USER";
+const removeUser = (userId) => ({
   type: REMOVE_USER,
   userId,
 });
@@ -74,6 +97,8 @@ const usersReducer = (state = {}, action) => {
       return { ...state, [action.User.id]: action.User };
     case RECEIVE_USERS:
       return { ...state, ...action.users };
+    case RECEIVE_UNION_MEMBERS:
+      return { ...state, new: action.users };
     case REMOVE_USER:
       const newState = { ...state };
       delete newState[action.userId];
