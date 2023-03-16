@@ -7,6 +7,7 @@ import UnionGriefs from "./UnionGriefs";
 import InviteButton from "./Invite";
 import "./UnionDetails.css";
 import Members from "./MembersBox";
+import { fetchUnionMembers } from "../../store/unions";
 
 const UnionDetails = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,8 @@ const UnionDetails = () => {
         setError(e);
       }
     }
+
+    // debugger;
 
     if (!union && id) {
       fetchUnionData();

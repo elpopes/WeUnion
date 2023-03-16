@@ -95,6 +95,7 @@ router.get("/:id/members", async (req, res) => {
     if (!union) {
       return res.status(404).json({ message: "Union not found" });
     }
+    debugger;
     return res.json(union.members);
   } catch (err) {
     console.error(err);
