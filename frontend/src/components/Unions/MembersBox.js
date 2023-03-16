@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMembers } from "../../store/users";
+import { fetchUser } from "../../store/users";
 // import MemberBox from "./MemberBox";
 // import "./Members.css";
 
-function Members({ membersArray }) {
+function Members( { membersArray }) {
   const dispatch = useDispatch();
-  
+  debugger
   const state = useSelector((state) => state);
   // debugger
   
@@ -14,7 +14,7 @@ function Members({ membersArray }) {
    
 
   useEffect(() => {
-    dispatch(fetchMembers());
+    dispatch(fetchUser());
   }, [dispatch]);
 
   return (

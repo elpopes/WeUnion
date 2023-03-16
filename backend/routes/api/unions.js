@@ -101,6 +101,7 @@ router.get("/:id/members", async (req, res) => {
     return res.status(500).json({ message: "Server error" });
   }
 });
+//look into mongoose docs to query for user objects 
 
 ///Manny's updated show union:
 router.get("/:id", async (req, res) => {

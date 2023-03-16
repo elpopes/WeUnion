@@ -6,6 +6,7 @@ import UnionGriefs from "./UnionGriefs";
 // import Griefs from "../Griefs/Griefs";
 import InviteButton from "./Invite";
 import "./UnionDetails.css";
+import Members from "./MembersBox";
 
 const UnionDetails = () => {
   const dispatch = useDispatch();
@@ -48,7 +49,10 @@ const UnionDetails = () => {
           <InviteButton union={union} className="invite-button" />
         </div>
       </div>
-      <UnionGriefs unionId={id} />
+      <div className="griefs-and-members">
+        <UnionGriefs unionId={id} />
+        <Members membersArray={union.members} />
+      </div>
     </div>
   );
 };
