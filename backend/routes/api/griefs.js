@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const Union = mongoose.model("Union");
 const Grief = mongoose.model("Grief");
+// const Poll = mongoose.model("Poll");
 const { requireUser } = require("../../config/passport");
 const validateGriefInput = require("../../validations/griefs");
 
@@ -12,6 +13,7 @@ router.get("/", async (req, res) => {
   try {
     const griefs = await Grief.find()
       .populate("author", "_id username profileImageUrl")
+      // .populate("polls", "_id votes options voters grief");
       .sort({ createdAt: -1 });
     return res.json(griefs);
   } catch (err) {
@@ -32,7 +34,8 @@ router.get("/user/:userId", async (req, res, next) => {
   try {
     const griefs = await Grief.find({ author: user._id })
       .sort({ createdAt: -1 })
-      .populate("author", "_id username profileImageUrl");
+      .populate("author", "_id username profileImageUrl")
+      // .populate("polls", "_id votes options voters grief");
     return res.json(griefs);
   } catch (err) {
     return res.json([]);
@@ -53,8 +56,8 @@ router.get("/union/:unionId", async (req, res, next) => {
   try {
     const griefs = await Grief.find({ union: union })
       .sort({ createdAt: -1 })
-      .populate("author", "_id username profileImageUrl");
-
+      .populate("author", "_id username profileImageUrl")
+      // .populate("polls", "_id votes options voters grief");
     return res.json(griefs);
   } catch (err) {
     return res.json([]);
@@ -65,8 +68,8 @@ router.get("/:id", async (req, res, next) => {
   try {
     const grief = await Grief.findById(req.params.id).populate(
       "author",
-      "_id username profileImageUrl"
-    );
+      "_id username profileImageUrl")
+      // .populate("polls", "_id votes options voters grief");
     return res.json(grief);
   } catch (err) {
     const error = new Error("Grievance not found");
@@ -96,24 +99,25 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
     const { text, imageUrls } = req.body;
     const author = req.user.id;
     const union = req.user.unions[0];
-    const question = "Choose an action!";
-    const options = [
-      { option: "Collective Bargaining", votes: 0, selected: false },
-      { option: "Strike", votes: 0, selected: false },
-      { option: "Protest", votes: 0, selected: false },
-      { option: "Dismiss", votes: 0, selected: false },
-      { option: "Boycott", votes: 0, selected: false },
-    ];
+    // const question = "Choose an action!";
+    // const options = [
+    //   { option: "Collective Bargaining", votes: 0, selected: false },
+    //   { option: "Strike", votes: 0, selected: false },
+    //   { option: "Protest", votes: 0, selected: false },
+    //   { option: "Dismiss", votes: 0, selected: false },
+    //   { option: "Boycott", votes: 0, selected: false },
+    // ];
     const newGrief = new Grief({
       author,
       union,
       text,
       imageUrls,
-      poll: { question, options },
+      // poll,
     });
 
     let grief = await newGrief.save();
-    grief = await grief.populate("author", "_id username profileImageUrl");
+    grief = await grief.populate("author", "_id username profileImageUrl")
+    // .populate("polls", "_id votes options voters grief");
     return res.json(grief);
   } catch (err) {
     next(err);

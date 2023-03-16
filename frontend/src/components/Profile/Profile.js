@@ -18,7 +18,6 @@ function Profile() {
 
   useEffect(() => {
     dispatch(fetchUserGriefs(currentUser._id));
-
     return () => dispatch(clearGriefErrors());
   }, [currentUser, dispatch]);
   return (
