@@ -59,4 +59,4 @@ const pollSchema = new Schema(
     }
 );
 
-module.exports = pollSchema;
+module.exports = mongoose.model("Poll", pollSchema);
