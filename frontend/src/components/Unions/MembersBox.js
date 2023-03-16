@@ -5,18 +5,13 @@ import { fetchUnionMembers } from "../../store/users";
 // import "./Members.css";
 
 function Members({ unionId }) {
-
   const dispatch = useDispatch();
-  // debugger
-  const state = useSelector((state) => state);
-    // debugger;
-  const members = Object.values(state.members || {});
+  const { new: members } = useSelector((state) => state.users);
 
   useEffect(() => {
     dispatch(fetchUnionMembers(unionId));
-  }, [dispatch]);
-  // debugger;
-  
+  }, [dispatch, unionId]);
+
   return (
     <>
       <h2 className="all-members-show">All Union Members</h2>
