@@ -68,6 +68,7 @@ export const fetchUnions = () => async (dispatch) => {
 
 export const fetchUnionMembers = (unionId) => async (dispatch) => {
   try {
+    // debugger;
     const res = await jwtFetch(`/api/unions/${unionId}/members`);
     const union = await res.json();
     dispatch(receiveUnionMembers(union._id));
@@ -164,6 +165,8 @@ const unionsReducer = (state = {}, action) => {
       return { ...state, user: action.unions };
     case RECEIVE_NEW_UNION:
       return { ...state, new: action.union };
+    case RECEIVE_UNION_MEMBERS:
+      return { ...state, new: action.members };
     case DESTROY_UNION:
       return { ...state, new: undefined };
     default:

@@ -5,23 +5,25 @@ import { fetchUnionMembers } from "../../store/unions";
 // import MemberBox from "./MemberBox";
 // import "./Members.css";
 
-function Members( { membersArray }) {
+function Members({ unionId }) {
   const dispatch = useDispatch();
   // debugger
   const state = useSelector((state) => state);
-    // debugger
-  const members = Object.values(state.users.all || {});
-   
+  //   debugger;
+  const members = Object.values(state.members || {});
 
   useEffect(() => {
-    dispatch(fetchUnionMembers(membersArray));
+    // debugger;
+    dispatch(fetchUnionMembers(unionId));
   }, [dispatch]);
 
   return (
     <>
       <h2 className="all-members-show">All Union Members</h2>
       <div className="all-members-container">
-        {members ? members.map((member) => <p key={member._id}>{member.username}</p>) : null}
+        {members
+          ? members.map((member) => <p key={member._id}>{member.username}</p>)
+          : null}
       </div>
     </>
   );

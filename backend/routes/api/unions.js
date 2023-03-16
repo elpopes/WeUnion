@@ -95,14 +95,16 @@ router.get("/:id/members", async (req, res) => {
     if (!union) {
       return res.status(404).json({ message: "Union not found" });
     }
-    debugger;
-    return res.json(union.members);
+    const members = await User.find({ _id: { $in: union.members } });
+    console.log("_____________________________________________");
+    console.log(members);
+    return res.json(members);
   } catch (err) {
     console.error(err);
-    return res.status(500).json({ message: "Server error" });
+    return res.status(500).json({ message: "Server error is dumb!!" });
   }
 });
-//look into mongoose docs to query for user objects 
+//look into mongoose docs to query for user objects
 
 ///Manny's updated show union:
 router.get("/:id", async (req, res) => {

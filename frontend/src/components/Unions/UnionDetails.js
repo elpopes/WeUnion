@@ -54,7 +54,7 @@ const UnionDetails = () => {
       </div>
       <div className="griefs-and-members">
         <UnionGriefs unionId={id} />
-        <Members membersArray={union.members} />
+        <Members unionId={id} />
       </div>
     </div>
   );
