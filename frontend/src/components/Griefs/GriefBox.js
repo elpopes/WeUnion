@@ -1,25 +1,12 @@
 import "./GriefBox.css";
 import { useState } from "react";
+import PollOptions from "../Poll/PollOptions";
 
 function GriefBox({ grief: { text, author, poll } }) {
   const username = author ? author.username : "Author Unknown";
   const profileImageUrl = author
     ? author.profileImageUrl
     : "https://we-union-id-photos.s3.amazonaws.com/public/blank-profile-picture-g1eb6c33f6_1280.png";
-
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const handleOptionClick = (optionId) => {
-    if (selectedOptions.includes(optionId)) {
-      // If the option is already selected, remove it from the array
-      setSelectedOptions(selectedOptions.filter((id) => id !== optionId));
-      setSelectedOption(null); // Clear the selected option
-    } else {
-      // If the option is not selected, add it to the array and set it as the selected option
-      setSelectedOptions([...selectedOptions, optionId]);
-      setSelectedOption(optionId);
-    }
-  };
 
   return (
     <div className="grief">
@@ -29,34 +16,8 @@ function GriefBox({ grief: { text, author, poll } }) {
       <div className="grief-text">
         <h3>{username}</h3>
         <p>{text}</p>
-        {poll && (
-          <div>
-            <h4>{poll.question}</h4>
-            <div className="poll-options">
-              {poll.options.map((option) => (
-                <button
-                  key={option._id}
-                  onClick={() => handleOptionClick(option._id)}
-                  className={
-                    selectedOptions.includes(option._id) ? "selected" : ""
-                  }
-                >
-                  {option.option}
-                </button>
-              ))}
-            </div>
-            {selectedOption && (
-              <div>
-                You selected:{" "}
-                {
-                  poll.options.find((option) => option._id === selectedOption)
-                    .option
-                }
-              </div>
-            )}
-          </div>
-        )}
       </div>
+      {poll && <PollOptions options={poll.options} />}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import jwtFetch from "./jwt";
-// import { RECEIVE_USER_LOGOUT } from "./session";
+import { RECEIVE_USER_LOGOUT } from "./session";
 
 const RECEIVE_POLLS = "polls/RECEIVE_POLLS";
 const RECEIVE_USER_POLLS = "polls/RECEIVE_USER_POLLS";

@@ -123,7 +123,7 @@ export const griefErrorsReducer = (state = nullErrors, action) => {
 };
 
 const griefsReducer = (
-  state = { all: {}, user: {}, union: {}, new: undefined },
+  state = { all: {}, user: {}, union: {}, poll: {}, new: undefined },
   action
 ) => {
   switch (action.type) {
