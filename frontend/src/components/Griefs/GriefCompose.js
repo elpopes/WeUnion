@@ -19,6 +19,10 @@ function GriefCompose() {
     e.preventDefault();
     dispatch(composeGrief({ text }));
     setText("");
+    
+    // if (newUnion) {
+    //   history.push(`/unions/${newUnion._id}`);
+    // }
   };
 
   const update = (e) => setText(e.currentTarget.value);

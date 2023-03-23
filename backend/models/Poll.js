@@ -19,6 +19,10 @@ const pollOptionSchema = new Schema({
             ref: "User",
         },
     ],
+    poll: {
+        type: Schema.Types.ObjectId,
+        ref: "Poll",
+    },
 });
 
 

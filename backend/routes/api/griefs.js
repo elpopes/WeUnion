@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const Union = mongoose.model("Union");
 const Grief = mongoose.model("Grief");
-// const Poll = mongoose.model("Poll");
+const Poll = mongoose.model("Poll");
 const { requireUser } = require("../../config/passport");
 const validateGriefInput = require("../../validations/griefs");
 
@@ -96,28 +96,36 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
   try {
-    const { text, imageUrls, poll } = req.body;
+    const { text, imageUrls } = req.body;
     const author = req.user.id;
     const union = req.user.unions[0];
-    // const question = "Choose an action!";
-    // const options = [
-    //   { option: "Collective Bargaining", votes: 0, selected: false },
-    //   { option: "Strike", votes: 0, selected: false },
-    //   { option: "Protest", votes: 0, selected: false },
-    //   { option: "Dismiss", votes: 0, selected: false },
-    //   { option: "Boycott", votes: 0, selected: false },
-    // ];
+    const question = "Choose an action!";
+    const options = [
+      { option: "Collective Bargaining", votes: 0, selected: false },
+      { option: "Strike", votes: 0, selected: false },
+      { option: "Protest", votes: 0, selected: false },
+      { option: "Dismiss", votes: 0, selected: false },
+      { option: "Boycott", votes: 0, selected: false },
+    ];
     const newGrief = new Grief({
       author,
       union,
       text,
       imageUrls,
-      poll,
     });
 
     let grief = await newGrief.save();
-    grief = await grief.populate("author", "_id username profileImageUrl") &&
-    grief.populate("poll", "_id votes options voters grief");
+    grief = await grief.populate("author", "_id username profileImageUrl");
+    // grief.populate("poll", "_id votes options voters grief");
+    if (newGrief) {
+      const id = newGrief.id
+      const newPoll = new Poll({
+        question, options, id
+      })
+      if (newPoll) {
+        newGrief.push(newPoll.id)
+      }
+    }
     return res.json(grief);
   } catch (err) {
     next(err);

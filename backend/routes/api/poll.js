@@ -18,8 +18,9 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.post("/", requireUser, async (req, res) => {
+router.post("/", async (req, res) => {
     try {
+        const grief = req.grief.id;
         const { question } = "Choose an action!";
         const options = [
         { option: "Collective Bargaining", votes: 0 },
@@ -28,7 +29,7 @@ router.post("/", requireUser, async (req, res) => {
         { option: "Dismiss", votes: 0 },
         { option: "Boycott", votes: 0 },
         ];
-        const poll = new Poll({ question, options });
+        const poll = new Poll({ question, options, grief });
         await poll.save();
         return res.json(poll);
     } catch (e) {
