@@ -14,8 +14,9 @@ const receiveUnions = (unions) => ({
   unions,
 });
 
-const receiveUnionMembers = (unionId) => ({
+const receiveUnionMembers = (users) => ({
   type: RECEIVE_UNION_MEMBERS,
+  users,
 });
 
 const receiveUnion = (union) => ({
@@ -69,8 +70,8 @@ export const fetchUnions = () => async (dispatch) => {
 export const fetchUnionMembers = (unionId) => async (dispatch) => {
   try {
     const res = await jwtFetch(`/api/unions/${unionId}/members`);
-    const union = await res.json();
-    dispatch(receiveUnionMembers(union._id));
+    const users = await res.json();
+    dispatch(receiveUnionMembers(users));
   } catch (err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400) {

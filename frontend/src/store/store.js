@@ -5,13 +5,14 @@ import errors from "./errors";
 import griefs from "./griefs";
 import unions from "./unions";
 import polls from "./polls";
-
+import users from "./users";
 const rootReducer = combineReducers({
   session,
   errors,
   griefs,
   unions,
-  polls
+  polls,
+  users
 });
 
 let enhancer;
