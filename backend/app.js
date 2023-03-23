@@ -12,6 +12,7 @@ const { isProduction } = require("./config/keys");
 require("./models/User.js");
 require("./models/Grief.js");
 require("./models/Union.js");
+require("./models/Poll.js");
 require("./config/passport"); // <-- ADD THIS LINE
 
 const passport = require("passport"); // <-- ADD THIS LINE
@@ -19,6 +20,7 @@ const usersRouter = require("./routes/api/users");
 const griefsRouter = require("./routes/api/griefs");
 const csrfRouter = require("./routes/api/csrf");
 const unionsRouter = require("./routes/api/unions");
+const pollsRouter = require("./routes/api/polls");
 const inviteRouter = require("./routes/api/invite");
 
 const app = express();
@@ -55,6 +57,7 @@ app.use(
 // Attach Express routers
 app.use("/api/users", usersRouter);
 app.use("/api/griefs", griefsRouter);
+app.use("/api/polls", pollsRouter);
 app.use("/api/csrf", csrfRouter);
 app.use("/api/unions", unionsRouter);
 app.use("/api/invite", inviteRouter);

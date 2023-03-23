@@ -118,15 +118,21 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
     grief = await grief.populate("author", "_id username profileImageUrl");
     // grief.populate("poll", "_id votes options voters grief");
     if (newGrief) {
-      const id = newGrief.id
+      const grief_id = newGrief.id
+      // const question = req.poll.question
+      // const options = req.poll.options
+      console.log("--------------")
+      console.log(grief.id)
       const newPoll = new Poll({
-        question, options, id
+        question, options, grief_id
       })
-      if (newPoll) {
-        newGrief.push(newPoll.id)
+    let poll = await newPoll.save();
+      if (poll) {
+        grief.poll = poll
       }
     }
-    return res.json(grief);
+    let updated = await grief.save()
+    return res.json(updated);
   } catch (err) {
     next(err);
   }

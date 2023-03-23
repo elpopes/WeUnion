@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const Union = mongoose.model("Union");
+//const Poll = mongoose.model("Poll");
 const { requireUser } = require("../../config/passport");
 const validateUnionInput = require("../../validations/unions");
 
