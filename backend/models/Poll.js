@@ -19,8 +19,11 @@ const pollOptionSchema = new Schema({
             ref: "User",
         },
     ],
+    poll: {
+        type: Schema.Types.ObjectId,
+        ref: "Poll",
+    },
 });
-
 
 
 const pollSchema = new Schema(
@@ -49,7 +52,7 @@ const pollSchema = new Schema(
                 ref: "User",
             },
         ],
-        grief: {
+        grief_id: {
             type: Schema.Types.ObjectId,
             ref: "Grief",
         },
@@ -59,4 +62,6 @@ const pollSchema = new Schema(
     }
 );
 
+
 module.exports = mongoose.model("Poll", pollSchema);
+

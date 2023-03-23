@@ -8,6 +8,7 @@ const RECEIVE_NEW_GRIEF = "griefs/RECEIVE_NEW_GRIEF";
 const RECEIVE_GRIEF_ERRORS = "griefs/RECEIVE_GRIEF_ERRORS";
 const REMOVE_GRIEF = "griefs/REMOVE_POST";
 const CLEAR_GRIEF_ERRORS = "griefs/CLEAR_GRIEF_ERRORS";
+const RECEIVE_GRIEF_POLL = "griefs/RECEIVE_GRIEF_POLL";
 
 export const receiveGriefs = (griefs) => ({
   type: RECEIVE_GRIEFS,
@@ -24,6 +25,10 @@ export const deleteGrief = (griefId) => (dispatch) => {
     method: "DELETE",
   }).then(() => dispatch(removeGrief(griefId)));
 };
+
+const receiveGriefPoll = (griefId) => ({
+  type: RECEIVE_GRIEF_POLL,
+});
 
 const receiveUserGriefs = (griefs) => ({
   type: RECEIVE_USER_GRIEFS,
@@ -51,6 +56,19 @@ export const clearGriefErrors = (errors) => ({
   type: CLEAR_GRIEF_ERRORS,
   errors,
 });
+
+export const fetchGriefPoll = (griefId) => async (dispatch) => {
+  try {
+    const res = await jwtFetch(`/api/griefs/${griefId}/poll`);
+    const grief = await res.json();
+    dispatch(receiveGriefPoll(grief._id));
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      dispatch(receiveErrors(resBody.errors));
+    }
+  }
+};
 
 export const fetchGriefs = () => async (dispatch) => {
   try {
@@ -123,7 +141,7 @@ export const griefErrorsReducer = (state = nullErrors, action) => {
 };
 
 const griefsReducer = (
-  state = { all: {}, user: {}, union: {}, new: undefined },
+  state = { all: {}, user: {}, union: {}, poll: {}, new: undefined },
   action
 ) => {
   switch (action.type) {

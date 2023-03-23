@@ -44,10 +44,10 @@ const receiveErrors = (errors) => ({
   errors,
 });
 
-// const clearErrors = (errors) => ({
-//   type: CLEAR_UNION_ERRORS,
-//   errors,
-// });
+const clearErrors = (errors) => ({
+  type: CLEAR_UNION_ERRORS,
+  errors,
+});
 
 export const getUnion = (id) => (state) => {
   if (!state.unions) return null;
