@@ -49,7 +49,7 @@ function SignupForm() {
 
     const finalUnion =
       unionName === "World Union by Default"
-        ? "6413209af0790605a377cbc3"
+        ? "641c9cb869dffc6cc383ac64"
         : unionName;
     const user = {
       email,
