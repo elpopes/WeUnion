@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   try {
     const griefs = await Grief.find()
       .populate("author", "_id username profileImageUrl")
-      .populate("polls", "_id votes options voters grief")
+      // .populate("polls", "_id votes options voters grief")
       .sort({ createdAt: -1 });
     return res.json(griefs);
   } catch (err) {
@@ -57,7 +57,7 @@ router.get("/union/:unionId", async (req, res, next) => {
     const griefs = await Grief.find({ union: union })
       .sort({ createdAt: -1 })
       .populate("author", "_id username profileImageUrl")
-      .populate("polls", "_id votes options voters grief");
+      // .populate("polls", "_id votes options voters grief");
     return res.json(griefs);
   } catch (err) {
     return res.json([]);
@@ -69,7 +69,7 @@ router.get("/:id", async (req, res, next) => {
     const grief = await Grief.findById(req.params.id).populate(
       "author",
       "_id username profileImageUrl")
-      .populate("polls", "_id votes options voters grief");
+      // .populate("polls", "_id votes options voters grief");
     return res.json(grief);
   } catch (err) {
     const error = new Error("Grievance not found");
@@ -96,7 +96,7 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
   try {
-    const { text, imageUrls } = req.body;
+    const { text, imageUrls, poll } = req.body;
     const author = req.user.id;
     const union = req.user.unions[0];
     // const question = "Choose an action!";
@@ -116,8 +116,8 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
     });
 
     let grief = await newGrief.save();
-    grief = await grief.populate("author", "_id username profileImageUrl")
-    .populate("poll", "_id votes options voters grief");
+    grief = await grief.populate("author", "_id username profileImageUrl") &&
+    grief.populate("poll", "_id votes options voters grief");
     return res.json(grief);
   } catch (err) {
     next(err);

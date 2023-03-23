@@ -27,7 +27,7 @@ const griefSchema = new Schema(
     poll: {
       type: Schema.Types.ObjectId,
       ref: "Poll",
-  },
+    },
   },
   {
     timestamps: true,
