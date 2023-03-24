@@ -9,14 +9,11 @@ function GriefBox({ grief: { text, author, poll } }) {
     ? author.profileImageUrl
     : "https://we-union-id-photos.s3.amazonaws.com/public/blank-profile-picture-g1eb6c33f6_1280.png";
 
-
-
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
   const [votes, setVotes] = useState(poll ? poll.votes : 0);
   const dispatch = useDispatch();
 
   const handleOptionClick = (optionId) => {
-
     // Clear selected option
     setSelectedOption(null);
 
@@ -26,13 +23,12 @@ function GriefBox({ grief: { text, author, poll } }) {
     // Select clicked option
     setSelectedOption(optionId);
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updatePoll({ id: poll._id, votes }));
     setVotes(0);
   };
-  debugger;
 
   return (
     <div className="grief">
@@ -42,19 +38,15 @@ function GriefBox({ grief: { text, author, poll } }) {
       <div className="grief-text">
         <h3>{username}</h3>
         <p>{text}</p>
-
         {poll && poll.options && (
           <form onSubmit={handleSubmit}>
-          <div>
             <h4>{poll.question}</h4>
             <div className="poll-options">
               {poll.options.map((option) => (
                 <div key={option._id}>
                   <button
                     onClick={() => handleOptionClick(option._id)}
-                    className={
-                      selectedOption === option._id ? "selected" : ""
-                    }
+                    className={selectedOption === option._id ? "selected" : ""}
                   >
                     {option.option}
                   </button>
@@ -70,9 +62,7 @@ function GriefBox({ grief: { text, author, poll } }) {
                 }
               </div>
             )}
-            <div>
-              Total votes: {votes}
-            </div>
+            <div>Total votes: {votes}</div>
             <button type="submit">Submit</button>
           </form>
         )}

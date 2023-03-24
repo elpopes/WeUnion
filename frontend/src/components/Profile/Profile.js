@@ -12,7 +12,6 @@ function Profile() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
   const userGriefs = useSelector((state) => Object.values(state.griefs.user));
-  debugger;
   const profileImageUrl = useSelector((state) => {
     return state.session.user.profileImageUrl;
   });
