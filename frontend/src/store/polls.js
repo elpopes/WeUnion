@@ -110,13 +110,13 @@ export const fetchPolls = () => async (dispatch) => {
   };
 
   export const updatePoll = (Poll) => (dispatch) => {
-    return fetch(`/api/users/${Poll.id}`, {
+    return jwtFetch(`/api/polls/${Poll.id}`, {
       method: "PATCH",
       body: JSON.stringify(Poll),
       headers: { "Content-Type": "application/json" },
     })
       .then((res) => res.json())
-      .then((User) => dispatch(receiveUser(User)));
+      .then((Poll) => dispatch(receivePolls(Poll)));
   };
 
 const nullErrors = null;

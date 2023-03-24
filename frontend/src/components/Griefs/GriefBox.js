@@ -1,5 +1,7 @@
 import "./GriefBox.css";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updatePoll } from "../../store/polls";
 
 function GriefBox({ grief: { text, author, poll } }) {
   const username = author ? author.username : "Author Unknown";
@@ -9,6 +11,7 @@ function GriefBox({ grief: { text, author, poll } }) {
 
   const [selectedOption, setSelectedOption] = useState(null);
   const [votes, setVotes] = useState(poll ? poll.votes : 0);
+  const dispatch = useDispatch();
 
   const handleOptionClick = (optionId) => {
     // Clear selected option
@@ -23,12 +26,8 @@ function GriefBox({ grief: { text, author, poll } }) {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(composeGrief({ votes }));
-    setText("");
-    
-    // if (newUnion) {
-    //   history.push(`/unions/${newUnion._id}`);
-    // }
+    dispatch(updatePoll({ id: poll._id, votes }));
+    setVotes(0);
   };
 
   return (
@@ -40,7 +39,7 @@ function GriefBox({ grief: { text, author, poll } }) {
         <h3>{username}</h3>
         <p>{text}</p>
         {poll && (
-          <div>
+          <form onSubmit={handleSubmit}>
             <h4>{poll.question}</h4>
             <div className="poll-options">
               {poll.options.map((option) => (
@@ -68,7 +67,8 @@ function GriefBox({ grief: { text, author, poll } }) {
             <div>
               Total votes: {votes}
             </div>
-          </div>
+            <button type="submit">Submit</button>
+          </form>
         )}
       </div>
     </div>
