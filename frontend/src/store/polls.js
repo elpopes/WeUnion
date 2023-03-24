@@ -109,15 +109,15 @@ export const fetchPolls = () => async (dispatch) => {
     }
   };
 
-  export const updatePoll = (data) => (dispatch) => {
-    return fetch(`/api/users/${User.id}`, {
-      method: "PATCH",
-      body: JSON.stringify(User),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => res.json())
-      .then((User) => dispatch(receiveUser(User)));
-  };
+  // export const updatePoll = (data) => (dispatch) => {
+  //   return fetch(`/api/users/${User.id}`, {
+  //     method: "PATCH",
+  //     body: JSON.stringify(User),
+  //     headers: { "Content-Type": "application/json" },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((User) => dispatch(receiveUser(User)));
+  // };
 
 const nullErrors = null;
 
