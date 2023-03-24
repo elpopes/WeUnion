@@ -18,6 +18,7 @@ function GriefBox({ grief: { text, author, poll } }) {
       setSelectedOption(optionId);
     }
   };
+  debugger;
 
   return (
     <div className="grief">

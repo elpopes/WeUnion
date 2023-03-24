@@ -35,7 +35,7 @@ router.get("/user/:userId", async (req, res, next) => {
     const griefs = await Grief.find({ author: user._id })
       .sort({ createdAt: -1 })
       .populate("author", "_id username profileImageUrl")
-      // .populate("polls", "_id votes options voters grief");
+      .populate("poll", "_id votes options voters grief");
     return res.json(griefs);
   } catch (err) {
     return res.json([]);
@@ -56,8 +56,8 @@ router.get("/union/:unionId", async (req, res, next) => {
   try {
     const griefs = await Grief.find({ union: union })
       .sort({ createdAt: -1 })
-      .populate("author", "_id username profileImageUrl")
-      // .populate("polls", "_id votes options voters grief");
+      .populate("author", "_id username profileImageUrl");
+    // .populate("polls", "_id votes options voters grief");
     return res.json(griefs);
   } catch (err) {
     return res.json([]);
@@ -68,8 +68,9 @@ router.get("/:id", async (req, res, next) => {
   try {
     const grief = await Grief.findById(req.params.id).populate(
       "author",
-      "_id username profileImageUrl")
-      // .populate("polls", "_id votes options voters grief");
+      "_id username profileImageUrl"
+    );
+    // .populate("polls", "_id votes options voters grief");
     return res.json(grief);
   } catch (err) {
     const error = new Error("Grievance not found");
@@ -118,24 +119,26 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
     // grief = await grief.populate("author", "username profileImageUrl");
     // grief.populate("poll", "_id votes options voters grief");
     if (newGrief) {
-      const grief_id = newGrief.id
+      const grief_id = newGrief.id;
       // const question = req.poll.question
       // const options = req.poll.options
-      console.log("--------------")
-      console.log(grief.id)
+      //   console.log("--------------");
+      //   console.log(grief.id);
       const newPoll = new Poll({
-        question, options, grief_id
-      })
+        question,
+        options,
+        grief_id,
+      });
       let poll = await newPoll.save();
       if (poll) {
-        grief.poll = poll
+        grief.poll = poll;
       }
     }
     grief = await grief.populate("author", "username profileImageUrl");
     grief.populate("poll", "_id votes options voters grief");
     // grief = await grief.populate("author", "_id username profileImageUrl");
     // grief = await grief.populate("poll", "_id question options votes voters");
-    let updated = await grief.save()
+    let updated = await grief.save();
     return res.json(updated);
   } catch (err) {
     next(err);
