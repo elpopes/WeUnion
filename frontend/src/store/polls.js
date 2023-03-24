@@ -109,6 +109,16 @@ export const fetchPolls = () => async (dispatch) => {
     }
   };
 
+  export const updatePoll = (Poll) => (dispatch) => {
+    return jwtFetch(`/api/polls/${Poll.id}`, {
+      method: "PATCH",
+      body: JSON.stringify(Poll),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((Poll) => dispatch(receivePolls(Poll)));
+  };
+
 const nullErrors = null;
 
 export const pollErrorsReducer = (state = nullErrors, action) => {
