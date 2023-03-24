@@ -9,11 +9,14 @@ function GriefBox({ grief: { text, author, poll } }) {
     ? author.profileImageUrl
     : "https://we-union-id-photos.s3.amazonaws.com/public/blank-profile-picture-g1eb6c33f6_1280.png";
 
-  const [selectedOption, setSelectedOption] = useState(null);
+
+
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [votes, setVotes] = useState(poll ? poll.votes : 0);
   const dispatch = useDispatch();
 
   const handleOptionClick = (optionId) => {
+
     // Clear selected option
     setSelectedOption(null);
 
@@ -29,6 +32,7 @@ function GriefBox({ grief: { text, author, poll } }) {
     dispatch(updatePoll({ id: poll._id, votes }));
     setVotes(0);
   };
+  debugger;
 
   return (
     <div className="grief">
@@ -38,8 +42,10 @@ function GriefBox({ grief: { text, author, poll } }) {
       <div className="grief-text">
         <h3>{username}</h3>
         <p>{text}</p>
-        {poll && (
+
+        {poll && poll.options && (
           <form onSubmit={handleSubmit}>
+          <div>
             <h4>{poll.question}</h4>
             <div className="poll-options">
               {poll.options.map((option) => (
