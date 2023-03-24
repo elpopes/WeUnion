@@ -100,6 +100,7 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
     const author = req.user.id;
     const union = req.user.unions[0];
     const question = "Choose an action!";
+    const votes = 0
     const options = [
       { option: "Collective Bargaining", votes: 0, selected: false },
       { option: "Strike", votes: 0, selected: false },
@@ -124,7 +125,7 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
       console.log("--------------")
       console.log(grief.id)
       const newPoll = new Poll({
-        question, options, grief_id
+        question, options, grief_id, votes, 
       })
       let poll = await newPoll.save();
       if (poll) {
@@ -132,7 +133,7 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
       }
     }
     grief = await grief.populate("author", "username profileImageUrl");
-    grief.populate("poll", "_id votes options voters grief");
+    grief.populate("poll", "_id votes options voters grief_id");
     // grief = await grief.populate("author", "_id username profileImageUrl");
     // grief = await grief.populate("poll", "_id question options votes voters");
     let updated = await grief.save()

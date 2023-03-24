@@ -7,19 +7,28 @@ function GriefBox({ grief: { text, author, poll } }) {
     ? author.profileImageUrl
     : "https://we-union-id-photos.s3.amazonaws.com/public/blank-profile-picture-g1eb6c33f6_1280.png";
 
-
-  const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [votes, setVotes] = useState(poll ? poll.votes : 0);
+
   const handleOptionClick = (optionId) => {
-    if (selectedOptions.includes(optionId)) {
-      // If the option is already selected, remove it from the array
-      setSelectedOptions(selectedOptions.filter((id) => id !== optionId));
-      setSelectedOption(null); // Clear the selected option
-    } else {
-      // If the option is not selected, add it to the array and set it as the selected option
-      setSelectedOptions([...selectedOptions, optionId]);
-      setSelectedOption(optionId);
-    }
+    // Clear selected option
+    setSelectedOption(null);
+
+    // Increase poll votes by 1 for selected option
+    setVotes(votes + 1);
+
+    // Select clicked option
+    setSelectedOption(optionId);
+  };
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(composeGrief({ votes }));
+    setText("");
+    
+    // if (newUnion) {
+    //   history.push(`/unions/${newUnion._id}`);
+    // }
   };
 
   return (
@@ -35,15 +44,16 @@ function GriefBox({ grief: { text, author, poll } }) {
             <h4>{poll.question}</h4>
             <div className="poll-options">
               {poll.options.map((option) => (
-                <button
-                  key={option._id}
-                  onClick={() => handleOptionClick(option._id)}
-                  className={
-                    selectedOptions.includes(option._id) ? "selected" : ""
-                  }
-                >
-                  {option.option}
-                </button>
+                <div key={option._id}>
+                  <button
+                    onClick={() => handleOptionClick(option._id)}
+                    className={
+                      selectedOption === option._id ? "selected" : ""
+                    }
+                  >
+                    {option.option}
+                  </button>
+                </div>
               ))}
             </div>
             {selectedOption && (
@@ -55,6 +65,9 @@ function GriefBox({ grief: { text, author, poll } }) {
                 }
               </div>
             )}
+            <div>
+              Total votes: {votes}
+            </div>
           </div>
         )}
       </div>
