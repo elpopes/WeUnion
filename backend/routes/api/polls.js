@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-router.put("/:id/vote", requireUser, async (req, res) => {
+router.patch("/:id", requireUser, async (req, res) => {
     try {
         const user = req.user;
         const pollId = req.params.id;
