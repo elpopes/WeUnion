@@ -88,4 +88,14 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
+router.get("/id", async (req, res) => {
+    try {
+        const poll = await Poll.findById(req.params.id);
+        return res.json(poll);
+        } catch (e) {
+          return res.status(422).json(e);
+        }
+});
+
+
 module.exports = router;

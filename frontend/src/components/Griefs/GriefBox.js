@@ -30,6 +30,7 @@ function GriefBox({ grief: { text, author, poll } }) {
     setVotes(0);
   };
 
+
   return (
     <div className="grief">
       <div className="grief-image">

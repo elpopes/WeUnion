@@ -109,6 +109,7 @@ export const fetchPolls = () => async (dispatch) => {
     }
   };
 
+
   export const updatePoll = (Poll) => (dispatch) => {
     return jwtFetch(`/api/polls/${Poll.id}`, {
       method: "PATCH",
