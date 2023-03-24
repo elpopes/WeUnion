@@ -7,20 +7,18 @@ function GriefBox({ grief: { text, author, poll } }) {
     ? author.profileImageUrl
     : "https://we-union-id-photos.s3.amazonaws.com/public/blank-profile-picture-g1eb6c33f6_1280.png";
 
-
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const handleOptionClick = (optionId) => {
     if (selectedOptions.includes(optionId)) {
-      // If the option is already selected, remove it from the array
       setSelectedOptions(selectedOptions.filter((id) => id !== optionId));
-      setSelectedOption(null); // Clear the selected option
+      setSelectedOption(null);
     } else {
-      // If the option is not selected, add it to the array and set it as the selected option
       setSelectedOptions([...selectedOptions, optionId]);
       setSelectedOption(optionId);
     }
   };
+  debugger;
 
   return (
     <div className="grief">
@@ -30,7 +28,7 @@ function GriefBox({ grief: { text, author, poll } }) {
       <div className="grief-text">
         <h3>{username}</h3>
         <p>{text}</p>
-        {poll && (
+        {poll && poll.options && (
           <div>
             <h4>{poll.question}</h4>
             <div className="poll-options">
