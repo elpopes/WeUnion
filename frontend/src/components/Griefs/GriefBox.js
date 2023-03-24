@@ -21,15 +21,15 @@ function GriefBox({ grief: { text, author, poll } }) {
     setSelectedOption(optionId);
   };
   
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(composeGrief({ votes }));
-    setText("");
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(composeGrief({ votes }));
+  //   setText("");
     
-    // if (newUnion) {
-    //   history.push(`/unions/${newUnion._id}`);
-    // }
-  };
+  //   // if (newUnion) {
+  //   //   history.push(`/unions/${newUnion._id}`);
+  //   // }
+  // };
 
   return (
     <div className="grief">
