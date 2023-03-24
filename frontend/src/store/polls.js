@@ -109,10 +109,10 @@ export const fetchPolls = () => async (dispatch) => {
     }
   };
 
-  export const updatePoll = (data) => (dispatch) => {
-    return fetch(`/api/users/${User.id}`, {
+  export const updatePoll = (Poll) => (dispatch) => {
+    return fetch(`/api/users/${Poll.id}`, {
       method: "PATCH",
-      body: JSON.stringify(User),
+      body: JSON.stringify(Poll),
       headers: { "Content-Type": "application/json" },
     })
       .then((res) => res.json())
