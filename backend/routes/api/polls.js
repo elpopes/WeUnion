@@ -73,6 +73,7 @@ router.patch("/:id", requireUser, async (req, res) => {
 
       // Add the user to the list of voters and increment the vote count for the selected option
         poll.voters.push(user._id);
+        option.selectedBy.push(user._id);
         option.votes++;
         poll.votes++;
     

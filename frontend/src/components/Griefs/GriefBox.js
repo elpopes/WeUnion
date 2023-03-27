@@ -12,6 +12,7 @@ function GriefBox({ grief: { text, author, poll } }) {
   const [selectedOption, setSelectedOption] = useState(poll ? poll.selectedOption : null);
   const [votes, setVotes] = useState(poll ? poll.votes : 0);
   const dispatch = useDispatch();
+  const [submitting, setSubmitting] = useState(false);
 
   const handleOptionClick = (optionId) => {
     if (selectedOption) {
@@ -24,10 +25,25 @@ function GriefBox({ grief: { text, author, poll } }) {
   
     // Select clicked option
     setSelectedOption(optionId);
-    
-    // Send API request to update poll with selected option
-    dispatch(updatePoll({ id: poll._id, votes, selectedOption: optionId }));
   };
+  
+  const handleSubmit = async () => {
+    try {
+      // Set submitting status to true
+      setSubmitting(true);
+  
+      // Send API request to update poll with selected option
+      await dispatch(updatePoll({ id: poll._id, votes, selectedOption }));
+  
+      // Reset form state
+      setSubmitting(false);
+    } catch (error) {
+      // Handle submission error
+      console.error(error);
+      // Reset form state
+      setSubmitting(false);
+    }
+  };  
   
   return (
     <div className="grief">
@@ -46,7 +62,7 @@ function GriefBox({ grief: { text, author, poll } }) {
                   <button
                     onClick={() => handleOptionClick(option._id)}
                     className={selectedOption === option._id ? "selected" : ""}
-                    disabled={selectedOption && selectedOption !== option._id}
+                    // disabled={selectedOption && selectedOption !== option._id}
                   >
                     {option.option}
                   </button>
@@ -63,6 +79,9 @@ function GriefBox({ grief: { text, author, poll } }) {
               </div>
             )}
             <div>Total votes: {votes}</div>
+        <button onClick={handleSubmit} disabled={submitting}>
+          {submitting ? 'Submitting...' : 'Submit'}
+        </button>
           </>
         )}
       </div>
