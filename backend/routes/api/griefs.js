@@ -102,7 +102,7 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
     const author = req.user.id;
     const union = req.user.unions[0];
     const question = "Choose an action!";
-    const votes = 0
+    let votes = 0;
     const options = [
       { option: "Collective Bargaining", votes: 0, selected: false },
       { option: "Strike", votes: 0, selected: false },
@@ -110,6 +110,12 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
       { option: "Dismiss", votes: 0, selected: false },
       { option: "Boycott", votes: 0, selected: false },
     ];
+
+    // Calculate total votes
+    for (let i = 0; i < options.length; i++) {
+      votes += options[i].votes;
+    }
+
     const newGrief = new Grief({
       author,
       union,
@@ -118,35 +124,29 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
     });
 
     let grief = await newGrief.save();
-    // grief = await grief.populate("author", "username profileImageUrl");
-    // grief.populate("poll", "_id votes options voters grief");
     if (newGrief) {
       const grief_id = newGrief.id;
-      // const question = req.poll.question
-      // const options = req.poll.options
-      //   console.log("--------------");
-      //   console.log(grief.id);
       const newPoll = new Poll({
-
-        question, options, grief_id, votes, 
-      })
+        question,
+        options,
+        grief_id,
+        votes,
+      });
 
       let poll = await newPoll.save();
       if (poll) {
         grief.poll = poll;
       }
     }
-    console.log(options)
     grief = await grief.populate("author", "username profileImageUrl");
     grief.populate("poll", "_id votes options voters grief_id");
-    // grief = await grief.populate("author", "_id username profileImageUrl");
-    // grief = await grief.populate("poll", "_id question options votes voters");
     let updated = await grief.save();
     return res.json(updated);
   } catch (err) {
     next(err);
   }
 });
+
 
 router.delete("/:id", async (req, res) => {
   try {

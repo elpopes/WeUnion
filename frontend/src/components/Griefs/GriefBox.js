@@ -41,7 +41,8 @@ function GriefBox({ grief: { text, author, poll } }) {
       setSubmitting(false);
 
        // Increase poll votes by 1 for selected option
-      setVotes(votes + 1);
+      setVotes(votes);
+      // window.location.reload();
     } catch (error) {
       // Handle submission error
       console.error(error);
