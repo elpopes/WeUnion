@@ -15,13 +15,13 @@ function GriefBox({ grief: { text, author, poll } }) {
   const [submitting, setSubmitting] = useState(false);
 
   const handleOptionClick = (optionId) => {
-    if (selectedOption) {
+    if (selectedOption === optionId) {
       // User has already voted, do nothing
       return;
     }
   
     // Increase poll votes by 1 for selected option
-    setVotes(votes + 1);
+    // setVotes(votes + 1);
   
     // Select clicked option
     setSelectedOption(optionId);
@@ -37,6 +37,9 @@ function GriefBox({ grief: { text, author, poll } }) {
   
       // Reset form state
       setSubmitting(false);
+
+       // Increase poll votes by 1 for selected option
+      setVotes(votes + 1);
     } catch (error) {
       // Handle submission error
       console.error(error);
