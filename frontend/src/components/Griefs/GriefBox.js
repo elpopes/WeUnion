@@ -9,28 +9,26 @@ function GriefBox({ grief: { text, author, poll } }) {
     ? author.profileImageUrl
     : "https://we-union-id-photos.s3.amazonaws.com/public/blank-profile-picture-g1eb6c33f6_1280.png";
 
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(poll ? poll.selectedOption : null);
   const [votes, setVotes] = useState(poll ? poll.votes : 0);
   const dispatch = useDispatch();
 
   const handleOptionClick = (optionId) => {
-    // Clear selected option
-    setSelectedOption(null);
-
+    if (selectedOption) {
+      // User has already voted, do nothing
+      return;
+    }
+  
     // Increase poll votes by 1 for selected option
     setVotes(votes + 1);
-
+  
     // Select clicked option
     setSelectedOption(optionId);
+    
+    // Send API request to update poll with selected option
+    dispatch(updatePoll({ id: poll._id, votes, selectedOption: optionId }));
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(updatePoll({ id: poll._id, votes }));
-    setVotes(0);
-  };
-
-
+  
   return (
     <div className="grief">
       <div className="grief-image">
@@ -40,7 +38,7 @@ function GriefBox({ grief: { text, author, poll } }) {
         <h3>{username}</h3>
         <p>{text}</p>
         {poll && poll.options && (
-          <form onSubmit={handleSubmit}>
+          <>
             <h4>{poll.question}</h4>
             <div className="poll-options">
               {poll.options.map((option) => (
@@ -48,6 +46,7 @@ function GriefBox({ grief: { text, author, poll } }) {
                   <button
                     onClick={() => handleOptionClick(option._id)}
                     className={selectedOption === option._id ? "selected" : ""}
+                    disabled={selectedOption && selectedOption !== option._id}
                   >
                     {option.option}
                   </button>
@@ -64,8 +63,7 @@ function GriefBox({ grief: { text, author, poll } }) {
               </div>
             )}
             <div>Total votes: {votes}</div>
-            <button type="submit">Submit</button>
-          </form>
+          </>
         )}
       </div>
     </div>

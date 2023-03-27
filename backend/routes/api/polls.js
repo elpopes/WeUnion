@@ -39,9 +39,15 @@ router.post("/", async (req, res) => {
 
 router.patch("/:id", requireUser, async (req, res) => {
     try {
+      console.log(req.body)
         const user = req.user;
         const pollId = req.params.id;
         const selectedOption = req.body.selectedOption;
+        console.log(selectedOption)
+        console.log(pollId)
+        console.log(user)
+
+
         
       // Find the poll by ID
         const poll = await Poll.findById(pollId);
@@ -56,7 +62,10 @@ router.patch("/:id", requireUser, async (req, res) => {
         }
 
       // Find the selected option by name
-        const option = poll.options.find((o) => o.name === selectedOption);
+      const option = poll.options.find((o) =>  o.id === selectedOption);  
+      // console.log(option.option)
+      
+            // const option = poll.options.find((o) => o.name === selectedOption);
 
         if (!option) {
         return res.status(400).json({ error: "Invalid option selected" });
@@ -68,7 +77,7 @@ router.patch("/:id", requireUser, async (req, res) => {
         poll.votes++;
     
       // Save the updated poll
-    await poll.save();
+      await poll.save();
 
       // Return the updated poll data
         return res.json(poll);

@@ -96,8 +96,9 @@ router.get("/:id", async (req, res, next) => {
 // });
 
 router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
+  // console.log(req.body)
   try {
-    const { text, imageUrls } = req.body;
+    const { text, imageUrls, } = req.body;
     const author = req.user.id;
     const union = req.user.unions[0];
     const question = "Choose an action!";
@@ -135,6 +136,7 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
         grief.poll = poll;
       }
     }
+    console.log(options)
     grief = await grief.populate("author", "username profileImageUrl");
     grief.populate("poll", "_id votes options voters grief_id");
     // grief = await grief.populate("author", "_id username profileImageUrl");
