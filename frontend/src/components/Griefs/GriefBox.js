@@ -10,7 +10,9 @@ function GriefBox({ grief: { text, author, poll } }) {
     : "https://we-union-id-photos.s3.amazonaws.com/public/blank-profile-picture-g1eb6c33f6_1280.png";
 
   const [selectedOption, setSelectedOption] = useState(poll ? poll.selectedOption : null);
-  const [votes, setVotes] = useState(poll ? poll.votes : 0);
+  // const [votes, setVotes] = useState(poll ? poll.votes : 0);
+  const [votes, setVotes] = useState(poll ? poll.options.reduce((sum, option) => sum + option.votes, 0) : 0);
+
   const dispatch = useDispatch();
   const [submitting, setSubmitting] = useState(false);
 
