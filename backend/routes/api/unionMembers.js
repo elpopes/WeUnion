@@ -11,10 +11,19 @@ const { requireUser } = require("../../config/passport");
 
 router.post("/union/:id/join", requireUser, async (req, res) => {
   try {
-    console.log("why not hitting this__________________");
-    const union = await Union.findById(req.params.id);
-    union.members.push(req.user._id);
-    union.save();
+    const unionId = req.params.id;
+    const userId = req.user._id;
+
+    const union = await Union.findById(unionId);
+    union.members.push(userId);
+    await union.save();
+
+    const user = await User.findById(userId);
+    if (!user.unions.includes(unionId)) {
+      user.unions.unshift(unionId);
+      await user.save();
+    }
+
     return res.json(union);
   } catch (e) {
     return res.status(422).json(e);
