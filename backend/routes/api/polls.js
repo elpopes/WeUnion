@@ -38,45 +38,64 @@ router.post("/", async (req, res) => {
 });
 
 router.patch("/:id", requireUser, async (req, res) => {
-    try {
-        const user = req.user;
-        const pollId = req.params.id;
-        const selectedOption = req.body.selectedOption;
-        
-      // Find the poll by ID
-        const poll = await Poll.findById(pollId);
-        
-        if (!poll) {
-        return res.status(404).json({ error: "Poll not found" });
-        }
+  try {
+    const user = req.user;
+    const pollId = req.params.id;
+    const selectedOption = req.body.selectedOption;
 
-      // Check if the user has already voted in this poll
-        if (poll.voters.includes(user._id)) {
-        return res.status(400).json({ error: "You have already voted in this poll" });
-        }
+    // Find the poll by ID
+    const poll = await Poll.findById(pollId);
+    if (!poll) {
+      return res.status(404).json({ error: "Poll not found" });
+    }
 
-      // Find the selected option by name
-        const option = poll.options.find((o) => o.name === selectedOption);
+    // Check if the user has already voted in this poll
+    // if (poll.options.includes(user._id)) {
+    //   return res
+    //     .status(400)
+    //     .json({ error: "You have already voted in this poll" });
+    // }
 
-        if (!option) {
-        return res.status(400).json({ error: "Invalid option selected" });
-        }
+    // Find the selected option by ID
+    const selectedOptionIndex = poll.options.findIndex(
+      (o) => o.id === selectedOption
+    );
+    if (selectedOptionIndex === -1) {
+      return res.status(400).json({ error: "Invalid option selected" });
+    }
 
-      // Add the user to the list of voters and increment the vote count for the selected option
-        poll.voters.push(user._id);
-        option.votes++;
-        poll.votes++;
+// Remove the user from the selectedBy array of all other options and decrement their votes
+poll.options.forEach((option) => {
+  if (option.selectedBy.includes(user._id)) {
+    option.selectedBy = option.selectedBy.filter((id) => id !== user._id);
+    poll.voters.pop(user._id);
+    option.votes = 0;
+    option.selectedBy.pop(user._id);
+    if (option.id !== selectedOption) {
+      poll.votes--;
+    }
+  }
+});
+
     
-      // Save the updated poll
+
+    // Add the user to the list of voters and increment the vote count for the selected option
+    poll.voters.push(user._id);
+    poll.options[selectedOptionIndex].selectedBy.push(user._id);
+    poll.options[selectedOptionIndex].votes++;
+    poll.votes++;
+
+    // Save the updated poll
     await poll.save();
 
-      // Return the updated poll data
-        return res.json(poll);
-    } catch (e) {
-        console.error(e);
-        return res.status(500).json({ error: "Internal server error" });
-    }
+    // Return the updated poll data
+    return res.json(poll);
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 });
+
 
 
 router.delete("/:id", async (req, res) => {
