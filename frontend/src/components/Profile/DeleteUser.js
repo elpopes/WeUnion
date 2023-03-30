@@ -15,7 +15,7 @@ const DeleteUserButton = ({ userId }) => {
     }
   };
 
-  if (userId === "6425a3948e9d73e72e10803e") {
+  if (userId === "6425b7a2dfd65fcd6c6e0788") {
     return null;
   }
 
