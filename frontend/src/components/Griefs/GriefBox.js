@@ -9,9 +9,15 @@ function GriefBox({ grief: { text, author, poll } }) {
     ? author.profileImageUrl
     : "https://we-union-id-photos.s3.amazonaws.com/public/blank-profile-picture-g1eb6c33f6_1280.png";
 
-  const [selectedOption, setSelectedOption] = useState(poll ? poll.selectedOption : null);
+  const [selectedOption, setSelectedOption] = useState(
+    poll ? poll.selectedOption : null
+  );
   // const [votes, setVotes] = useState(poll ? poll.votes : 0);
-  const [votes, setVotes] = useState(poll ? poll.options.reduce((sum, option) => sum + option.votes, 0) : 0);
+  const [votes, setVotes] = useState(
+    poll && poll.options
+      ? poll.options.reduce((sum, option) => sum + option.votes, 0)
+      : 0
+  );
 
   const dispatch = useDispatch();
   const [submitting, setSubmitting] = useState(false);
@@ -21,26 +27,26 @@ function GriefBox({ grief: { text, author, poll } }) {
       // User has already voted, do nothing
       return;
     }
-  
+
     // Increase poll votes by 1 for selected option
     // setVotes(votes + 1);
-  
+
     // Select clicked option
     setSelectedOption(optionId);
   };
-  
+
   const handleSubmit = async () => {
     try {
       // Set submitting status to true
       setSubmitting(true);
-  
+
       // Send API request to update poll with selected option
       await dispatch(updatePoll({ id: poll._id, votes, selectedOption }));
-  
+
       // Reset form state
       setSubmitting(false);
 
-       // Increase poll votes by 1 for selected option
+      // Increase poll votes by 1 for selected option
       setVotes(votes);
       // window.location.reload();
     } catch (error) {
@@ -49,8 +55,8 @@ function GriefBox({ grief: { text, author, poll } }) {
       // Reset form state
       setSubmitting(false);
     }
-  };  
-  
+  };
+
   return (
     <div className="grief">
       <div className="grief-image">
@@ -85,9 +91,9 @@ function GriefBox({ grief: { text, author, poll } }) {
               </div>
             )}
             <div>Total votes: {votes}</div>
-        <button onClick={handleSubmit} disabled={submitting}>
-          {submitting ? 'Submitting...' : 'Submit'}
-        </button>
+            <button onClick={handleSubmit} disabled={submitting}>
+              {submitting ? "Submitting..." : "Submit"}
+            </button>
           </>
         )}
       </div>
