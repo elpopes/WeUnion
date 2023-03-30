@@ -1,0 +1,42 @@
+.all-members-show {
+  font-size: 20px;
+  font-weight: 550;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.all-members-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.all-members-container p {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.member-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.member-profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0.5rem;
+}
+
+.all-members-container p:last-child {
+  margin-bottom: 0;
+}

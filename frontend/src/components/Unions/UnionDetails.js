@@ -51,8 +51,12 @@ const UnionDetails = () => {
         </div>
       </div>
       <div className="griefs-and-members">
-        <UnionGriefs unionId={id} />
-        <Members unionId={id} />
+        <div className="union-griefs">
+          <UnionGriefs unionId={id} />
+        </div>
+        <div className="union-members">
+          <Members unionId={id} />
+        </div>
       </div>
     </div>
   );
