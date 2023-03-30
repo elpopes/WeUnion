@@ -22,6 +22,7 @@ const csrfRouter = require("./routes/api/csrf");
 const unionsRouter = require("./routes/api/unions");
 const pollsRouter = require("./routes/api/polls");
 const inviteRouter = require("./routes/api/invite");
+const unionMembers = require("./routes/api/unionMembers");
 
 const app = express();
 
@@ -61,6 +62,7 @@ app.use("/api/polls", pollsRouter);
 app.use("/api/csrf", csrfRouter);
 app.use("/api/unions", unionsRouter);
 app.use("/api/invite", inviteRouter);
+app.use("/api/unionMembers", unionMembers);
 
 /// Added for Render Deploy:
 if (isProduction) {
