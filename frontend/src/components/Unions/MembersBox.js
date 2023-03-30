@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUnionMembers } from "../../store/users";
-// import MemberBox from "./MemberBox";
-// import "./Members.css";
+import "./Members.css";
 
 function Members({ unionId }) {
   const dispatch = useDispatch();
@@ -17,7 +16,16 @@ function Members({ unionId }) {
       <h2 className="all-members-show">All Union Members</h2>
       <div className="all-members-container">
         {members
-          ? members.map((member) => <p key={member._id}>{member.username}</p>)
+          ? members.map((member) => (
+              <div key={member._id} className="member-item">
+                <img
+                  src={member.profileImageUrl}
+                  alt={`${member.username}'s profile`}
+                  className="member-profile-image"
+                />
+                <p>{member.username}</p>
+              </div>
+            ))
           : null}
       </div>
     </>

@@ -1,22 +1,51 @@
+.union-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 1rem;
+}
+
 .union-name-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  width: 100%;
 }
 
-.union-griefs-container {
+.invite-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
-.union-griefs-container h2 {
-  margin-bottom: 5px;
-  margin-top: 10px;
-  font-size: 20px;
+.invite-button {
+  margin-top: 0.5rem;
+}
+
+h2 {
+  font-size: 30px;
   font-weight: 550;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.griefs-and-members {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .griefs-and-members {
+    flex-direction: column;
+    align-items: center;
+  }
 }
