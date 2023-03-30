@@ -51,7 +51,6 @@ router.post("/", requireUser, validateUnionInput, async (req, res) => {
 
     // Return the response
     const populatedUnion = await union.populate("members");
-    console.log(populatedUnion);
     return res.json(populatedUnion);
   } catch (err) {
     console.error(err);
@@ -97,8 +96,6 @@ router.get("/:id/members", async (req, res) => {
       return res.status(404).json({ message: "Union not found" });
     }
     const members = await User.find({ _id: { $in: union.members } });
-    console.log("_____________________________________________");
-    console.log(members);
     return res.json(members);
   } catch (err) {
     console.error(err);
