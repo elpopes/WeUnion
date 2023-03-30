@@ -7,7 +7,7 @@ import UnionGriefs from "./UnionGriefs";
 import InviteButton from "./Invite";
 import "./UnionDetails.css";
 import Members from "./MembersBox";
-import { fetchUnionMembers } from "../../store/unions";
+// import { fetchUnionMembers } from "../../store/unions";
 
 const UnionDetails = () => {
   const dispatch = useDispatch();
