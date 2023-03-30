@@ -56,8 +56,8 @@ router.get("/union/:unionId", async (req, res, next) => {
   try {
     const griefs = await Grief.find({ union: union })
       .sort({ createdAt: -1 })
-      .populate("author", "_id username profileImageUrl");
-    // .populate("polls", "_id votes options voters grief");
+      .populate("author", "_id username profileImageUrl")
+      .populate("poll", "_id votes options voters grief");
     return res.json(griefs);
   } catch (err) {
     return res.json([]);
@@ -66,11 +66,9 @@ router.get("/union/:unionId", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const grief = await Grief.findById(req.params.id).populate(
-      "author",
-      "_id username profileImageUrl"
-    );
-    // .populate("polls", "_id votes options voters grief");
+    const grief = await Grief.findById(req.params.id)
+      .populate("author", "_id username profileImageUrl")
+      .populate("poll", "_id votes options voters grief");
     return res.json(grief);
   } catch (err) {
     const error = new Error("Grievance not found");
@@ -98,7 +96,7 @@ router.get("/:id", async (req, res, next) => {
 router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
   // console.log(req.body)
   try {
-    const { text, imageUrls, } = req.body;
+    const { text, imageUrls } = req.body;
     const author = req.user.id;
     const union = req.user.unions[0];
     const question = "Choose an action!";
@@ -147,7 +145,6 @@ router.post("/", requireUser, validateGriefInput, async (req, res, next) => {
   }
 });
 
-
 router.delete("/:id", async (req, res) => {
   try {
     const grief = await Grief.findByIdAndDelete(req.params.id);
@@ -156,7 +153,5 @@ router.delete("/:id", async (req, res) => {
     res.status(422).json(e);
   }
 });
-
-
 
 module.exports = router;
