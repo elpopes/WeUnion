@@ -3,11 +3,10 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUnion, getUnion } from "../../store/unions";
 import UnionGriefs from "./UnionGriefs";
-// import Griefs from "../Griefs/Griefs";
 import InviteButton from "./Invite";
 import "./UnionDetails.css";
 import Members from "./MembersBox";
-// import { fetchUnionMembers } from "../../store/unions";
+import JoinUnion from "./JoinUnion";
 
 const UnionDetails = () => {
   const dispatch = useDispatch();
@@ -48,6 +47,9 @@ const UnionDetails = () => {
         <div className="invite-container">
           <h2>Send an invite by email</h2>
           <InviteButton union={union} className="invite-button" />
+        </div>
+        <div className="join-containe">
+          <JoinUnion union={union} className="join-button" />
         </div>
       </div>
       <div className="griefs-and-members">

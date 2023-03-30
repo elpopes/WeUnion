@@ -12,12 +12,15 @@ const JoinUnion = ({ union }) => {
     setButtonText("Joining...");
 
     try {
-      const res = await jwtFetch(`/union/${unionId}/join`, {
+      const res = await jwtFetch(`/api/unionMembers/union/${unionId}/join`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: user.id }),
+        body: JSON.stringify({
+          userId: user.id,
+          unionId,
+        }),
       });
 
       if (res.ok) {

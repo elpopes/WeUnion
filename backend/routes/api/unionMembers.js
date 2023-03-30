@@ -11,6 +11,7 @@ const { requireUser } = require("../../config/passport");
 
 router.post("/union/:id/join", requireUser, async (req, res) => {
   try {
+    console.log("why not hitting this__________________");
     const union = await Union.findById(req.params.id);
     union.members.push(req.user._id);
     union.save();
