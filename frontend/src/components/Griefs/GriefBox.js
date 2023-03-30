@@ -2,6 +2,7 @@ import "./GriefBox.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updatePoll } from "../../store/polls";
+import Modal from "react-modal";
 
 function GriefBox({ grief: { text, author, poll } }) {
   const username = author ? author.username : "Author Unknown";
@@ -21,6 +22,24 @@ function GriefBox({ grief: { text, author, poll } }) {
 
   const dispatch = useDispatch();
   const [submitting, setSubmitting] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const customStyles = {
+    content: {
+      backgroundColor: "skyblue",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      textAlign: "center",
+      border: "none",
+      borderRadius: "10px",
+      outline: "none",
+      width: "15%",
+      height: "10%",
+      top: "25%",
+      left: "40%",
+    },
+  };
 
   const handleOptionClick = (optionId) => {
     if (selectedOption === optionId) {
@@ -48,7 +67,14 @@ function GriefBox({ grief: { text, author, poll } }) {
 
       // Increase poll votes by 1 for selected option
       setVotes(votes);
-      // window.location.reload();
+
+      // open modal 
+      setShowModal(true)
+
+      //reload the page 
+      setTimeout(() => {
+        window.location.reload();
+      }, 400);
     } catch (error) {
       // Handle submission error
       console.error(error);
@@ -94,6 +120,16 @@ function GriefBox({ grief: { text, author, poll } }) {
             <button onClick={handleSubmit} disabled={submitting}>
               {submitting ? "Submitting..." : "Submit"}
             </button>
+            <Modal
+              isOpen={showModal}
+              onRequestClose={() => setShowModal(false)}
+              style={customStyles}
+              ariaHideApp={false}
+              >
+        <p style={{ fontSize: "13px", fontFamily: "" }}>
+          Voting...
+        </p>
+      </Modal>
           </>
         )}
       </div>
