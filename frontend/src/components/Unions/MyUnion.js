@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchUnion } from "../../store/unions";
+import MyOtherUnions from "./MyOtherUnions";
 
 const MyUnion = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const MyUnion = () => {
       <button className="union-card-button" onClick={handleClick}>
         {union ? union.name : "Refresh the Page"}
       </button>
+      <MyOtherUnions unionName={union ? union.name : null} />
     </div>
   );
 };
