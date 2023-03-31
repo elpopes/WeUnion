@@ -16,10 +16,10 @@ const MyUnion = () => {
   }, [dispatch, user]);
 
   const handleClick = () => {
-    if (user.unions[0]) {
+    if (user.unions) {
       history.push(`/unions/${user.unions[0]}`, { user: user });
     } else {
-      history.push("/unions/new");
+      window.location.reload();
     }
   };
 
