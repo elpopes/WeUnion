@@ -6,8 +6,8 @@ function UnionBox({ union: { name, _id } }) {
   return (
     <Link to={`/unions/${unionId}`}>
       <div className="union">
-        <div className="union-text">
-          <h3>{name}</h3>
+        <div>
+          <h3 className="union-text">{name}</h3>
         </div>
       </div>
     </Link>
