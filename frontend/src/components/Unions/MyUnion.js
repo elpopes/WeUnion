@@ -8,6 +8,9 @@ const MyUnion = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
+  const union = useSelector(
+    (state) => user.unions?.[0] && state.unions[user.unions[0]]
+  );
 
   useEffect(() => {
     if (user && user.unions) {
@@ -26,7 +29,7 @@ const MyUnion = () => {
   return (
     <div>
       <button className="union-card-button" onClick={handleClick}>
-        {user.unions ? "Your Default Union" : "Refresh the Page"}
+        {union ? union.name : "Refresh the Page"}
       </button>
     </div>
   );
