@@ -17,6 +17,21 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Get all the unions for a specific user
+router.get("/user/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const unions = await Union.find({ _id: { $in: user.unions } });
+    return res.json(unions);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Server error" });
+  }
+});
+
 // Create a new Union
 
 router.post("/", requireUser, validateUnionInput, async (req, res) => {
