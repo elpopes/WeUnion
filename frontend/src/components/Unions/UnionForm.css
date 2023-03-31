@@ -13,18 +13,22 @@
   align-items: center;
   height: 400px;
   width: 500px;
-  background-color: #ff0000;
-  opacity: 0.5;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 5px 45px rgba(0, 0, 0, 15);
   padding: 20px;
+  backdrop-filter: blur(7px);
+  border: 2px solid rgba(255,255,255,0.1);
 }
 
 .union-label {
-  font-size: 20px;
+  color: black;
+  font-size: 25px;
   font-weight: 700;
-  margin-left: 29%;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  text-shadow: 1px 1px #514f4f;
+  margin-bottom: 10px;
 }
 
 .union-form-input {
@@ -44,7 +48,7 @@
 }
 
 .union-form-button {
-  background-color: black;
+  background-color: red;
   color: #fff;
   height: 45px;
   width: 60%;
