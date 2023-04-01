@@ -9,6 +9,7 @@ function ProfileImageController() {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
+  const [imageChanged, setImageChanged] = useState(false);
   const profileImageUrl = useSelector(
     (state) => state.session.user.profileImageUrl
   );
@@ -32,14 +33,13 @@ function ProfileImageController() {
     const reader = new FileReader();
     reader.onloadend = () => {
       setPreviewImage(reader.result);
-      // window.location.reload();
+      setImageChanged(true);
     };
     if (imageFile) {
       reader.readAsDataURL(imageFile);
-      // window.location.reload();
-
     } else {
       setPreviewImage(null);
+      setImageChanged(false);
     }
   };
 
@@ -50,19 +50,45 @@ function ProfileImageController() {
       ) : (
         <img className="profile-image" src={profileImageUrl} alt="Profile" />
       )}
-      <label htmlFor="image">
-        <FontAwesomeIcon icon={faImage} />
-        <input
-          type="file"
-          id="image"
-          name="image"
-          onChange={handleImageChange}
-          style={{ display: "none" }}
-        />
-      </label>
-      <button type="submit">
-        <FontAwesomeIcon icon={faSave} />
-      </button>
+      <div
+        style={{
+          marginLeft: "10px",
+          marginBottom: "-10px",
+          height: "20px",
+          width: "50px",
+        }}
+      >
+        <label
+          htmlFor="image"
+          style={{ marginBottom: "-10px", cursor: "pointer" }}
+        >
+          <FontAwesomeIcon icon={faImage} />
+          <input
+            type="file"
+            id="image"
+            name="image"
+            onChange={handleImageChange}
+            style={{ display: "none" }}
+          />
+        </label>
+        {imageChanged && (
+          <button
+            type="submit"
+            style={{
+              width: "20px",
+              height: "20px",
+              backgroundColor: "transparent",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faSave}
+              style={{ width: "16px", height: "16px" }}
+            />
+          </button>
+        )}
+      </div>
     </form>
   );
 }
