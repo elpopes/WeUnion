@@ -7,7 +7,6 @@ import ProfileImageController from "./UpdateProfileImage";
 import MyUnion from "../Unions/MyUnion";
 import DeleteGriefButton from "../Griefs/GriefDelete";
 import DeleteUserButton from "./DeleteUser";
-import MyOtherUnions from "../Unions/MyOtherUnions";
 
 function Profile() {
   const dispatch = useDispatch();
