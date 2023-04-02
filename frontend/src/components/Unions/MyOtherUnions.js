@@ -14,7 +14,7 @@ const MyOtherUnions = ({ unionName }) => {
   }, [dispatch, user]);
 
   const handleMoveUnionToFront = (unionId) => {
-    // dispatch(moveUnionToFront(user._id, unionId));
+    dispatch(moveUnionToFront(user._id, unionId));
   };
 
   return (
