@@ -185,7 +185,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post(
-  "/user/:userId/moveUnionToFront/:unionId",
+  "/:userId/moveUnionToFront/:unionId",
   requireUser,
   async (req, res) => {
     try {

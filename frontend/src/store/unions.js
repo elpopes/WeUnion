@@ -47,7 +47,7 @@ const receiveErrors = (errors) => ({
 
 export const moveUnionToFront = (userId, unionId) => async (dispatch) => {
   try {
-    const res = await fetch(
+    const res = await jwtFetch(
       `/api/users/${userId}/moveUnionToFront/${unionId}`,
       {
         method: "POST",
