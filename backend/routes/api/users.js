@@ -1,6 +1,8 @@
 const validateRegisterInput = require("../../validations/register");
 const validateLoginInput = require("../../validations/login");
 
+const { requireUser } = require("../../config/passport");
+
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
