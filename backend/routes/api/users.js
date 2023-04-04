@@ -1,6 +1,8 @@
 const validateRegisterInput = require("../../validations/register");
 const validateLoginInput = require("../../validations/login");
 
+const { requireUser } = require("../../config/passport");
+
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
@@ -181,5 +183,40 @@ router.get("/:id", async (req, res) => {
     return res.status(500).json({ message: "Server error" });
   }
 });
+
+router.post(
+  "/:userId/moveUnionToFront/:unionId",
+  requireUser,
+  async (req, res) => {
+    try {
+      const { userId, unionId } = req.params;
+
+      const user = await User.findById(userId);
+
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      const unionIndex = user.unions.indexOf(unionId);
+
+      if (unionIndex === -1) {
+        return res
+          .status(400)
+          .json({ error: "Union not found in user unions" });
+      }
+
+      user.unions.splice(unionIndex, 1);
+      user.unions.unshift(unionId);
+      await user.save();
+
+      res.json(user);
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .json({ error: "An error occurred while processing the request" });
+    }
+  }
+);
 
 module.exports = router;

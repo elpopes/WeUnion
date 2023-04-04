@@ -8,6 +8,7 @@ const DESTROY_UNION = "unions/DESTROY_UNION";
 const RECEIVE_UNION_ERRORS = "errors/RECEIVE_UNION_ERRORS";
 const CLEAR_UNION_ERRORS = "errors/CLEAR_UNION_ERRORS";
 const RECEIVE_UNION_MEMBERS = "unions/RECEIVE_UNION_MEMBERS";
+const MOVE_UNION_TO_FRONT = "unions/MOVE_UNION_TO_FRONT";
 
 const receiveUnions = (unions) => ({
   type: RECEIVE_UNIONS,
@@ -43,6 +44,29 @@ const receiveErrors = (errors) => ({
   type: RECEIVE_UNION_ERRORS,
   errors,
 });
+
+export const moveUnionToFront = (userId, unionId) => async (dispatch) => {
+  try {
+    const res = await jwtFetch(
+      `/api/users/${userId}/moveUnionToFront/${unionId}`,
+      {
+        method: "POST",
+      }
+    );
+
+    if (res.ok) {
+      const updatedUser = await res.json();
+      dispatch({
+        type: MOVE_UNION_TO_FRONT,
+        payload: updatedUser,
+      });
+    } else {
+      throw new Error("Failed to change default union.");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const clearErrors = (errors) => ({
   type: CLEAR_UNION_ERRORS,
