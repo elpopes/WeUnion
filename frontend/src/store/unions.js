@@ -47,9 +47,12 @@ const receiveErrors = (errors) => ({
 
 export const moveUnionToFront = (userId, unionId) => async (dispatch) => {
   try {
-    const res = await fetch(`/user/${userId}/moveUnionToFront/${unionId}`, {
-      method: "POST",
-    });
+    const res = await fetch(
+      `/api/users/${userId}/moveUnionToFront/${unionId}`,
+      {
+        method: "POST",
+      }
+    );
 
     if (res.ok) {
       const updatedUser = await res.json();
@@ -58,7 +61,7 @@ export const moveUnionToFront = (userId, unionId) => async (dispatch) => {
         payload: updatedUser,
       });
     } else {
-      throw new Error("Failed to move union to front");
+      throw new Error("Failed to change default union.");
     }
   } catch (error) {
     console.error(error);
