@@ -19,7 +19,11 @@ const DeleteUserButton = ({ userId }) => {
     return null;
   }
 
-  return <button onClick={handleDeleteUser}>Delete weUnion</button>;
+  return (
+    <button className="delete-account" onClick={handleDeleteUser}>
+      Delete my account
+    </button>
+  );
 };
 
 export default DeleteUserButton;
