@@ -22,7 +22,7 @@ const MyOtherUnions = ({ unionName }) => {
 
   return (
     <div className="other-unions-box">
-      <h3>Other Unions</h3>
+      <h3>Select a new default union</h3>
       {otherUnions &&
         otherUnions
           .filter((union) => union.name !== unionName)
