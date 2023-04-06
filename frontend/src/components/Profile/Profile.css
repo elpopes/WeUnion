@@ -74,6 +74,11 @@
   background-color: #f32121;
   margin-left: 250px;
   transform: translateY(200%);
+  color: white;
+}
+
+.grief-delete-button:hover {
+  background-color: #9a3434;
 }
 
 .delete-account {
@@ -94,15 +99,26 @@
 
 .other-unions-box {
   border-radius: 20px;
-  background-color: white;
+  background-color: #d5f5e3;
   padding: 20px;
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   margin-top: 200px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
 }
 
 .select-button {
+  background-color: #ffffff;
+  border-radius: 20px;
   color: #000000;
   cursor: pointer;
+  padding: 8px 16px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.select-button:hover {
+  transform: scale(1.05);
 }

@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserUnions, moveUnionToFront } from "../../store/unions";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 const MyOtherUnions = ({ unionName }) => {
   const dispatch = useDispatch();
@@ -22,19 +20,18 @@ const MyOtherUnions = ({ unionName }) => {
 
   return (
     <div className="other-unions-box">
-      <h3>Select a new default union:</h3>
+      <h2>Select a new default union:</h2>
       {otherUnions &&
         otherUnions
           .filter((union) => union.name !== unionName)
           .map((union) => (
             <div key={union._id}>
-              {union.name}
-              <FontAwesomeIcon
+              <button
                 className="select-button"
-                size="sm"
-                icon={faCircleCheck}
                 onClick={() => handleMoveUnionToFront(union._id)}
-              />
+              >
+                {union.name}
+              </button>
             </div>
           ))}
     </div>
