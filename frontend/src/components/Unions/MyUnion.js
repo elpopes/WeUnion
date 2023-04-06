@@ -32,7 +32,9 @@ const MyUnion = () => {
       <button className="union-card-button" onClick={handleClick}>
         {union ? union.name : "Refresh the Page"}
       </button>
-      <MyOtherUnions unionName={union ? union.name : null} />
+      {user && user.unions && user.unions.length > 1 && (
+        <MyOtherUnions unionName={union ? union.name : null} />
+      )}
     </div>
   );
 };

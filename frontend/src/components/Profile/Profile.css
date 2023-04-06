@@ -75,3 +75,15 @@
   margin-left: 250px;
   transform: translateY(200%);
 }
+
+.other-unions-box {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+.select-button {
+  color: #000000;
+  cursor: pointer;
+}

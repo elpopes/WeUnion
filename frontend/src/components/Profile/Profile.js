@@ -40,7 +40,7 @@ function Profile() {
         </div>
         <div className="profile-page-right-side">
           <div className="member-title">
-            {currentUser.username}'s Member Card
+            {currentUser.username}'s default union:
           </div>
           <div className="profile-box">
             <ProfileImageController profileImageUrl={profileImageUrl} />
