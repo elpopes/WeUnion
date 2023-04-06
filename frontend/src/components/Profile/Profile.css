@@ -41,12 +41,12 @@
 
 .union-card-button {
   padding: 10px 10px;
-  margin-left: 60px;
-  background-color: #f32121;
+  margin-left: 80px;
+  margin-top: 30px;
+  background-color: #000000;
   color: white;
-  border: #000000;
-  border-radius: 20px;
-  font-size: 14px;
+  border-radius: 14px;
+  font-size: 24px;
   cursor: pointer;
 }
 
