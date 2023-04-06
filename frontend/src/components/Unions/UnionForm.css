@@ -17,11 +17,11 @@
   box-shadow: 0 5px 45px rgba(0, 0, 0, 15);
   padding: 20px;
   backdrop-filter: blur(7px);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .union-label {
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: 25px;
   font-weight: 700;
   text-align: center;
@@ -92,7 +92,6 @@
 .invite-form label {
   font-size: 14px;
 }
-
 
 .invite-button {
   padding: 5px 10px;
