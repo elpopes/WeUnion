@@ -68,7 +68,7 @@ export const moveUnionToFront = (userId, unionId) => async (dispatch) => {
   }
 };
 
-const clearErrors = (errors) => ({
+export const clearErrors = (errors) => ({
   type: CLEAR_UNION_ERRORS,
   errors,
 });
