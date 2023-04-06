@@ -7,11 +7,17 @@ const DeleteUserButton = ({ userId }) => {
   const dispatch = useDispatch();
 
   const handleDeleteUser = async () => {
-    try {
-      await jwtFetch(`/api/users/${userId}`, { method: "DELETE" });
-      dispatch(logout());
-    } catch (err) {
-      console.error(err);
+    const confirmation = window.confirm(
+      "Are you sure you want to permanently delete your account?"
+    );
+
+    if (confirmation) {
+      try {
+        await jwtFetch(`/api/users/${userId}`, { method: "DELETE" });
+        dispatch(logout());
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
