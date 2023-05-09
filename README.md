@@ -1,6 +1,6 @@
 # weUnion: a Revolutionary Organizer
 
-[Live Link](www.weUnion.com)
+[Live Link](https://we-union.onrender.com/)
 
 ## Overview
 
